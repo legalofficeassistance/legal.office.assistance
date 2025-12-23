@@ -7,190 +7,143 @@
 
 <style>
 * { box-sizing: border-box; }
-body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #f4f6f8; color: #222; }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f6f8;
+  color: #222;
+}
 
 /* HEADER */
-  <header>
-<blockquote class="quote">
-  „Miara ucywilizowania danego narodu jest jego podejście do osób pozbawionych wolności.”
-</blockquote>
+header {
+  min-height: 65vh;
+  background:
+    linear-gradient(rgba(20,30,50,0.75), rgba(20,30,50,0.75)),
+    url("tlo.jpg.png");
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  text-align: center;
+  padding: 40px 20px;
+}
 
-<p>
-  Specjalistyczna pomoc w przygotowaniu wniosków o polubowne rozwiązanie sporu
-  przeciwko Zakładom Karnym w Republice Słowenii
-</p>
+header h1 { font-size: 36px; margin-bottom: 10px; }
 
-/* FLAG NAV */
-nav.flags { margin-top: 15px; }
-nav.flags img { width: 40px; margin: 0 5px; cursor: pointer; border: 2px solid transparent; border-radius: 4px; }
+.quote {
+  font-style: italic;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+/* FLAGS */
+nav.flags { margin-top: 20px; }
+nav.flags img {
+  width: 36px;
+  margin: 0 5px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 4px;
+}
 nav.flags img.active { border-color: #d4af37; }
 
 /* CONTENT */
-.section { max-width: 900px; margin: 30px auto; background: #fff; padding: 25px; border-radius: 6px; }
+.section {
+  max-width: 900px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 6px;
+}
+
 h2 { color: #1f2a44; }
+
 .lang { display: none; }
 .lang.active { display: block; }
-footer { text-align: center; font-size: 14px; color: #666; padding: 20px; }
+
+footer {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  padding: 20px;
+}
 </style>
 
 <script>
 function setLang(lang) {
   document.querySelectorAll('.lang').forEach(el => el.classList.remove('active'));
   document.getElementById(lang).classList.add('active');
+
   document.querySelectorAll('nav.flags img').forEach(img => img.classList.remove('active'));
   document.getElementById('flag-' + lang).classList.add('active');
 }
 </script>
 </head>
+
 <body>
 
 <header>
   <h1>Prison Justice PL</h1>
-  <p>Miarą ucywilizowania danego narodu jest jego podejście do skazańców.</p>
-  <span>— Europejski Trybunał Praw Człowieka</span>
+
+  <blockquote class="quote">
+    „Miara ucywilizowania danego narodu jest jego podejście do osób pozbawionych wolności.”
+  </blockquote>
+
+  <p>
+    Specjalistyczna pomoc w przygotowaniu wniosków o polubowne rozwiązanie sporu
+    przeciwko Zakładom Karnym w Republice Słowenii
+  </p>
+
   <nav class="flags">
-    <img src="flagi/pl.png" id="flag-pl" onclick="setLang('pl')" class="active" alt="PL">
-    <img src="flagi/ua.png" id="flag-ua" onclick="setLang('ua')" alt="UA">
-    <img src="flagi/en.png" id="flag-en" onclick="setLang('en')" alt="EN">
-    <img src="flagi/ru.png" id="flag-ru" onclick="setLang('ru')" alt="RU">
-    <img src="flagi/md.png" id="flag-md" onclick="setLang('md')" alt="MD">
-    <img src="flagi/ro.png" id="flag-ro" onclick="setLang('ro')" alt="RO">
+    <img src="flagi/pl.png" id="flag-pl" onclick="setLang('pl')" class="active">
+    <img src="flagi/ua.png" id="flag-ua" onclick="setLang('ua')">
+    <img src="flagi/en.png" id="flag-en" onclick="setLang('en')">
+    <img src="flagi/ru.png" id="flag-ru" onclick="setLang('ru')">
+    <img src="flagi/md.png" id="flag-md" onclick="setLang('md')">
+    <img src="flagi/ro.png" id="flag-ro" onclick="setLang('ro')">
   </nav>
 </header>
 
 <!-- POLSKI -->
-    <blockquote class="quote">
-
-  </blockquote>
-
-  <p>
-                            Specjalistyczna pomoc w przygotowaniu wniosków o polubowne rozwiązanie sporu
-    przeciwko Zakładom Karnym w Słowenii
-  </p>
-</header>
-
-<!-- ================= POLSKI ================= -->
 <div id="pl" class="lang active">
-
   <div class="section">
     <h2>Główna specjalizacja – Republika Słowenii</h2>
     <p>
-      Naszą podstawową działalnością jest przygotowywanie wniosków
-      o polubowne (pokojowe) rozwiązanie sporu przeciwko administracji
-      Zakładów Karnych w Republice Słowenii, w sprawach naruszeń praw
-      osób pozbawionych wolności.
+      Przygotowujemy wnioski o polubowne (pokojowe) rozwiązanie sporu
+      przeciwko administracji Zakładów Karnych w Republice Słowenii
+      w sprawach naruszeń praw osób pozbawionych wolności.
     </p>
   </div>
 
   <div class="section">
-    <h2>Etap A – Postępowanie ugodowe (Słowenia)</h2>
+    <h2>Etap A – Postępowanie ugodowe</h2>
     <ol>
-      <li>Analiza informacji przekazanych przez osadzonego lub jego rodzinę</li>
-      <li>Przygotowanie wniosku do właściwych organów słoweńskich</li>
-      <li>Negocjacje ugodowe i wypłata odszkodowania</li>
+      <li>Analiza sprawy</li>
+      <li>Przygotowanie wniosku</li>
+      <li>Negocjacje i wypłata odszkodowania</li>
     </ol>
-    <p><small>Średni czas zakończenia sprawy: około 5 miesięcy</small></p>
+    <p><small>Średni czas: ok. 5 miesięcy</small></p>
   </div>
 
   <div class="section">
-    <h2>Etap B – Europejski Trybunał Praw Człowieka</h2>
-    <p>
-      W przypadku braku ugody lub wystąpienia poważnych,
-      systemowych naruszeń praw człowieka,
-      przygotowujemy skargi do Europejskiego Trybunału Praw Człowieka (ETPCz).
-    </p>
+    <a href="pricing.html">Zobacz cennik usług</a>
   </div>
-
-  <div class="section">
-    <h2>Etap C – Dokumenty do pobrania</h2>
-    <ul>
-      <li><a href="formularz_PL.pdf" download>Formularz – język polski</a></li>
-      <li><a href="formularz_UA.pdf" download>Formularz – język ukraiński</a></li>
-      <li><a href="formularz_EN.pdf" download>Formularz – język angielski</a></li>
-    </ul>
-  </div>
-
- <div class="section">
-  <a href="pricing.html" class="btn">Zobacz cennik usług</a>
-</div>
 
   <div class="section">
     <h2>Kontakt</h2>
     <p>Email: contact@prison-justice.pl</p>
     <p>Telefon: +48 725 144 019</p>
-    <p>WhatsApp / Telegram: +36 70 265 5296</p>
   </div>
-
 </div>
 
-<!-- UKRAINIAN -->
-<div id="ua" class="lang">
-  <div class="section"><h2>Етап А</h2><p>Опис етапу A...</p></div>
-  <div class="section"><h2>Етап B</h2><p>Опис етапу B...</p></div>
-  <div class="section"><h2>Етап C: Завантаження документів</h2><ul>
-<li><a href="formularz_PL.pdf" download>формуляр PL</a></li>
-<li><a href="formularz_UA.pdf" download>формуляр UA</a></li>
-<li><a href="formularz_EN.pdf" download>формуляр EN</a></li>
-</ul></div>
-  <div class="section"><h2>Ціни</h2><p>Ціни послуг...</p></div>
-  <div class="section"><h2>Контакт</h2><p>Email: contact@prison-justice.pl</p><p>Телефон: +48 725 144 019</p></div>
-</div>
-
-<!-- ANGIELSKI -->
-<div id="en" class="lang">
-  <div class="section"><h2>Stage A</h2><p>Description of stage A...</p></div>
-  <div class="section"><h2>Stage B</h2><p>Description of stage B...</p></div>
-  <div class="section"><h2>Stage C: Download Documents</h2><ul>
-<li><a href="formularz_PL.pdf" download>Form PL</a></li>
-<li><a href="formularz_UA.pdf" download>Form UA</a></li>
-<li><a href="formularz_EN.pdf" download>Form EN</a></li>
-</ul></div>
-  <div class="section"><h2>Pricing</h2><p>Pricing details...</p></div>
-  <div class="section"><h2>Contact</h2><p>Email: contact@prison-justice.pl</p><p>Phone: +48 725 144 019</p></div>
-</div>
-
-<!-- RU, MD, RO -->
-<div id="ru" class="lang">
-  <div class="section"><h2>Этап A</h2><p>Описание этапа A...</p></div>
-  <div class="section"><h2>Этап B</h2><p>Описание этапа B...</p></div>
-  <div class="section"><h2>Этап C: Скачать документы</h2><ul>
-<li><a href="formularz_PL.pdf" download>Форма PL</a></li>
-<li><a href="formularz_UA.pdf" download>Форма UA</a></li>
-<li><a href="formularz_EN.pdf" download>Форма EN</a></li>
-</ul></div>
-  <div class="section"><h2>Цены</h2><p>Цены услуг...</p></div>
-  <div class="section"><h2>Контакт</h2><p>Email: contact@prison-justice.pl</p><p>Телефон: +48 725 144 019</p></div>
-</div>
-
-<div id="md" class="lang">
-  <div class="section"><h2>Etapa A</h2><p>Descriere etapă A...</p></div>
-  <div class="section"><h2>Etapa B</h2><p>Descriere etapă B...</p></div>
-  <div class="section"><h2>Etapa C: Descărcare documente</h2><ul>
-<li><a href="formularz_PL.pdf" download>Formular PL</a></li>
-<li><a href="formularz_UA.pdf" download>Formular UA</a></li>
-<li><a href="formularz_EN.pdf" download>Formular EN</a></li>
-</ul></div>
-  <div class="section"><h2>Prețuri</h2><p>Detalii prețuri...</p></div>
-  <div class="section"><h2>Contact</h2><p>Email: contact@prison-justice.pl</p><p>Telefon: +48 725 144 019</p></div>
-</div>
-
-<div id="ro" class="lang">
-  <div class="section"><h2>Etapa A</h2><p>Descriere etapă A...</p></div>
-  <div class="section"><h2>Etapa B</h2><p>Descriere etapă B...</p></div>
-  <div class="section"><h2>Etapa C: Descărcare documente</h2><ul>
-<li><a href="formularz_PL.pdf" download>Formular PL</a></li>
-<li><a href="formularz_UA.pdf" download>Formular UA</a></li>
-<li><a href="formularz_EN.pdf" download>Formular EN</a></li>
-</ul></div>
-  <div class="section"><h2>Prețuri</h2><p>Detalii prețuri...</p></div>
-  <div class="section"><h2>Contact</h2><p>Email: contact@prison-justice.pl</p><p>Telefon: +48 725 144 019</p></div>
-</div>
+<!-- INNE JĘZYKI – placeholder -->
+<div id="ua" class="lang"><div class="section"><h2>Українська версія</h2></div></div>
+<div id="en" class="lang"><div class="section"><h2>English version</h2></div></div>
+<div id="ru" class="lang"><div class="section"><h2>Русская версия</h2></div></div>
+<div id="md" class="lang"><div class="section"><h2>Versiunea moldovenească</h2></div></div>
+<div id="ro" class="lang"><div class="section"><h2>Versiunea română</h2></div></div>
 
 <footer>© Prison Justice PL</footer>
 
 </body>
 </html>
-
-
-
-
