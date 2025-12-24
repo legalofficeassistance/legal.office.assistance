@@ -1,0 +1,12 @@
+.quote {
+  font-style: italic;
+  max-width: 800px;
+  margin: 20px auto;
+  opacity: 0.9;
+}
+
+.quote span {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+}

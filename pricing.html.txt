@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Cennik usług – Prison Justice PL</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #f4f6f8; color: #222; }
+
+/* HEADER */
+header {
+  background: linear-gradient(rgba(20,30,50,0.8), rgba(20,30,50,0.8)), url("tlo.jpg.png");
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+nav.flags { margin-top: 20px; }
+nav.flags img {
+  width: 36px;
+  margin: 0 5px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 4px;
+}
+nav.flags img.active { border-color: #d4af37; }
+
+.section {
+  max-width: 900px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 6px;
+}
+
+.lang { display: none; }
+.lang.active { display: block; }
+
+.price-box {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 4px;
+}
+
+footer { text-align: center; font-size: 14px; color: #666; padding: 20px; }
+
+a.btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 15px;
+  background: #d4af37;
+  color: #000;
+  text-decoration: none;
+  border-radius: 4px;
+}
+</style>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang').forEach(el => el.classList.remove('active'));
+  document.getElementById(lang).classList.add('active');
+
+  document.querySelectorAll('nav.flags img').forEach(img => img.classList.remove('active'));
+  document.getElementById('flag-' + lang).classList.add('active');
+}
+</script>
+</head>
+
+<body>
+
+<header>
+  <h1>Cennik usług</h1>
+  <p>Prison Justice PL</p>
+
+  <nav class="flags">
+    <img src="flagi/pl.png" id="flag-pl" onclick="setLang('pl')" class="active" alt="PL">
+    <img src="flagi/ua.png" id="flag-ua" onclick="setLang('ua')" alt="UA">
+    <img src="flagi/en.png" id="flag-en" onclick="setLang('en')" alt="EN">
+    <img src="flagi/ru.png" id="flag-ru" onclick="setLang('ru')" alt="RU">
+    <img src="flagi/md.png" id="flag-md" onclick="setLang('md')" alt="MD">
+    <img src="flagi/ro.png" id="flag-ro" onclick="setLang('ro')" alt="RO">
+  </nav>
+</header>
+
+<!-- ================= POLSKI ================= -->
+<div id="pl" class="lang active">
+  <div class="section">
+    <h2>Cennik usług</h2>
+
+    <div class="price-box">
+      <strong>Etap A – Postępowanie ugodowe (Słowenia)</strong>
+      <p>Opłata wstępna: 0 EUR</p>
+      <p>Wynagrodzenie: procent od uzyskanego odszkodowania</p>
+    </div>
+
+    <div class="price-box">
+      <strong>Etap B – Europejski Trybunał Praw Człowieka</strong>
+      <p>Indywidualna wycena po analizie sprawy</p>
+    </div>
+
+    <p><small>Nie pobieramy opłat, jeśli sprawa zakończy się bez wypłaty odszkodowania.</small></p>
+
+    <a href="index.html" class="btn">Powrót na stronę główną</a>
+  </div>
+</div>
+
+<!-- ================= UKRAIŃSKI ================= -->
+<div id="ua" class="lang">
+  <div class="section">
+    <h2>Ціни на послуги</h2>
+
+    <div class="price-box">
+      <strong>Етап A – Дружнє врегулювання (Словенія)</strong>
+      <p>Початковий внесок: 0 EUR</p>
+      <p>Винагорода: відсоток від отриманої компенсації</p>
+    </div>
+
+    <div class="price-box">
+      <strong>Етап B – Європейський суд з прав людини</strong>
+      <p>Індивідуальна оцінка після аналізу справи</p>
+    </div>
+
+    <a href="index.html" class="btn">Повернутися на головну</a>
+  </div>
+</div>
+
+<!-- ================= ENGLISH ================= -->
+<div id="en" class="lang">
+  <div class="section">
+    <h2>Pricing</h2>
+
+    <div class="price-box">
+      <strong>Stage A – Amicable Settlement (Slovenia)</strong>
+      <p>Initial fee: 0 EUR</p>
+      <p>Remuneration: percentage of awarded compensation</p>
+    </div>
+
+    <div class="price-box">
+      <strong>Stage B – European Court of Human Rights</strong>
+      <p>Individual pricing after case analysis</p>
+    </div>
+
+    <a href="index.html" class="btn">Back to homepage</a>
+  </div>
+</div>
+
+<!-- ================= RUSSIAN ================= -->
+<div id="ru" class="lang">
+  <div class="section">
+    <h2>Цены на услуги</h2>
+
+    <div class="price-box">
+      <strong>Этап A – Мирное урегулирование (Словения)</strong>
+      <p>Первоначальный взнос: 0 EUR</p>
+      <p>Вознаграждение: процент от полученной компенсации</p>
+    </div>
+
+    <div class="price-box">
+      <strong>Этап B – Европейский суд по правам человека</strong>
+      <p>Индивидуальная оценка после анализа дела</p>
+    </div>
+
+    <a href="index.html" class="btn">Вернуться на главную</a>
+  </div>
+</div>
+
+<!-- ================= MOLDOVAN ================= -->
+<div id="md" class="lang">
+  <div class="section">
+    <h2>Tarife servicii</h2>
+
+    <div class="price-box">
+      <strong>Etapa A – Soluționare amiabilă (Slovenia)</strong>
+      <p>Taxă inițială: 0 EUR</p>
+      <p>Onorariu: procent din despăgubirea obținută</p>
+    </div>
+
+    <div class="price-box">
+      <strong>Etapa B – Curtea Europeană a Drepturilor Omului</strong>
+      <p>Evaluare individuală după analiză</p>
+    </div>
+
+    <a href="index.html" class="btn">Înapoi la pagina principală</a>
+  </div>
+</div>
+
+<!-- ================= ROMANIAN ================= -->
+<div id="ro" class="lang">
+  <div class="section">
+    <h2>Tarife</h2>
+
+    <div class="price-box">
+      <strong>Etapa A – Procedură amiabilă (Slovenia)</strong>
+      <p>Taxă inițială: 0 EUR</p>
+      <p>Onorariu: procent din despăgubirea obținută</p>
+    </div>
+
+    <div class="price-box">
+      <strong>Etapa B – Curtea Europeană a Drepturilor Omului</strong>
+      <p>Evaluare individuală după analiză</p>
+    </div>
+
+    <a href="index.html" class="btn">Înapoi la pagina principală</a>
+  </div>
+</div>
+
+<footer>© Prison Justice PL</footer>
+
+</body>
+</html>

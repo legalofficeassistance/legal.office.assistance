@@ -1,0 +1,14 @@
+STRUKTURA PLIKÓW (FINALNA)
+/ (root repo)
+│
+├── index.html       
+├── pricing.html      
+│
+├── formularz_PL.pdf
+├── formularz_UA.pdf
+├── formularz_EN.pdf
+│
+└── flagi/
+    ├── pl.png
+    ├── ua.png
+    ├── en.png
