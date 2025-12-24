@@ -94,7 +94,7 @@ function setLang(lang) {
 
     <div class="price-box">
       <strong>Etap A – Postępowanie ugodowe (Słowenia)</strong>
-      <p>Opłata wstępna: 0 EUR</p>
+      <p>Opłata wstępna: 50 EUR</p>
       <p>Wynagrodzenie: procent od uzyskanego odszkodowania</p>
     </div>
 
@@ -213,3 +213,4 @@ function setLang(lang) {
 
 </body>
 </html>
+
