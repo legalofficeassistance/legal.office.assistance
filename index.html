@@ -6,44 +6,126 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f6f8;
+  color: #222;
+}
+
+/* HEADER */
+header {
+  min-height: 65vh;
+  background:
+    linear-gradient(rgba(20,30,50,0.75), rgba(20,30,50,0.75)),
+    url("tlo.jpg.png");
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+header h1 { font-size: 36px; margin-bottom: 10px; }
+
+.quote {
+  font-style: italic;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+/* cytaty językowe */
 .lang-quote { display: none; }
 .lang-quote.active { display: inline; }
 
+/* FLAGI */
+nav.flags { margin-top: 20px; }
+nav.flags img {
+  width: 36px;
+  margin: 0 5px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 4px;
+}
+nav.flags img.active { border-color: #d4af37; }
+
+/* CONTENT */
+.section {
+  max-width: 900px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 6px;
+}
+
+.lang { display: none; }
+.lang.active { display: block; }
+
+footer {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  padding: 20px;
+}
+</style>
+
+
 /* HEADER */
-header 
+<header>
+  <h1>Prison Justice PL</h1>
+
   <blockquote class="quote">
 
-  <span class="lang-quote pl active">
-    „Miara ucywilizowania danego narodu jest jego podejście do osób pozbawionych wolności.”
-    <br><small>Fiodor Dostojewski</small>
-  </span>
+    <span class="lang-quote pl active">
+      „Miara ucywilizowania danego narodu jest jego podejście do osób pozbawionych wolności.”
+      <br><small>Fiodor Dostojewski</small>
+    </span>
 
-  <span class="lang-quote ua">
-    «Рівень цивілізованості нації визначається її ставленням до людей, позбавлених волі».
-    <br><small>Федір Достоєвський</small>
-  </span>
+    <span class="lang-quote ua">
+      «Рівень цивілізованості нації визначається її ставленням до людей, позбавлених волі».
+      <br><small>Федір Достоєвський</small>
+    </span>
 
-  <span class="lang-quote en">
-    “The degree of civilization of a nation is determined by its attitude toward prisoners.”
-    <br><small>Fyodor Dostoevsky</small>
-  </span>
+    <span class="lang-quote en">
+      “The degree of civilization of a nation is determined by its attitude toward prisoners.”
+      <br><small>Fyodor Dostoevsky</small>
+    </span>
 
-  <span class="lang-quote ru">
-    «Степень цивилизованности общества определяется его отношением к заключённым».
-    <br><small>Фёдор Михайлович Достоевский</small>
-  </span>
+    <span class="lang-quote ru">
+      «Степень цивилизованности общества определяется его отношением к заключённым».
+      <br><small>Фёдор Михайлович Достоевский</small>
+    </span>
 
-  <span class="lang-quote md">
-    „Gradul de civilizație al unei națiuni este determinat de atitudinea sa față de persoanele private de libertate.”
-    <br><small>Fiodor Dostoievski</small>
-  </span>
+    <span class="lang-quote md">
+      „Gradul de civilizație al unei națiuni este determinat de atitudinea sa față de persoanele private de libertate.”
+      <br><small>Fiodor Dostoievski</small>
+    </span>
 
-  <span class="lang-quote ro">
-    „Gradul de civilizație al unei națiuni se măsoară prin atitudinea față de deținuți.”
-    <br><small>Fiodor Dostoievski</small>
-  </span>
+    <span class="lang-quote ro">
+      „Gradul de civilizație al unei națiuni se măsoară prin atitudinea față de deținuți.”
+      <br><small>Fiodor Dostoievski</small>
+    </span>
 
-</blockquote>
+  </blockquote>
+
+  <p>
+    Specjalistyczna pomoc w przygotowaniu wniosków
+    o polubowne rozwiązanie sporu
+    przeciwko Zakładom Karnym w Republice Słowenii
+  </p>
+
+  <nav class="flags">
+    <img src="pl.png" id="flag-pl" onclick="setLang('pl')" class="active">
+    <img src="ua.png" id="flag-ua" onclick="setLang('ua')">
+    <img src="en.png" id="flag-en" onclick="setLang('en')">
+    <img src="ru.png" id="flag-ru" onclick="setLang('ru')">
+    <img src="md.png" id="flag-md" onclick="setLang('md')">
+    <img src="ro.png" id="flag-ro" onclick="setLang('ro')">
+  </nav>
+</header>
+
 
 
 /* CONTENT */
@@ -79,7 +161,6 @@ function setLang(lang) {
 
 <header>
   <h1>Prison Justice PL</h1>
-  <blockquote class="quote">„Miarą ucywilizowania danego narodu jest jego podejście do osób pozbawionych wolności.” Fiodor Dostojewski(Фёдор Михайлович Достоевский)</blockquote>
   <p>Specjalistyczna pomoc w przygotowaniu wniosków o polubowne rozwiązanie sporu przeciwko Zakładom Karnym w Republice Słowenii</p>
   
   <nav class="flags">
@@ -349,6 +430,7 @@ function setLang(lang) {
 
 </body>
 </html>
+
 
 
 
