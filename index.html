@@ -15,6 +15,11 @@ body {
   color: #222;
 }
 
+/* WSZYSTKIE JĘZYKI DOMYŚLNIE UKRYTE */
+[data-lang] {
+  display: none;
+}
+
 /* HEADER */
 header {
   min-height: 65vh;
@@ -39,7 +44,6 @@ header h1 {
   margin: 20px auto;
 }
 
-/* SEKCJE */
 .section {
   max-width: 900px;
   margin: 30px auto;
@@ -48,11 +52,10 @@ header h1 {
   border-radius: 6px;
 }
 
-/* JĘZYKI */
-[data-lang] { display: none; }
+nav.flags {
+  margin-top: 20px;
+}
 
-/* FLAGI */
-nav.flags { margin-top: 20px; }
 nav.flags img {
   width: 36px;
   margin: 0 5px;
@@ -60,24 +63,16 @@ nav.flags img {
   border: 2px solid transparent;
   border-radius: 4px;
 }
+
 nav.flags img.active {
   border-color: #d4af37;
 }
 
-a.btn {
-  display: inline-block;
-  padding: 10px 15px;
-  background:#d4af37;
-  color:#000;
-  text-decoration:none;
-  border-radius:4px;
-}
-
 footer {
-  text-align:center;
-  padding:20px;
-  font-size:14px;
-  color:#666;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #666;
 }
 </style>
 
@@ -87,15 +82,20 @@ function setLang(lang) {
     el.style.display = 'none';
   });
 
-  document.querySelectorAll('[data-lang="'+lang+'"]').forEach(el => {
+  document.querySelectorAll('[data-lang="' + lang + '"]').forEach(el => {
     el.style.display = 'block';
   });
 
-  document.querySelectorAll('nav.flags img').forEach(img =>
+  document.querySelectorAll('.flags img').forEach(img =>
     img.classList.remove('active')
   );
   document.getElementById('flag-' + lang).classList.add('active');
 }
+
+/* DOMYŚLNIE POKAŻ POLSKI */
+document.addEventListener('DOMContentLoaded', () => {
+  setLang('pl');
+});
 </script>
 </head>
 
@@ -104,9 +104,8 @@ function setLang(lang) {
 <header>
   <h1>Prison Justice PL</h1>
 
-  <!-- CYTAT -->
   <blockquote class="quote">
-    <div data-lang="pl" style="display:block">
+    <div data-lang="pl">
       „Miara ucywilizowania danego narodu jest jego podejście do osób pozbawionych wolności.”
       <br><small>Fiodor Dostojewski</small>
     </div>
@@ -123,7 +122,7 @@ function setLang(lang) {
 
     <div data-lang="ru">
       «Степень цивилизованности общества определяется его отношением к заключённым».
-      <br><small>Фёдор Михайлович Достоевский</small>
+      <br><small>Фёдор Достоевский</small>
     </div>
 
     <div data-lang="md">
@@ -137,40 +136,33 @@ function setLang(lang) {
     </div>
   </blockquote>
 
-  <!-- OPIS -->
-  <p data-lang="pl" style="display:block">
-    Specjalistyczna pomoc w przygotowaniu wniosków o polubowne rozwiązanie sporu
-    przeciwko Zakładom Karnym w Republice Słowenii
+  <p data-lang="pl">
+    Specjalistyczna pomoc w przygotowaniu wniosków przeciwko Zakładom Karnym
+    w Republice Słowenii
   </p>
 
   <p data-lang="ua">
-    Спеціалізована допомога у підготовці заяв щодо мирного врегулювання спорів
-    проти пенітенціарних установ у Словенії
+    Спеціалізована допомога у підготовці заяв проти пенітенціарних установ Словенії
   </p>
 
   <p data-lang="en">
-    Specialized assistance in preparing applications for amicable settlement
-    against correctional facilities in Slovenia
+    Specialized assistance in preparing applications against correctional facilities in Slovenia
   </p>
 
   <p data-lang="ru">
-    Специализированная помощь в подготовке заявлений о мирном урегулировании споров
-    против пенитенциарных учреждений Словении
+    Специализированная помощь в подготовке заявлений против учреждений Словении
   </p>
 
   <p data-lang="md">
-    Asistență specializată pentru pregătirea cererilor de soluționare amiabilă
-    împotriva instituțiilor penitenciare din Slovenia
+    Asistență specializată pentru pregătirea cererilor împotriva penitenciarelor din Slovenia
   </p>
 
   <p data-lang="ro">
-    Asistență specializată în pregătirea cererilor de soluționare amiabilă
-    împotriva instituțiilor penitenciare din Slovenia
+    Asistență specializată pentru pregătirea cererilor împotriva instituțiilor penitenciare din Slovenia
   </p>
 
-  <!-- FLAGI -->
   <nav class="flags">
-    <img src="pl.png" id="flag-pl" class="active" onclick="setLang('pl')" alt="PL">
+    <img src="pl.png" id="flag-pl" onclick="setLang('pl')" alt="PL">
     <img src="ua.png" id="flag-ua" onclick="setLang('ua')" alt="UA">
     <img src="en.png" id="flag-en" onclick="setLang('en')" alt="EN">
     <img src="ru.png" id="flag-ru" onclick="setLang('ru')" alt="RU">
@@ -179,57 +171,10 @@ function setLang(lang) {
   </nav>
 </header>
 
-<!-- ================= TREŚĆ ================= -->
-
-<div data-lang="pl" style="display:block">
-  <div class="section">
-    <h2>Główna specjalizacja – Republika Słowenii</h2>
-    <p>Przygotowujemy wnioski o polubowne rozwiązanie sporu przeciwko administracji Zakładów Karnych w Republice Słowenii.</p>
-  </div>
-</div>
-
-<div data-lang="ua">
-  <div class="section">
-    <h2>Головна спеціалізація – Республіка Словенія</h2>
-    <p>Ми готуємо заявки на дружнє врегулювання спорів проти адміністрації тюрем у Словенії.</p>
-  </div>
-</div>
-
-<div data-lang="en">
-  <div class="section">
-    <h2>Main Specialisation – Republic of Slovenia</h2>
-    <p>We prepare applications for amicable settlement against prison administrations in Slovenia.</p>
-  </div>
-</div>
-
-<div data-lang="ru">
-  <div class="section">
-    <h2>Основная специализация – Республика Словения</h2>
-    <p>Подготавливаем заявки на мирное урегулирование споров против администрации тюрем.</p>
-  </div>
-</div>
-
-<div data-lang="md">
-  <div class="section">
-    <h2>Specializare principală – Republica Slovenia</h2>
-    <p>Pregătim cereri pentru soluționarea amiabilă a litigiilor.</p>
-  </div>
-</div>
-
-<div data-lang="ro">
-  <div class="section">
-    <h2>Specializare principală – Republica Slovenia</h2>
-    <p>Pregătirea cererilor pentru soluționarea amiabilă a litigiilor.</p>
-  </div>
-</div>
-
 <footer>© Prison Justice PL</footer>
 
 </body>
 </html>
-
-
-
 
 
 <!-- ================= POLSKI ================= -->
@@ -489,6 +434,7 @@ function setLang(lang) {
 
 </body>
 </html>
+
 
 
 
