@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-* { box-sizing: border-box; }
-body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #f4f6f8; color: #222; }
+.lang-quote { display: none; }
+.lang-quote.active { display: inline; }
 
 /* HEADER */
 header 
@@ -58,13 +58,21 @@ a.btn { display: inline-block; margin-top: 10px; padding: 10px 15px; background:
 
 <script>
 function setLang(lang) {
+
+  /* treść strony */
   document.querySelectorAll('.lang').forEach(el => el.classList.remove('active'));
   document.getElementById(lang).classList.add('active');
 
+  /* flagi */
   document.querySelectorAll('nav.flags img').forEach(img => img.classList.remove('active'));
   document.getElementById('flag-' + lang).classList.add('active');
+
+  /* motto */
+  document.querySelectorAll('.lang-quote').forEach(q => q.classList.remove('active'));
+  document.querySelector('.lang-quote.' + lang).classList.add('active');
 }
 </script>
+
 
 </head>
 <body>
@@ -341,6 +349,7 @@ function setLang(lang) {
 
 </body>
 </html>
+
 
 
 
