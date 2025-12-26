@@ -7,7 +7,6 @@
 
 <style>
 * { box-sizing: border-box; }
-
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -56,10 +55,18 @@ nav.flags img.active {
   font-weight: bold;
 }
 
-form textarea {
+.contact-list a:hover {
+  text-decoration: underline;
+}
+
+form {
+  margin-top: 25px;
+}
+
+form input, form textarea {
   width: 100%;
-  min-height: 120px;
   padding: 10px;
+  margin-top: 8px;
   font-size: 14px;
 }
 
@@ -81,6 +88,13 @@ form button {
   text-decoration: none;
   border-radius: 4px;
 }
+
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #666;
+}
 </style>
 
 <script>
@@ -99,7 +113,12 @@ document.addEventListener('DOMContentLoaded', () => setLang('pl'));
 <body>
 
 <header>
-  <h1>Kontakt</h1>
+  <h1 data-lang="pl">Kontakt</h1>
+  <h1 data-lang="ua">Контакт</h1>
+  <h1 data-lang="en">Contact</h1>
+  <h1 data-lang="ru">Контакт</h1>
+  <h1 data-lang="md">Contact</h1>
+  <h1 data-lang="ro">Contact</h1>
 
   <nav class="flags">
     <img src="pl.png" id="flag-pl" onclick="setLang('pl')">
@@ -113,120 +132,136 @@ document.addEventListener('DOMContentLoaded', () => setLang('pl'));
 
 <div class="section">
 
-<!-- PL -->
+<!-- ================= PL ================= -->
 <div data-lang="pl">
   <h2>Dane kontaktowe</h2>
   <div class="contact-list">
-    <a href="tel:+48725144019">📞 +48 725 144 019</a>
+    <a href="tel:+48725144019">📞 Telefon: +48 725 144 019</a>
     <a href="https://wa.me/48725144019" target="_blank">📱 WhatsApp</a>
     <a href="https://t.me/+36702655296" target="_blank">✈️ Telegram</a>
-    <a href="https://facebook.com/profile.php?id=61585160703540" target="_blank">📘 Facebook</a>
+    <a href="mailto:contact@prison-justice.pl">📧 contact@prison-justice.pl</a>
+    <a href="https://www.facebook.com/profile.php?id=61585160703540" target="_blank">📘 Facebook</a>
   </div>
 
   <h3>Wyślij wiadomość</h3>
   <form action="contact.php" method="post">
-  <input name="name" placeholder="Imię">
-  <input name="email" placeholder="Twój email">
-  <textarea name="message" placeholder="Treść wiadomości"></textarea>
-  <button type="submit">Wyślij</button>
-</form>
+    <input type="text" name="name" placeholder="Twoje imię" required>
+    <input type="email" name="email" placeholder="Twój email" required>
+    <textarea name="message" placeholder="Treść wiadomości" required></textarea>
+    <button type="submit">Wyślij</button>
+  </form>
 
-
-  <a href="index.html" class="btn">← Strona główna</a>
+  <a href="index.html" class="btn">← Powrót na stronę główną</a>
 </div>
 
-<!-- UA -->
+<!-- ================= UA ================= -->
 <div data-lang="ua">
-  <h2>Контакти</h2>
-   <div class="contact-list">
-    <a href="tel:+48725144019">📞 +48 725 144 019</a>
+  <h2>Контактні дані</h2>
+  <div class="contact-list">
+    <a href="tel:+48725144019">📞 Телефон: +48 725 144 019</a>
     <a href="https://wa.me/48725144019" target="_blank">📱 WhatsApp</a>
     <a href="https://t.me/+36702655296" target="_blank">✈️ Telegram</a>
-    <a href="https://facebook.com/profile.php?id=61585160703540" target="_blank">📘 Facebook</a>
+    <a href="mailto:contact@prison-justice.pl">📧 Email</a>
+    <a href="https://www.facebook.com/profile.php?id=61585160703540" target="_blank">📘 Facebook</a>
   </div>
-  <form action="mailto:contact@prison-justice.pl" method="post" enctype="text/plain">
-    <textarea
-  name="message"
-  placeholder="Wpisz treść wiadomości..."
-  autocomplete="off"
-></textarea>
+
+  <h3>Надіслати повідомлення</h3>
+  <form action="contact.php" method="post">
+    <input type="text" name="name" placeholder="Ваше ім'я" required>
+    <input type="email" name="email" placeholder="Ваш email" required>
+    <textarea name="message" placeholder="Введіть повідомлення" required></textarea>
     <button type="submit">Надіслати</button>
   </form>
+
+  <a href="index.html" class="btn">← Повернутися на головну</a>
 </div>
 
-<!-- EN -->
+<!-- ================= EN ================= -->
 <div data-lang="en">
-  <h2>Contact</h2>
-   <div class="contact-list">
-    <a href="tel:+48725144019">📞 +48 725 144 019</a>
+  <h2>Contact details</h2>
+  <div class="contact-list">
+    <a href="tel:+48725144019">📞 Phone: +48 725 144 019</a>
     <a href="https://wa.me/48725144019" target="_blank">📱 WhatsApp</a>
     <a href="https://t.me/+36702655296" target="_blank">✈️ Telegram</a>
-    <a href="https://facebook.com/profile.php?id=61585160703540" target="_blank">📘 Facebook</a>
+    <a href="mailto:contact@prison-justice.pl">📧 Email</a>
+    <a href="https://www.facebook.com/profile.php?id=61585160703540" target="_blank">📘 Facebook</a>
   </div>
-  <form action="mailto:contact@prison-justice.pl" method="post" enctype="text/plain">
-    <textarea
-  name="message"
-  placeholder="Wpisz treść wiadomości..."
-  autocomplete="off"
-></textarea>
+
+  <h3>Send a message</h3>
+  <form action="contact.php" method="post">
+    <input type="text" name="name" placeholder="Your name" required>
+    <input type="email" name="email" placeholder="Your email" required>
+    <textarea name="message" placeholder="Type your message" required></textarea>
     <button type="submit">Send</button>
   </form>
+
+  <a href="index.html" class="btn">← Back to home</a>
 </div>
 
-<!-- RU -->
+<!-- ================= RU ================= -->
 <div data-lang="ru">
-  <h2>Контакты</h2>
-   <div class="contact-list">
-    <a href="tel:+48725144019">📞 +48 725 144 019</a>
+  <h2>Контактные данные</h2>
+  <div class="contact-list">
+    <a href="tel:+48725144019">📞 Телефон: +48 725 144 019</a>
     <a href="https://wa.me/48725144019" target="_blank">📱 WhatsApp</a>
     <a href="https://t.me/+36702655296" target="_blank">✈️ Telegram</a>
-    <a href="https://facebook.com/profile.php?id=61585160703540" target="_blank">📘 Facebook</a>
+    <a href="mailto:contact@prison-justice.pl">📧 Email</a>
+    <a href="https://www.facebook.com/profile.php?id=61585160703540" target="_blank">📘 Facebook</a>
   </div>
-  <form action="mailto:contact@prison-justice.pl" method="post" enctype="text/plain">
-    <textarea
-  name="message"
-  placeholder="Wpisz treść wiadomości..."
-  autocomplete="off"
-></textarea>
+
+  <h3>Отправить сообщение</h3>
+  <form action="contact.php" method="post">
+    <input type="text" name="name" placeholder="Ваше имя" required>
+    <input type="email" name="email" placeholder="Ваш email" required>
+    <textarea name="message" placeholder="Введите сообщение" required></textarea>
     <button type="submit">Отправить</button>
   </form>
+
+  <a href="index.html" class="btn">← Вернуться на главную</a>
 </div>
 
-<!-- MD -->
+<!-- ================= MD ================= -->
 <div data-lang="md">
-  <h2>Contact</h2> <div class="contact-list">
-    <a href="tel:+48725144019">📞 +48 725 144 019</a>
+  <h2>Contact details</h2>
+  <div class="contact-list">
+    <a href="tel:+48725144019">📞 Telefon: +48 725 144 019</a>
     <a href="https://wa.me/48725144019" target="_blank">📱 WhatsApp</a>
     <a href="https://t.me/+36702655296" target="_blank">✈️ Telegram</a>
-    <a href="https://facebook.com/profile.php?id=61585160703540" target="_blank">📘 Facebook</a>
+    <a href="mailto:contact@prison-justice.pl">📧 Email</a>
+    <a href="https://www.facebook.com/profile.php?id=61585160703540" target="_blank">📘 Facebook</a>
   </div>
-  <form action="mailto:contact@prison-justice.pl" method="post" enctype="text/plain">
-    <textarea
-  name="message"
-  placeholder="Wpisz treść wiadomości..."
-  autocomplete="off"
-></textarea>
+
+  <h3>Send a message</h3>
+  <form action="contact.php" method="post">
+    <input type="text" name="name" placeholder="Numele dvs." required>
+    <input type="email" name="email" placeholder="Email-ul dvs." required>
+    <textarea name="message" placeholder="Scrieți mesajul" required></textarea>
     <button type="submit">Trimite</button>
   </form>
+
+  <a href="index.html" class="btn">← Înapoi la pagina principală</a>
 </div>
 
-<!-- RO -->
+<!-- ================= RO ================= -->
 <div data-lang="ro">
-  <h2>Contact</h2>
-   <div class="contact-list">
-    <a href="tel:+48725144019">📞 +48 725 144 019</a>
+  <h2>Contact details</h2>
+  <div class="contact-list">
+    <a href="tel:+48725144019">📞 Telefon: +48 725 144 019</a>
     <a href="https://wa.me/48725144019" target="_blank">📱 WhatsApp</a>
     <a href="https://t.me/+36702655296" target="_blank">✈️ Telegram</a>
-    <a href="https://facebook.com/profile.php?id=61585160703540" target="_blank">📘 Facebook</a>
+    <a href="mailto:contact@prison-justice.pl">📧 Email</a>
+    <a href="https://www.facebook.com/profile.php?id=61585160703540" target="_blank">📘 Facebook</a>
   </div>
-  <form action="mailto:contact@prison-justice.pl" method="post" enctype="text/plain">
-    <textarea
-  name="message"
-  placeholder="Wpisz treść wiadomości..."
-  autocomplete="off"
-></textarea>
+
+  <h3>Send a message</h3>
+  <form action="contact.php" method="post">
+    <input type="text" name="name" placeholder="Numele dvs." required>
+    <input type="email" name="email" placeholder="Email-ul dvs." required>
+    <textarea name="message" placeholder="Scrieți mesajul" required></textarea>
     <button type="submit">Trimite</button>
   </form>
+
+  <a href="index.html" class="btn">← Înapoi la pagina principală</a>
 </div>
 
 </div>
@@ -235,6 +270,3 @@ document.addEventListener('DOMContentLoaded', () => setLang('pl'));
 
 </body>
 </html>
-
-
-
