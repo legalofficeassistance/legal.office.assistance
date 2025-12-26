@@ -22,10 +22,6 @@ header {
   text-align: center;
 }
 
-header h1 {
-  margin-bottom: 10px;
-}
-
 nav.flags {
   margin-top: 15px;
 }
@@ -43,29 +39,55 @@ nav.flags img.active {
 }
 
 .section {
-  max-width: 800px;
+  max-width: 850px;
   margin: 30px auto;
   background: #fff;
   padding: 25px;
   border-radius: 6px;
 }
 
-[data-lang] {
-  display: none;
+[data-lang] { display: none; }
+
+.contact-list a {
+  display: block;
+  margin: 8px 0;
+  text-decoration: none;
+  color: #1f2a44;
+  font-weight: bold;
+}
+
+.contact-list a:hover {
+  text-decoration: underline;
+}
+
+form {
+  margin-top: 25px;
+}
+
+form textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+form button {
+  margin-top: 10px;
+  padding: 10px 18px;
+  background: #d4af37;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .btn {
   display: inline-block;
-  margin-top: 15px;
+  margin-top: 20px;
   padding: 10px 15px;
-  background: #d4af37;
-  color: #000;
+  background: #1f2a44;
+  color: #fff;
   text-decoration: none;
   border-radius: 4px;
-}
-
-.contact-list p {
-  margin: 8px 0;
 }
 
 footer {
@@ -78,23 +100,14 @@ footer {
 
 <script>
 function setLang(lang) {
-  document.querySelectorAll('[data-lang]').forEach(el => {
-    el.style.display = 'none';
-  });
+  document.querySelectorAll('[data-lang]').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('[data-lang="' + lang + '"]').forEach(el => el.style.display = 'block');
 
-  document.querySelectorAll('[data-lang="' + lang + '"]').forEach(el => {
-    el.style.display = 'block';
-  });
-
-  document.querySelectorAll('.flags img').forEach(img =>
-    img.classList.remove('active')
-  );
+  document.querySelectorAll('.flags img').forEach(img => img.classList.remove('active'));
   document.getElementById('flag-' + lang).classList.add('active');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  setLang('pl');
-});
+document.addEventListener('DOMContentLoaded', () => setLang('pl'));
 </script>
 </head>
 
@@ -104,95 +117,133 @@ document.addEventListener('DOMContentLoaded', () => {
   <h1>Kontakt</h1>
 
   <nav class="flags">
-    <img src="pl.png" id="flag-pl" onclick="setLang('pl')" alt="PL">
-    <img src="ua.png" id="flag-ua" onclick="setLang('ua')" alt="UA">
-    <img src="en.png" id="flag-en" onclick="setLang('en')" alt="EN">
-    <img src="ru.png" id="flag-ru" onclick="setLang('ru')" alt="RU">
-    <img src="md.png" id="flag-md" onclick="setLang('md')" alt="MD">
-    <img src="ro.png" id="flag-ro" onclick="setLang('ro')" alt="RO">
+    <img src="pl.png" id="flag-pl" onclick="setLang('pl')">
+    <img src="ua.png" id="flag-ua" onclick="setLang('ua')">
+    <img src="en.png" id="flag-en" onclick="setLang('en')">
+    <img src="ru.png" id="flag-ru" onclick="setLang('ru')">
+    <img src="md.png" id="flag-md" onclick="setLang('md')">
+    <img src="ro.png" id="flag-ro" onclick="setLang('ro')">
   </nav>
 </header>
 
 <div class="section">
 
-  <!-- PL -->
-  <div data-lang="pl">
-    <h2>Dane kontaktowe</h2>
-    <div class="contact-list">
-      <p>📞 Telefon: +48 725 144 019</p>
-      <p>📱 WhatsApp: +48 725 144 019</p>
-      <p>✈️ Telegram: +36 70 265 5296</p>
-      <p>📧 Email: contact@prison-justice.pl</p>
-      <p>📠 Fax: +48 22 000 00 00</p>
-      <p>📘 Facebook: facebook.com/prisonjusticepl</p>
-    </div>
-    <a href="index.html" class="btn">← Powrót na stronę główną</a>
+<!-- ================= PL ================= -->
+<div data-lang="pl">
+  <h2>Dane kontaktowe</h2>
+  <div class="contact-list">
+    <a href="tel:+48725144019">📞 Telefon: +48 725 144 019</a>
+    <a href="https://wa.me/48725144019" target="_blank">📱 WhatsApp</a>
+    <a href="https://t.me/+36702655296" target="_blank">✈️ Telegram</a>
+    <a href="mailto:contact@prison-justice.pl">📧 contact@prison-justice.pl</a>
+    <a href="https://www.facebook.com/profile.php?id=61585160703540" target="_blank">📘 Facebook</a>
   </div>
 
-  <!-- UA -->
-  <div data-lang="ua">
-    <h2>Контактні дані</h2>
-    <div class="contact-list">
-      <p>📞 Телефон: +48 725 144 019</p>
-      <p>📱 WhatsApp: +48 725 144 019</p>
-      <p>✈️ Telegram: +36 70 265 5296</p>
-      <p>📧 Email: contact@prison-justice.pl</p>
-      <p>📘 Facebook: facebook.com/prisonjusticepl</p>
-    </div>
-    <a href="index.html" class="btn">← На головну сторінку</a>
+  <h3>Wyślij wiadomość</h3>
+  <form onsubmit="alert('Wiadomość została wysłana'); return false;">
+    <textarea placeholder="Wpisz treść wiadomości..."></textarea>
+    <button type="submit">Wyślij</button>
+  </form>
+
+  <a href="index.html" class="btn">← Powrót na stronę główną</a>
+</div>
+  <!-- ================= UA ================= -->
+<div data-lang="en">
+  <h2>Contact details</h2>
+  <div class="contact-list">
+    <a href="tel:+48725144019">📞 Телефон</a>
+    <a href="https://wa.me/48725144019" target="_blank">📱 WhatsApp</a>
+    <a href="https://t.me/+36702655296" target="_blank">✈️ Telegram</a>
+    <a href="mailto:contact@prison-justice.pl">📧 Email</a>
+    <a href="https://www.facebook.com/profile.php?id=61585160703540" target="_blank">📘 Facebook</a>
   </div>
 
-  <!-- EN -->
-  <div data-lang="en">
-    <h2>Contact details</h2>
-    <div class="contact-list">
-      <p>📞 Phone: +48 725 144 019</p>
-      <p>📱 WhatsApp: +48 725 144 019</p>
-      <p>✈️ Telegram: +36 70 265 5296</p>
-      <p>📧 Email: contact@prison-justice.pl</p>
-      <p>📘 Facebook: facebook.com/prisonjusticepl</p>
-    </div>
-    <a href="index.html" class="btn">← Back to home page</a>
+  <h3>Send a message</h3>
+  <form onsubmit="alert('Message sent'); return false;">
+    <textarea placeholder="Type your message..."></textarea>
+    <button type="submit">Send</button>
+  </form>
+
+  <a href="index.html" class="btn">← Back to home</a>
+</div>
+
+<!-- ================= EN ================= -->
+<div data-lang="en">
+  <h2>Contact details</h2>
+  <div class="contact-list">
+    <a href="tel:+48725144019">📞 Phone</a>
+    <a href="https://wa.me/48725144019" target="_blank">📱 WhatsApp</a>
+    <a href="https://t.me/+36702655296" target="_blank">✈️ Telegram</a>
+    <a href="mailto:contact@prison-justice.pl">📧 Email</a>
+    <a href="https://www.facebook.com/profile.php?id=61585160703540" target="_blank">📘 Facebook</a>
   </div>
 
-  <!-- RU -->
-  <div data-lang="ru">
-    <h2>Контактные данные</h2>
-    <div class="contact-list">
-      <p>📞 Телефон: +48 725 144 019</p>
-      <p>📱 WhatsApp: +48 725 144 019</p>
-      <p>✈️ Telegram: +36 70 265 5296</p>
-      <p>📧 Email: contact@prison-justice.pl</p>
-      <p>📘 Facebook: facebook.com/prisonjusticepl</p>
-    </div>
-    <a href="index.html" class="btn">← На главную страницу</a>
+  <h3>Send a message</h3>
+  <form onsubmit="alert('Message sent'); return false;">
+    <textarea placeholder="Type your message..."></textarea>
+    <button type="submit">Send</button>
+  </form>
+
+  <a href="index.html" class="btn">← Back to home</a>
+</div>
+    <!-- ================= RU ================= -->
+<div data-lang="en">
+  <h2>Contact details</h2>
+  <div class="contact-list">
+    <a href="tel:+48725144019">📞 Телефон</a>
+    <a href="https://wa.me/48725144019" target="_blank">📱 WhatsApp</a>
+    <a href="https://t.me/+36702655296" target="_blank">✈️ Telegram</a>
+    <a href="mailto:contact@prison-justice.pl">📧 Email</a>
+    <a href="https://www.facebook.com/profile.php?id=61585160703540" target="_blank">📘 Facebook</a>
   </div>
 
-  <!-- MD -->
-  <div data-lang="md">
-    <h2>Date de contact</h2>
-    <div class="contact-list">
-      <p>📞 Telefon: +48 725 144 019</p>
-      <p>📱 WhatsApp: +48 725 144 019</p>
-      <p>✈️ Telegram: +36 70 265 5296</p>
-      <p>📧 Email: contact@prison-justice.pl</p>
-      <p>📘 Facebook: https://www.facebook.com/profile.php?id=61585160703540</p>
-    </div>
-    <a href="index.html" class="btn">← Înapoi la pagina principală</a>
+  <h3>Send a message</h3>
+  <form onsubmit="alert('Message sent'); return false;">
+    <textarea placeholder="Type your message..."></textarea>
+    <button type="submit">Send</button>
+  </form>
+
+  <a href="index.html" class="btn">← Back to home</a>
+</div>
+    <!-- ================= MD ================= -->
+<div data-lang="en">
+  <h2>Contact details</h2>
+  <div class="contact-list">
+    <a href="tel:+48725144019">📞 Telefon</a>
+    <a href="https://wa.me/48725144019" target="_blank">📱 WhatsApp</a>
+    <a href="https://t.me/+36702655296" target="_blank">✈️ Telegram</a>
+    <a href="mailto:contact@prison-justice.pl">📧 Email</a>
+    <a href="https://www.facebook.com/profile.php?id=61585160703540" target="_blank">📘 Facebook</a>
   </div>
 
-  <!-- RO -->
-  <div data-lang="ro">
-    <h2>Date de contact</h2>
-    <div class="contact-list">
-      <p>📞 Telefon: +48 725 144 019</p>
-      <p>📱 WhatsApp: +48 725 144 019</p>
-      <p>✈️ Telegram: +36 70 265 5296</p>
-      <p>📧 Email: contact@prison-justice.pl</p>
-      <p>📘 Facebook: facebook.com/prisonjusticepl</p>
-    </div>
-    <a href="index.html" class="btn">← Înapoi la pagina principală</a>
+  <h3>Send a message</h3>
+  <form onsubmit="alert('Message sent'); return false;">
+    <textarea placeholder="Type your message..."></textarea>
+    <button type="submit">Send</button>
+  </form>
+
+  <a href="index.html" class="btn">← Back to home</a>
+</div>
+      <!-- ================= RO ================= -->
+<div data-lang="en">
+  <h2>Contact details</h2>
+  <div class="contact-list">
+    <a href="tel:+48725144019">📞 Telefon</a>
+    <a href="https://wa.me/48725144019" target="_blank">📱 WhatsApp</a>
+    <a href="https://t.me/+36702655296" target="_blank">✈️ Telegram</a>
+    <a href="mailto:contact@prison-justice.pl">📧 Email</a>
+    <a href="https://www.facebook.com/profile.php?id=61585160703540" target="_blank">📘 Facebook</a>
   </div>
+
+  <h3>Send a message</h3>
+  <form onsubmit="alert('Message sent'); return false;">
+    <textarea placeholder="Type your message..."></textarea>
+    <button type="submit">Send</button>
+  </form>
+
+  <a href="index.html" class="btn">← Back to home</a>
+</div>
+
 
 </div>
 
@@ -200,4 +251,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
-
