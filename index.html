@@ -73,24 +73,33 @@ footer {
 
 <script>
 function setLang(lang) {
+  // zapamiętaj język
+  localStorage.setItem('siteLang', lang);
+
+  // ukryj wszystko
   document.querySelectorAll('[data-lang]').forEach(el => {
     el.style.display = 'none';
   });
 
+  // pokaż wybrany język
   document.querySelectorAll('[data-lang="' + lang + '"]').forEach(el => {
     el.style.display = 'block';
   });
 
+  // aktywna flaga
   document.querySelectorAll('.flags img').forEach(img =>
     img.classList.remove('active')
   );
-  document.getElementById('flag-' + lang).classList.add('active');
+  document.getElementById('flag-' + lang)?.classList.add('active');
 }
 
+// przy starcie strony
 document.addEventListener('DOMContentLoaded', () => {
-  setLang('pl');
+  const savedLang = localStorage.getItem('siteLang') || 'pl';
+  setLang(savedLang);
 });
 </script>
+
 </head>
 
 <body>
@@ -305,6 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <footer>© Prison Justice PL</footer>
 </body>
 </html>
+
 
 
 
