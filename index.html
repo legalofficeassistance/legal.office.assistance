@@ -101,6 +101,42 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 </head>
+  
+<script>
+(function () {
+
+  function setLang(lang) {
+    localStorage.setItem('siteLang', lang);
+
+    // treści
+    document.querySelectorAll('[data-lang]').forEach(el => {
+      el.style.display = 'none';
+    });
+
+    document.querySelectorAll('[data-lang="' + lang + '"]').forEach(el => {
+      el.style.display = '';
+    });
+
+    // flagi
+    document.querySelectorAll('.flags img').forEach(img => {
+      img.classList.remove('active');
+    });
+
+    const activeFlag = document.getElementById('flag-' + lang);
+    if (activeFlag) activeFlag.classList.add('active');
+  }
+
+  // UDOSTĘPNIJ FUNKCJĘ GLOBALNIE (onclick z flag!)
+  window.setLang = setLang;
+
+  // START STRONY
+  document.addEventListener('DOMContentLoaded', function () {
+    const savedLang = localStorage.getItem('siteLang') || 'pl';
+    setLang(savedLang);
+  });
+
+})();
+</script>
 
 <body>
 
@@ -314,6 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <footer>© Prison Justice PL</footer>
 </body>
 </html>
+
 
 
 
