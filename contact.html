@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Kontakt – Prison Justice PL</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f6f8;
+  color: #222;
+}
+
+header {
+  background:
+    linear-gradient(rgba(20,30,50,0.85), rgba(20,30,50,0.85)),
+    url("tlo.jpg.png");
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.section {
+  max-width: 900px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 6px;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+textarea, input, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: #d4af37;
+  border: none;
+  cursor: pointer;
+}
+
+nav.flags {
+  margin-top: 20px;
+}
+
+nav.flags img {
+  width: 36px;
+  margin: 0 5px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 4px;
+}
+
+nav.flags img.active {
+  border-color: #d4af37;
+}
+
+[data-lang] { display: none; }
+
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #666;
+}
+</style>
+
+<script>
+function setLang(lang) {
+  localStorage.setItem('siteLang', lang);
+
+  document.querySelectorAll('[data-lang]').forEach(el => {
+    el.style.display = 'none';
+  });
+
+  document.querySelectorAll('[data-lang="' + lang + '"]').forEach(el => {
+    el.style.display = 'block';
+  });
+
+  document.querySelectorAll('.flags img').forEach(img =>
+    img.classList.remove('active')
+  );
+  document.getElementById('flag-' + lang)?.classList.add('active');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const savedLang = localStorage.getItem('siteLang') || 'pl';
+  setLang(savedLang);
+});
+</script>
+</head>
+
+<body>
+
+<header>
+  <h1 data-lang="pl">Kontakt</h1>
+  <h1 data-lang="ua">Контакт</h1>
+  <h1 data-lang="en">Contact</h1>
+  <h1 data-lang="ru">Контакт</h1>
+  <h1 data-lang="md">Contact</h1>
+  <h1 data-lang="ro">Contact</h1>
+
+  <nav class="flags">
+    <img src="pl.png" id="flag-pl" onclick="setLang('pl')">
+    <img src="ua.png" id="flag-ua" onclick="setLang('ua')">
+    <img src="en.png" id="flag-en" onclick="setLang('en')">
+    <img src="ru.png" id="flag-ru" onclick="setLang('ru')">
+    <img src="md.png" id="flag-md" onclick="setLang('md')">
+    <img src="ro.png" id="flag-ro" onclick="setLang('ro')">
+  </nav>
+</header>
+
+<div class="section" data-lang="pl">
+  <h2>Skontaktuj się z nami</h2>
+  <p>Nie wymagamy podawania adresu e-mail.</p>
+
+  <label>Wiadomość</label>
+  <textarea rows="5"></textarea>
+
+  <label>Rodzaj sprawy</label>
+  <select>
+    <option>Postępowanie ugodowe</option>
+    <option>ETPCz</option>
+    <option>Konsultacja</option>
+  </select>
+
+  <button>Wyślij wiadomość</button>
+</div>
+
+<div class="section" data-lang="en">
+  <h2>Contact us</h2>
+  <p>No email address required.</p>
+
+  <label>Message</label>
+  <textarea rows="5"></textarea>
+
+  <label>Type of case</label>
+  <select>
+    <option>Amicable settlement</option>
+    <option>ECHR</option>
+    <option>Consultation</option>
+  </select>
+
+  <button>Send message</button>
+</div>
+
+<!-- analogicznie UA / RU / MD / RO – dodamy na końcu -->
+
+<footer>
+© Prison Justice PL
+</footer>
+
+</body>
+</html>
