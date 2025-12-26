@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<title>Kontakt – Prison Justice PL</title>
+<title>Kontakt | Prison Justice PL</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -16,50 +16,22 @@ body {
 }
 
 header {
-  background:
-    linear-gradient(rgba(20,30,50,0.85), rgba(20,30,50,0.85)),
-    url("tlo.jpg.png");
-  background-size: cover;
-  background-position: center;
+  background: #1f2a44;
   color: #fff;
+  padding: 30px 20px;
   text-align: center;
-  padding: 50px 20px;
 }
 
-.section {
-  max-width: 900px;
-  margin: 30px auto;
-  background: #fff;
-  padding: 25px;
-  border-radius: 6px;
-}
-
-label {
-  display: block;
-  margin-top: 15px;
-  font-weight: bold;
-}
-
-textarea, input, select {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-}
-
-button {
-  margin-top: 20px;
-  padding: 12px 20px;
-  background: #d4af37;
-  border: none;
-  cursor: pointer;
+header h1 {
+  margin-bottom: 10px;
 }
 
 nav.flags {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 nav.flags img {
-  width: 36px;
+  width: 32px;
   margin: 0 5px;
   cursor: pointer;
   border: 2px solid transparent;
@@ -70,7 +42,31 @@ nav.flags img.active {
   border-color: #d4af37;
 }
 
-[data-lang] { display: none; }
+.section {
+  max-width: 800px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 6px;
+}
+
+[data-lang] {
+  display: none;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 15px;
+  background: #d4af37;
+  color: #000;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.contact-list p {
+  margin: 8px 0;
+}
 
 footer {
   text-align: center;
@@ -82,8 +78,6 @@ footer {
 
 <script>
 function setLang(lang) {
-  localStorage.setItem('siteLang', lang);
-
   document.querySelectorAll('[data-lang]').forEach(el => {
     el.style.display = 'none';
   });
@@ -95,12 +89,11 @@ function setLang(lang) {
   document.querySelectorAll('.flags img').forEach(img =>
     img.classList.remove('active')
   );
-  document.getElementById('flag-' + lang)?.classList.add('active');
+  document.getElementById('flag-' + lang).classList.add('active');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const savedLang = localStorage.getItem('siteLang') || 'pl';
-  setLang(savedLang);
+  setLang('pl');
 });
 </script>
 </head>
@@ -108,62 +101,102 @@ document.addEventListener('DOMContentLoaded', () => {
 <body>
 
 <header>
-  <h1 data-lang="pl">Kontakt</h1>
-  <h1 data-lang="ua">Контакт</h1>
-  <h1 data-lang="en">Contact</h1>
-  <h1 data-lang="ru">Контакт</h1>
-  <h1 data-lang="md">Contact</h1>
-  <h1 data-lang="ro">Contact</h1>
+  <h1>Kontakt</h1>
 
   <nav class="flags">
-    <img src="pl.png" id="flag-pl" onclick="setLang('pl')">
-    <img src="ua.png" id="flag-ua" onclick="setLang('ua')">
-    <img src="en.png" id="flag-en" onclick="setLang('en')">
-    <img src="ru.png" id="flag-ru" onclick="setLang('ru')">
-    <img src="md.png" id="flag-md" onclick="setLang('md')">
-    <img src="ro.png" id="flag-ro" onclick="setLang('ro')">
+    <img src="pl.png" id="flag-pl" onclick="setLang('pl')" alt="PL">
+    <img src="ua.png" id="flag-ua" onclick="setLang('ua')" alt="UA">
+    <img src="en.png" id="flag-en" onclick="setLang('en')" alt="EN">
+    <img src="ru.png" id="flag-ru" onclick="setLang('ru')" alt="RU">
+    <img src="md.png" id="flag-md" onclick="setLang('md')" alt="MD">
+    <img src="ro.png" id="flag-ro" onclick="setLang('ro')" alt="RO">
   </nav>
 </header>
 
-<div class="section" data-lang="pl">
-  <h2>Skontaktuj się z nami</h2>
-  <p>Nie wymagamy podawania adresu e-mail.</p>
+<div class="section">
 
-  <label>Wiadomość</label>
-  <textarea rows="5"></textarea>
+  <!-- PL -->
+  <div data-lang="pl">
+    <h2>Dane kontaktowe</h2>
+    <div class="contact-list">
+      <p>📞 Telefon: +48 725 144 019</p>
+      <p>📱 WhatsApp: +48 725 144 019</p>
+      <p>✈️ Telegram: +36 70 265 5296</p>
+      <p>📧 Email: contact@prison-justice.pl</p>
+      <p>📠 Fax: +48 22 000 00 00</p>
+      <p>📘 Facebook: facebook.com/prisonjusticepl</p>
+    </div>
+    <a href="index.html" class="btn">← Powrót na stronę główną</a>
+  </div>
 
-  <label>Rodzaj sprawy</label>
-  <select>
-    <option>Postępowanie ugodowe</option>
-    <option>ETPCz</option>
-    <option>Konsultacja</option>
-  </select>
+  <!-- UA -->
+  <div data-lang="ua">
+    <h2>Контактні дані</h2>
+    <div class="contact-list">
+      <p>📞 Телефон: +48 725 144 019</p>
+      <p>📱 WhatsApp: +48 725 144 019</p>
+      <p>✈️ Telegram: +36 70 265 5296</p>
+      <p>📧 Email: contact@prison-justice.pl</p>
+      <p>📘 Facebook: facebook.com/prisonjusticepl</p>
+    </div>
+    <a href="index.html" class="btn">← На головну сторінку</a>
+  </div>
 
-  <button>Wyślij wiadomość</button>
+  <!-- EN -->
+  <div data-lang="en">
+    <h2>Contact details</h2>
+    <div class="contact-list">
+      <p>📞 Phone: +48 725 144 019</p>
+      <p>📱 WhatsApp: +48 725 144 019</p>
+      <p>✈️ Telegram: +36 70 265 5296</p>
+      <p>📧 Email: contact@prison-justice.pl</p>
+      <p>📘 Facebook: facebook.com/prisonjusticepl</p>
+    </div>
+    <a href="index.html" class="btn">← Back to home page</a>
+  </div>
+
+  <!-- RU -->
+  <div data-lang="ru">
+    <h2>Контактные данные</h2>
+    <div class="contact-list">
+      <p>📞 Телефон: +48 725 144 019</p>
+      <p>📱 WhatsApp: +48 725 144 019</p>
+      <p>✈️ Telegram: +36 70 265 5296</p>
+      <p>📧 Email: contact@prison-justice.pl</p>
+      <p>📘 Facebook: facebook.com/prisonjusticepl</p>
+    </div>
+    <a href="index.html" class="btn">← На главную страницу</a>
+  </div>
+
+  <!-- MD -->
+  <div data-lang="md">
+    <h2>Date de contact</h2>
+    <div class="contact-list">
+      <p>📞 Telefon: +48 725 144 019</p>
+      <p>📱 WhatsApp: +48 725 144 019</p>
+      <p>✈️ Telegram: +36 70 265 5296</p>
+      <p>📧 Email: contact@prison-justice.pl</p>
+      <p>📘 Facebook: facebook.com/prisonjusticepl</p>
+    </div>
+    <a href="index.html" class="btn">← Înapoi la pagina principală</a>
+  </div>
+
+  <!-- RO -->
+  <div data-lang="ro">
+    <h2>Date de contact</h2>
+    <div class="contact-list">
+      <p>📞 Telefon: +48 725 144 019</p>
+      <p>📱 WhatsApp: +48 725 144 019</p>
+      <p>✈️ Telegram: +36 70 265 5296</p>
+      <p>📧 Email: contact@prison-justice.pl</p>
+      <p>📘 Facebook: facebook.com/prisonjusticepl</p>
+    </div>
+    <a href="index.html" class="btn">← Înapoi la pagina principală</a>
+  </div>
+
 </div>
 
-<div class="section" data-lang="en">
-  <h2>Contact us</h2>
-  <p>No email address required.</p>
-
-  <label>Message</label>
-  <textarea rows="5"></textarea>
-
-  <label>Type of case</label>
-  <select>
-    <option>Amicable settlement</option>
-    <option>ECHR</option>
-    <option>Consultation</option>
-  </select>
-
-  <button>Send message</button>
-</div>
-
-<!-- analogicznie UA / RU / MD / RO – dodamy na końcu -->
-
-<footer>
-© Prison Justice PL
-</footer>
+<footer>© Prison Justice PL</footer>
 
 </body>
 </html>
