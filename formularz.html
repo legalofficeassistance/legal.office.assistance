@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formularz – dane osadzenia</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 700px;
+  margin: 20px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 6px;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.step {
+  display: none;
+}
+
+.step.active {
+  display: block;
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+}
+
+textarea {
+  min-height: 80px;
+}
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.progress {
+  height: 8px;
+  background: #ddd;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  height: 8px;
+  background: #4caf50;
+  width: 0%;
+  border-radius: 4px;
+}
+
+.box {
+  border: 1px solid #ccc;
+  padding: 12px;
+  margin-top: 15px;
+  border-radius: 4px;
+}
+
+.preview {
+  background: #f9f9f9;
+  padding: 10px;
+  white-space: pre-wrap;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="progress">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+
+<form id="form">
+
+<!-- KROK 1 -->
+<div class="step active">
+  <h2>Dane osobowe</h2>
+
+  <label>Imię</label>
+  <input name="Imię">
+
+  <label>Nazwisko</label>
+  <input name="Nazwisko">
+
+  <label>Data pobytu w więzieniu (od – do)</label>
+  <input type="date" name="Pobyt od">
+  <input type="date" name="Pobyt do">
+
+  <label>Adres zamieszkania</label>
+  <textarea name="Adres"></textarea>
+</div>
+
+<!-- KROK 2 -->
+<div class="step">
+  <h2>Kontakt i identyfikacja</h2>
+
+  <label>Telefon</label>
+  <input name="Telefon">
+
+  <label>Email</label>
+  <input type="email" name="Email">
+
+  <label>NIP w Słowenii</label>
+  <input name="NIP">
+
+  <label>EMŠO</label>
+  <input name="EMSO">
+</div>
+
+<!-- KROK 3 -->
+<div class="step">
+  <h2>Dane sprawy</h2>
+
+  <label>Sygnatura sprawy</label>
+  <input name="Sygnatura">
+
+  <label>Data wyroku</label>
+  <input type="date" name="Data wyroku">
+
+  <label>Miasto sądu</label>
+  <input name="Miasto sądu">
+</div>
+
+<!-- KROK 4 -->
+<div class="step">
+  <h2>Język i prawa</h2>
+
+  <label>Język zrozumiały</label>
+  <input name="Język">
+
+  <label>Czy otrzymałeś regulamin w zrozumiałym języku?</label>
+  <select name="Regulamin">
+    <option>TAK</option>
+    <option>NIE</option>
+  </select>
+
+  <label>Uwagi dodatkowe</label>
+  <textarea name="Uwagi"></textarea>
+</div>
+
+<!-- KROK 5 -->
+<div class="step">
+  <h2>Więzienia i cele</h2>
+
+  <div id="prisons"></div>
+
+  <button type="button" onclick="addPrison()">+ Dodaj kolejne więzienie</button>
+</div>
+
+<!-- KROK 6 -->
+<div class="step">
+  <h2>Podgląd</h2>
+  <div class="preview" id="preview"></div>
+
+  <label>
+    <input type="checkbox" required>
+    Potwierdzam poprawność danych
+  </label>
+</div>
+
+<div class="buttons">
+  <button type="button" onclick="prev()">Wstecz</button>
+  <button type="button" onclick="next()">Dalej</button>
+</div>
+
+</form>
+</div>
+
+<script>
+let step = 0;
+const steps = document.querySelectorAll('.step');
+
+function showStep() {
+  steps.forEach((s, i) => s.classList.toggle('active', i === step));
+  document.getElementById('progressBar').style.width =
+    ((step + 1) / steps.length * 100) + '%';
+
+  if (step === steps.length - 1) buildPreview();
+}
+
+function next() {
+  if (step < steps.length - 1) step++;
+  showStep();
+}
+
+function prev() {
+  if (step > 0) step--;
+  showStep();
+}
+
+function addPrison() {
+  const div = document.createElement('div');
+  div.className = 'box';
+  div.innerHTML = `
+    <h3>Więzienie</h3>
+    <label>Nazwa / miasto</label>
+    <input name="Więzienie">
+
+    <label>Numer celi</label>
+    <input name="Cela">
+
+    <label>Ilość osób w celi</label>
+    <input name="Ilość osób">
+
+    <label>Metraż (orientacyjnie)</label>
+    <input name="Metraż">
+
+    <label>Opis układu celi</label>
+    <textarea name="Schemat"></textarea>
+  `;
+  document.getElementById('prisons').appendChild(div);
+}
+
+function buildPreview() {
+  const data = new FormData(document.getElementById('form'));
+  let text = '';
+  for (let [k, v] of data.entries()) {
+    text += k + ': ' + v + '\n';
+  }
+  document.getElementById('preview').textContent = text;
+}
+
+showStep();
+</script>
+
+</body>
+</html>
