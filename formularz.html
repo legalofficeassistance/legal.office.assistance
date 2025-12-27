@@ -188,6 +188,11 @@ button {
   <button type="button" onclick="prev()">Wstecz</button>
   <button type="button" onclick="next()">Dalej</button>
 </div>
+  <div class="buttons">
+  <button type="button" onclick="window.print()">Wydrukuj / Zapisz jako PDF</button>
+  <button type="button" onclick="downloadTXT()">Pobierz jako plik</button>
+  <button type="button" onclick="copyText()">Skopiuj treść</button>
+</div>
 
 </form>
 </div>
@@ -248,6 +253,25 @@ function buildPreview() {
 
 showStep();
 </script>
+  <script>
+function downloadTXT() {
+  const text = document.getElementById("preview").textContent;
+  const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "formularz_osadzenie.txt";
+  link.click();
+}
+
+function copyText() {
+  const text = document.getElementById("preview").textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    alert("Treść została skopiowana. Możesz ją wkleić do maila lub wiadomości.");
+  });
+}
+</script>
+
 
 </body>
 </html>
+
