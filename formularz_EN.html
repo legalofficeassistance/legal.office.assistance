@@ -3,118 +3,140 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Form – detention data</title>
+<title>Form</title>
+
 <style>
-body{font-family:Arial,sans-serif;background:#f4f4f4;margin:0;padding:0}
-.container{max-width:800px;margin:20px auto;background:#fff;padding:20px;border-radius:6px}
-.step{display:none}.step.active{display:block}
-label{display:block;margin-top:12px;font-weight:bold}
-input,textarea,select{width:100%;padding:8px;margin-top:4px}
-textarea{min-height:80px}
-button{padding:10px 16px;cursor:pointer;margin-top:15px}
-.box{border:1px solid #ccc;padding:12px;margin-top:15px;border-radius:4px}
-.progress{height:8px;background:#ddd;border-radius:4px;margin-bottom:20px}
-.progress-bar{height:8px;background:#4caf50;width:0%;border-radius:4px}
-.preview{white-space:pre-wrap;background:#f9f9f9;padding:12px}
+body { font-family: Arial, sans-serif; background:#f4f4f4; margin:0; padding:0; }
+.container { max-width:800px; margin:20px auto; background:#fff; padding:20px; border-radius:6px; }
+.step { display:none; }
+.step.active { display:block; }
+label { display:block; margin-top:12px; font-weight:bold; }
+input, textarea, select { width:100%; padding:8px; margin-top:4px; }
+textarea { min-height:80px; }
+button { padding:10px 16px; cursor:pointer; margin-top:15px; }
+.box { border:1px solid #ccc; padding:12px; margin-top:15px; border-radius:4px; }
+.progress { height:8px; background:#ddd; border-radius:4px; margin-bottom:20px; }
+.progress-bar { height:8px; background:#4caf50; width:0%; border-radius:4px; }
+.preview { white-space:pre-wrap; background:#f9f9f9; padding:12px; }
 </style>
 </head>
+
 <body>
 <div class="container">
+
+<select id="langSelect" onchange="setLang(this.value)">
+  <option value="en">EN</option>
+  <option value="ua">UA</option>
+  <option value="ru">RU</option>
+  <option value="ro">RO / MD</option>
+</select>
 
 <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
 
 <form id="form">
 
 <div class="step active">
-<h2>Personal data</h2>
-<label>First name</label><input name="First name">
-<label>Last name</label><input name="Last name">
-<label>Address</label><textarea name="Address"></textarea>
+  <h2 data-t="personal"></h2>
+  <label data-t="firstName"></label><input name="First name">
+  <label data-t="lastName"></label><input name="Last name">
+  <label data-t="address"></label><textarea name="Address"></textarea>
 </div>
 
 <div class="step">
-<h2>Contact</h2>
-<label>Phone</label><input name="Phone">
-<label>Email</label><input type="email" name="Email">
+  <h2 data-t="contact"></h2>
+  <label data-t="phone"></label><input name="Phone">
+  <label>Email</label><input type="email" name="Email">
 </div>
 
 <div class="step">
-<h2>Case details</h2>
-<label>Case reference number</label><input name="Case number">
-<label>Date of judgment</label><input type="date" name="Judgment date">
-<label>Court city</label><input name="Court city">
+  <h2 data-t="case"></h2>
+  <label data-t="caseNo"></label><input name="Case number">
+  <label data-t="judgmentDate"></label><input type="date" name="Judgment date">
+  <label data-t="courtCity"></label><input name="Court city">
 </div>
 
 <div class="step">
-<h2>Language and regulations</h2>
-<label>Language understood</label><input name="Language">
-<label>Have you received the regulations?</label>
-<select name="Regulations"><option>YES</option><option>NO</option></select>
+  <h2 data-t="language"></h2>
+  <label data-t="languageUnderstood"></label><input name="Language">
+  <label data-t="regulations"></label>
+  <select><option data-t="yes"></option><option data-t="no"></option></select>
 </div>
 
 <div class="step">
-<h2>Prisons and cells</h2>
-<p><strong>Describe the first prison and the first cell.</strong></p>
-<div id="prisons"></div>
-<button type="button" id="addFirstBtn" onclick="addFirstPrison()">➕ Describe first prison and cell</button>
-<button type="button" id="addNextBtn" onclick="addPrison()" style="display:none">➕ Add another prison</button>
+  <h2 data-t="prisons"></h2>
+  <p data-t="describeFirst"></p>
+  <div id="prisons"></div>
+  <button type="button" onclick="addFirstPrison()" data-t="addFirst"></button>
+  <button type="button" onclick="addPrison()" id="addNextBtn" style="display:none" data-t="addNext"></button>
 </div>
 
 <div class="step">
-<h2>Final preview</h2>
-<div class="preview" id="preview"></div>
-<button type="button" onclick="downloadTXT()">Download and save</button>
-<button type="button" onclick="copyText()">Copy content</button>
+  <h2 data-t="preview"></h2>
+  <div class="preview" id="preview"></div>
+  <button type="button" onclick="downloadTXT()" data-t="download"></button>
+  <button type="button" onclick="copyText()" data-t="copy"></button>
 </div>
 
 <div style="margin-top:20px">
-<button type="button" onclick="prev()">Back</button>
-<button type="button" onclick="next()">Next</button>
+  <button type="button" onclick="prev()" data-t="back"></button>
+  <button type="button" onclick="next()" data-t="next"></button>
 </div>
 
 </form>
 </div>
 
 <script>
-let step=0,hasCell=false;const steps=document.querySelectorAll('.step');
-function showStep(){steps.forEach((s,i)=>s.classList.toggle('active',i===step));
-document.getElementById('progressBar').style.width=((step+1)/steps.length*100)+'%';
-if(step===steps.length-1)buildPreview();}
-function next(){if(step===4&&!hasCell){alert("You must describe at least one cell.");return;}
-if(step<steps.length-1)step++;showStep();}
-function prev(){if(step>0)step--;showStep();}
-function addFirstPrison(){addPrison();addFirstBtn.style.display='none';addNextBtn.style.display='inline-block';}
-function addPrison(){
-const d=document.createElement('div');d.className='box';
-d.innerHTML=`<h3>Prison</h3>
-<label>Prison name</label><input name="Prison">
-<label>Period of stay (from – to)</label>
-<input type="date" name="Stay from"><input type="date" name="Stay to">
-<div class="cells"></div>
-<button type="button" onclick="addCell(this)">+ Add another cell (max 4)</button>`;
-prisons.appendChild(d);addCell(d.querySelector('button'));}
-function addCell(btn){
-const cells=btn.parentElement.querySelector('.cells');
-if(cells.children.length>=4){alert("Maximum 4 cells.");return;}
-hasCell=true;
-const c=document.createElement('div');c.className='box';
-c.innerHTML=`<h4>Cell ${cells.children.length+1}</h4>
-<label>Cell number</label><input name="Cell number">
-<label>Number of inmates</label><input name="Number of inmates">
-<label>Area</label><input name="Area">
-<label>Unit</label><input name="Unit">
-<label>Cell layout</label><textarea name="Layout"></textarea>`;
-cells.appendChild(c);}
-function buildPreview(){
-const data=new FormData(form);let t='';
-for(let[k,v]of data.entries())t+=k+': '+v+'\n';
-preview.textContent=t;}
-function downloadTXT(){
-const b=new Blob([preview.textContent],{type:"text/plain"});
-const a=document.createElement("a");a.href=URL.createObjectURL(b);
-a.download="detention_form.txt";a.click();}
-function copyText(){navigator.clipboard.writeText(preview.textContent);alert("Content copied.");}
-showStep();
+const T = {
+en:{
+personal:"Personal data",firstName:"First name",lastName:"Last name",address:"Address",
+contact:"Contact",phone:"Phone",
+case:"Case details",caseNo:"Case reference number",judgmentDate:"Date of judgment",courtCity:"Court city",
+language:"Language and regulations",languageUnderstood:"Language understood",regulations:"Have you received the regulations?",
+yes:"YES",no:"NO",
+prisons:"Prisons and cells",describeFirst:"Describe the first prison and the first cell.",
+addFirst:"➕ Describe first prison and cell",addNext:"➕ Add another prison",
+preview:"Final preview",download:"Download and save",copy:"Copy content",
+back:"Back",next:"Next"
+},
+ua:{
+personal:"Особисті дані",firstName:"Імʼя",lastName:"Прізвище",address:"Адреса",
+contact:"Контакт",phone:"Телефон",
+case:"Дані справи",caseNo:"Номер справи",judgmentDate:"Дата вироку",courtCity:"Місто суду",
+language:"Мова та регламент",languageUnderstood:"Зрозуміла мова",regulations:"Чи отримали ви регламент?",
+yes:"ТАК",no:"НІ",
+prisons:"Вʼязниці та камери",describeFirst:"Опишіть першу вʼязницю та першу камеру.",
+addFirst:"➕ Додати першу вʼязницю",addNext:"➕ Додати наступну вʼязницю",
+preview:"Кінцевий перегляд",download:"Завантажити",copy:"Скопіювати",
+back:"Назад",next:"Далі"
+},
+ru:{
+personal:"Личные данные",firstName:"Имя",lastName:"Фамилия",address:"Адрес",
+contact:"Контакты",phone:"Телефон",
+case:"Данные дела",caseNo:"Номер дела",judgmentDate:"Дата приговора",courtCity:"Город суда",
+language:"Язык и регламент",languageUnderstood:"Понятный язык",regulations:"Получили ли вы регламент?",
+yes:"ДА",no:"НЕТ",
+prisons:"Тюрьмы и камеры",describeFirst:"Опишите первую тюрьму и первую камеру.",
+addFirst:"➕ Добавить первую тюрьму",addNext:"➕ Добавить следующую тюрьму",
+preview:"Итоговый просмотр",download:"Скачать",copy:"Копировать",
+back:"Назад",next:"Далее"
+},
+ro:{
+personal:"Date personale",firstName:"Prenume",lastName:"Nume",address:"Adresă",
+contact:"Contact",phone:"Telefon",
+case:"Datele cauzei",caseNo:"Număr dosar",judgmentDate:"Data sentinței",courtCity:"Orașul instanței",
+language:"Limba și regulament",languageUnderstood:"Limba înțeleasă",regulations:"Ați primit regulamentul?",
+yes:"DA",no:"NU",
+prisons:"Închisori și celule",describeFirst:"Descrieți prima închisoare și prima celulă.",
+addFirst:"➕ Adaugă prima închisoare",addNext:"➕ Adaugă altă închisoare",
+preview:"Previzualizare finală",download:"Descarcă",copy:"Copiază",
+back:"Înapoi",next:"Înainte"
+}
+};
+
+function setLang(l){
+document.querySelectorAll("[data-t]").forEach(e=>e.textContent=T[l][e.dataset.t]);
+}
+setLang("en");
 </script>
 </body>
 </html>
