@@ -10,6 +10,7 @@ body {
   font-family: Arial, sans-serif;
   background: #f4f4f4;
   margin: 0;
+  padding: 0;
 }
 
 .container {
@@ -23,34 +24,51 @@ body {
 .step { display: none; }
 .step.active { display: block; }
 
-label { display: block; margin-top: 12px; font-weight: bold; }
-input, textarea, select { width: 100%; padding: 8px; }
+label {
+  display: block;
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+}
 
 textarea { min-height: 80px; }
 
-.buttons {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
+button {
+  padding: 10px 16px;
+  cursor: pointer;
+  margin-top: 15px;
 }
 
 .box {
   border: 1px solid #ccc;
-  padding: 15px;
-  margin-top: 20px;
-  border-radius: 5px;
-}
-
-.cell {
-  border: 1px dashed #999;
   padding: 12px;
   margin-top: 15px;
+  border-radius: 4px;
+}
+
+.progress {
+  height: 8px;
+  background: #ddd;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  height: 8px;
+  background: #4caf50;
+  width: 0%;
+  border-radius: 4px;
 }
 
 .preview {
   white-space: pre-wrap;
   background: #f9f9f9;
-  padding: 15px;
+  padding: 12px;
 }
 </style>
 </head>
@@ -58,57 +76,63 @@ textarea { min-height: 80px; }
 <body>
 <div class="container">
 
+<div class="progress">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+
 <form id="form">
 
 <!-- KROK 1 -->
 <div class="step active">
   <h2>Dane osobowe</h2>
-
   <label>Imię</label><input name="Imię">
   <label>Nazwisko</label><input name="Nazwisko">
   <label>Adres</label><textarea name="Adres"></textarea>
-  <label>Telefon</label><input name="Telefon">
-  <label>Email</label><input type="email" name="Email">
 </div>
 
 <!-- KROK 2 -->
 <div class="step">
-  <h2>Dane identyfikacyjne</h2>
-  <label>NIP (Davčna številka)</label><input name="NIP">
-  <label>EMŠO</label><input name="EMSO">
+  <h2>Kontakt</h2>
+  <label>Telefon</label><input name="Telefon">
+  <label>Email</label><input type="email" name="Email">
+</div>
+
+<!-- KROK 3 -->
+<div class="step">
+  <h2>Dane sprawy</h2>
   <label>Sygnatura sprawy</label><input name="Sygnatura">
   <label>Data wyroku</label><input type="date" name="Data wyroku">
   <label>Miasto sądu</label><input name="Miasto sądu">
 </div>
 
-<!-- KROK 3 -->
+<!-- KROK 4 -->
 <div class="step">
-  <h2>Język</h2>
+  <h2>Język i regulamin</h2>
   <label>Język zrozumiały</label><input name="Język">
   <label>Czy otrzymałeś regulamin?</label>
-  <select name="Regulamin"><option>TAK</option><option>NIE</option></select>
+  <select name="Regulamin">
+    <option>TAK</option>
+    <option>NIE</option>
+  </select>
 </div>
 
-<!-- KROK 4 -->
+<!-- KROK 5 -->
 <div class="step">
   <h2>Więzienia i cele</h2>
   <div id="prisons"></div>
   <button type="button" onclick="addPrison()">+ Dodaj kolejne więzienie</button>
 </div>
 
-<!-- KROK 5 -->
+<!-- KROK 6 -->
 <div class="step">
   <h2>Podgląd końcowy</h2>
   <div class="preview" id="preview"></div>
 
-  <div class="buttons">
-    <button type="button" onclick="window.print()">Wydrukuj / PDF</button>
-    <button type="button" onclick="downloadTXT()">Pobierz plik</button>
-    <button type="button" onclick="copyText()">Skopiuj treść</button>
-  </div>
+  <button type="button" onclick="downloadTXT()">Pobierz i zapisz na urządzeniu</button>
+  <button type="button" onclick="copyText()">Skopiuj treść</button>
 </div>
 
-<div class="buttons">
+<div style="margin-top:20px;">
   <button type="button" onclick="prev()">Wstecz</button>
   <button type="button" onclick="next()">Dalej</button>
 </div>
@@ -118,77 +142,91 @@ textarea { min-height: 80px; }
 
 <script>
 let step = 0;
+let hasCell = false;
 const steps = document.querySelectorAll('.step');
 
 function showStep() {
   steps.forEach((s, i) => s.classList.toggle('active', i === step));
+  document.getElementById('progressBar').style.width =
+    ((step + 1) / steps.length * 100) + '%';
+
   if (step === steps.length - 1) buildPreview();
 }
 
-function next() { if (step < steps.length - 1) step++; showStep(); }
-function prev() { if (step > 0) step--; showStep(); }
+function next() {
+  if (step === 3) { step = 4; showStep(); return; }
 
-let prisonCount = 0;
+  if (step === 4 && !hasCell) {
+    alert("Musisz opisać przynajmniej jedną celę.");
+    return;
+  }
+
+  if (step < steps.length - 1) step++;
+  showStep();
+}
+
+function prev() {
+  if (step > 0) step--;
+  showStep();
+}
 
 function addPrison() {
-  prisonCount++;
-  const prison = document.createElement('div');
-  prison.className = 'box';
-  prison.innerHTML = `
-    <h3>Więzienie ${prisonCount}</h3>
-    <label>Nazwa więzienia</label>
-    <input name="Więzienie ${prisonCount}">
-
-    <label>Data pobytu (od-do)</label>
-    <input type="date" name="Pobyt ${prisonCount} od">
-    <input type="date" name="Pobyt ${prisonCount} do">
+  const div = document.createElement('div');
+  div.className = 'box';
+  div.innerHTML = `
+    <h3>Więzienie</h3>
+    <label>Nazwa więzienia</label><input name="Więzienie">
+    <label>Data pobytu (od – do)</label>
+    <input type="date" name="Pobyt od">
+    <input type="date" name="Pobyt do">
 
     <div class="cells"></div>
-    <button type="button" onclick="addCell(this)">+ Dodaj celę (max 7)</button>
+    <button type="button" onclick="addCell(this)">+ Dodaj kolejną celę (max 4)</button>
   `;
-  document.getElementById('prisons').appendChild(prison);
+  document.getElementById('prisons').appendChild(div);
+  addCell(div.querySelector('button'));
 }
 
 function addCell(btn) {
-  const container = btn.previousElementSibling;
-  if (container.children.length >= 7) return alert("Maksymalnie 7 cel");
-
-  const cellNo = container.children.length + 1;
-  const cell = document.createElement('div');
-  cell.className = 'cell';
-  cell.innerHTML = `
-    <h4>Cela ${cellNo}</h4>
-    <label>Data pobytu (od-do)</label>
-    <input type="date" name="Cela ${cellNo} od">
-    <input type="date" name="Cela ${cellNo} do">
-    <label>Osoby w celi</label><input name="Osoby cela ${cellNo}">
-    <label>Ilu osobowa</label><input name="Ilu osobowa cela ${cellNo}">
-    <label>Metraż</label><input name="Metraż cela ${cellNo}">
-    <label>Oddział</label><input name="Oddział cela ${cellNo}">
-    <label>Schemat celi</label><textarea name="Schemat cela ${cellNo}"></textarea>
+  const cells = btn.parentElement.querySelector('.cells');
+  if (cells.children.length >= 4) {
+    alert("Maksymalnie 4 cele.");
+    return;
+  }
+  hasCell = true;
+  const c = document.createElement('div');
+  c.className = 'box';
+  c.innerHTML = `
+    <h4>Cela ${cells.children.length + 1}</h4>
+    <label>Numer celi</label><input name="Numer celi">
+    <label>Ilość osób</label><input name="Ilość osób">
+    <label>Metraż</label><input name="Metraż">
+    <label>Oddział</label><input name="Oddział">
+    <label>Schemat celi</label><textarea name="Schemat"></textarea>
   `;
-  container.appendChild(cell);
+  cells.appendChild(c);
 }
 
 function buildPreview() {
   const data = new FormData(document.getElementById('form'));
   let text = '';
-  for (let [k, v] of data.entries()) text += k + ': ' + v + '\n';
+  for (let [k, v] of data.entries()) {
+    text += k + ': ' + v + '\n';
+  }
   document.getElementById('preview').textContent = text;
 }
 
 function downloadTXT() {
-  const text = document.getElementById("preview").textContent;
-  const blob = new Blob([text], { type: "text/plain" });
+  const blob = new Blob([document.getElementById('preview').textContent], { type: "text/plain" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
-  a.download = "formularz.txt";
+  a.download = "formularz_osadzenie.txt";
   a.click();
 }
 
 function copyText() {
-  navigator.clipboard.writeText(document.getElementById("preview").textContent);
-  alert("Skopiowano treść");
+  navigator.clipboard.writeText(document.getElementById('preview').textContent);
+  alert("Skopiowano treść.");
 }
 
 showStep();
