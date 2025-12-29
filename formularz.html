@@ -119,8 +119,7 @@ button {
 <!-- KROK 5 -->
 <div class="step">
   <h2>Więzienia i cele</h2>
-
-  <p><strong>W tym kroku opisz pierwsze więzienie oraz pierwszą celę.</strong></p>
+  <p><strong>Opisz pierwsze więzienie oraz pierwszą celę.</strong></p>
 
   <div id="prisons"></div>
 
@@ -132,7 +131,6 @@ button {
     ➕ Dodaj kolejne więzienie
   </button>
 </div>
-
 
 <!-- KROK 6 -->
 <div class="step">
@@ -165,13 +163,10 @@ function showStep() {
 }
 
 function next() {
-  if (step === 3) { step = 4; showStep(); return; }
-
   if (step === 4 && !hasCell) {
     alert("Musisz opisać przynajmniej jedną celę.");
     return;
   }
-
   if (step < steps.length - 1) step++;
   showStep();
 }
@@ -181,7 +176,11 @@ function prev() {
   showStep();
 }
 
-  
+function addFirstPrison() {
+  addPrison();
+  document.getElementById('addFirstBtn').style.display = 'none';
+  document.getElementById('addNextBtn').style.display = 'inline-block';
+}
 
 function addPrison() {
   const div = document.createElement('div');
@@ -204,20 +203,8 @@ function addPrison() {
   `;
 
   document.getElementById('prisons').appendChild(div);
-
-  // ⬇️ AUTOMATYCZNIE DODAJ PIERWSZĄ CELĘ
   addCell(div.querySelector('button'));
 }
-
-<script>
-function addFirstPrison() {
-  addPrison(); // dodaje pierwsze więzienie
-  document.getElementById('addFirstBtn').style.display = 'none';
-  document.getElementById('addNextBtn').style.display = 'inline-block';
-}
-</script>
-
-
 
 function addCell(btn) {
   const cells = btn.parentElement.querySelector('.cells');
@@ -266,11 +253,3 @@ showStep();
 
 </body>
 </html>
-
-
-
-
-
-
-
-
