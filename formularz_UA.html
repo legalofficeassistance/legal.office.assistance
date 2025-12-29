@@ -1,157 +1,142 @@
 <!DOCTYPE html>
-<html lang="ua">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Форма – дані про ув’язнення</title>
+<title>Form</title>
 
 <style>
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
-  margin: 0;
-  padding: 0;
-}
-.container {
-  max-width: 700px;
-  margin: 20px auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 6px;
-}
-h2 { margin-top: 0; }
-.step { display: none; }
-.step.active { display: block; }
-label { display: block; margin-top: 12px; font-weight: bold; }
-input, textarea, select { width: 100%; padding: 8px; margin-top: 4px; }
-textarea { min-height: 80px; }
-.buttons { margin-top: 20px; display: flex; justify-content: space-between; flex-wrap: wrap; gap:10px; }
-button { padding: 10px 16px; cursor: pointer; }
-.progress { height: 8px; background: #ddd; border-radius: 4px; margin-bottom: 20px; }
-.progress-bar { height: 8px; background: #4caf50; width: 0%; border-radius: 4px; }
-.box { border: 1px solid #ccc; padding: 12px; margin-top: 15px; border-radius: 4px; }
-.preview { background: #f9f9f9; padding: 10px; white-space: pre-wrap; }
+body { font-family: Arial, sans-serif; background:#f4f4f4; margin:0; padding:0; }
+.container { max-width:800px; margin:20px auto; background:#fff; padding:20px; border-radius:6px; }
+.step { display:none; }
+.step.active { display:block; }
+label { display:block; margin-top:12px; font-weight:bold; }
+input, textarea, select { width:100%; padding:8px; margin-top:4px; }
+textarea { min-height:80px; }
+button { padding:10px 16px; cursor:pointer; margin-top:15px; }
+.box { border:1px solid #ccc; padding:12px; margin-top:15px; border-radius:4px; }
+.progress { height:8px; background:#ddd; border-radius:4px; margin-bottom:20px; }
+.progress-bar { height:8px; background:#4caf50; width:0%; border-radius:4px; }
+.preview { white-space:pre-wrap; background:#f9f9f9; padding:12px; }
 </style>
 </head>
 
 <body>
 <div class="container">
 
-<div class="progress">
-  <div class="progress-bar" id="progressBar"></div>
-</div>
+<select id="langSelect" onchange="setLang(this.value)">
+  <option value="en">EN</option>
+  <option value="ua">UA</option>
+  <option value="ru">RU</option>
+  <option value="ro">RO / MD</option>
+</select>
+
+<div class="progress"><div class="progress-bar" id="progressBar"></div></div>
 
 <form id="form">
 
-<!-- КРОК 1 -->
 <div class="step active">
-  <h2>Особисті дані</h2>
-  <label>Ім’я</label><input name="Ім’я">
-  <label>Прізвище</label><input name="Прізвище">
-  <label>Період перебування у в’язниці (з – по)</label>
-  <input type="date" name="Період від"><input type="date" name="Період до">
-  <label>Адреса проживання</label><textarea name="Адреса"></textarea>
+  <h2 data-t="personal"></h2>
+  <label data-t="firstName"></label><input name="First name">
+  <label data-t="lastName"></label><input name="Last name">
+  <label data-t="address"></label><textarea name="Address"></textarea>
 </div>
 
-<!-- КРОК 2 -->
 <div class="step">
-  <h2>Контактні дані та ідентифікація</h2>
-  <label>Номер телефону</label><input name="Телефон">
-  <label>Електронна пошта</label><input type="email" name="Email">
-  <label>Податковий номер у Словенії (Davčna številka)</label><input name="NIP">
-  <label>Персональний ідентифікаційний номер EMŠO</label><input name="EMSO">
+  <h2 data-t="contact"></h2>
+  <label data-t="phone"></label><input name="Phone">
+  <label>Email</label><input type="email" name="Email">
 </div>
 
-<!-- КРОК 3 -->
 <div class="step">
-  <h2>Дані судової справи</h2>
-  <label>Номер судової справи</label><input name="Справa">
-  <label>Дата винесення вироку</label><input type="date" name="Дата вироку">
-  <label>Місто суду</label><input name="Місто суду">
+  <h2 data-t="case"></h2>
+  <label data-t="caseNo"></label><input name="Case number">
+  <label data-t="judgmentDate"></label><input type="date" name="Judgment date">
+  <label data-t="courtCity"></label><input name="Court city">
 </div>
 
-<!-- КРОК 4 -->
 <div class="step">
-  <h2>Мова та права</h2>
-  <label>Зрозуміла вам мова</label><input name="Мова">
-  <label>Чи отримували ви тюремний регламент зрозумілою для вас мовою?</label>
-  <select name="Регламент"><option>ТАК</option><option>НІ</option></select>
-  <label>Додаткові зауваження</label><textarea name="Зауваження"></textarea>
+  <h2 data-t="language"></h2>
+  <label data-t="languageUnderstood"></label><input name="Language">
+  <label data-t="regulations"></label>
+  <select><option data-t="yes"></option><option data-t="no"></option></select>
 </div>
 
-<!-- КРОК 5 -->
 <div class="step">
-  <h2>В’язниці та камери</h2>
+  <h2 data-t="prisons"></h2>
+  <p data-t="describeFirst"></p>
   <div id="prisons"></div>
-  <button type="button" onclick="addPrison()">+ Додати іншу в’язницю</button>
+  <button type="button" onclick="addFirstPrison()" data-t="addFirst"></button>
+  <button type="button" onclick="addPrison()" id="addNextBtn" style="display:none" data-t="addNext"></button>
 </div>
 
-<!-- КРОК 6 -->
 <div class="step">
-  <h2>Попередній перегляд</h2>
+  <h2 data-t="preview"></h2>
   <div class="preview" id="preview"></div>
-  <label><input type="checkbox" required> Підтверджую правильність наданих даних</label>
+  <button type="button" onclick="downloadTXT()" data-t="download"></button>
+  <button type="button" onclick="copyText()" data-t="copy"></button>
 </div>
 
-<div class="buttons">
-  <button type="button" onclick="prev()">Назад</button>
-  <button type="button" onclick="next()">Далі</button>
-</div>
-
-<div class="buttons">
-  <button type="button" onclick="window.print()">Друк / Зберегти як PDF</button>
-  <button type="button" onclick="downloadTXT()">Завантажити файл</button>
-  <button type="button" onclick="copyText()">Скопіювати текст</button>
+<div style="margin-top:20px">
+  <button type="button" onclick="prev()" data-t="back"></button>
+  <button type="button" onclick="next()" data-t="next"></button>
 </div>
 
 </form>
 </div>
 
 <script>
-let step = 0;
-const steps = document.querySelectorAll('.step');
-function showStep() {
-  steps.forEach((s,i)=>s.classList.toggle('active',i===step));
-  document.getElementById('progressBar').style.width = ((step+1)/steps.length*100)+'%';
-  if(step===steps.length-1) buildPreview();
+const T = {
+en:{
+personal:"Personal data",firstName:"First name",lastName:"Last name",address:"Address",
+contact:"Contact",phone:"Phone",
+case:"Case details",caseNo:"Case reference number",judgmentDate:"Date of judgment",courtCity:"Court city",
+language:"Language and regulations",languageUnderstood:"Language understood",regulations:"Have you received the regulations?",
+yes:"YES",no:"NO",
+prisons:"Prisons and cells",describeFirst:"Describe the first prison and the first cell.",
+addFirst:"➕ Describe first prison and cell",addNext:"➕ Add another prison",
+preview:"Final preview",download:"Download and save",copy:"Copy content",
+back:"Back",next:"Next"
+},
+ua:{
+personal:"Особисті дані",firstName:"Імʼя",lastName:"Прізвище",address:"Адреса",
+contact:"Контакт",phone:"Телефон",
+case:"Дані справи",caseNo:"Номер справи",judgmentDate:"Дата вироку",courtCity:"Місто суду",
+language:"Мова та регламент",languageUnderstood:"Зрозуміла мова",regulations:"Чи отримали ви регламент?",
+yes:"ТАК",no:"НІ",
+prisons:"Вʼязниці та камери",describeFirst:"Опишіть першу вʼязницю та першу камеру.",
+addFirst:"➕ Додати першу вʼязницю",addNext:"➕ Додати наступну вʼязницю",
+preview:"Кінцевий перегляд",download:"Завантажити",copy:"Скопіювати",
+back:"Назад",next:"Далі"
+},
+ru:{
+personal:"Личные данные",firstName:"Имя",lastName:"Фамилия",address:"Адрес",
+contact:"Контакты",phone:"Телефон",
+case:"Данные дела",caseNo:"Номер дела",judgmentDate:"Дата приговора",courtCity:"Город суда",
+language:"Язык и регламент",languageUnderstood:"Понятный язык",regulations:"Получили ли вы регламент?",
+yes:"ДА",no:"НЕТ",
+prisons:"Тюрьмы и камеры",describeFirst:"Опишите первую тюрьму и первую камеру.",
+addFirst:"➕ Добавить первую тюрьму",addNext:"➕ Добавить следующую тюрьму",
+preview:"Итоговый просмотр",download:"Скачать",copy:"Копировать",
+back:"Назад",next:"Далее"
+},
+ro:{
+personal:"Date personale",firstName:"Prenume",lastName:"Nume",address:"Adresă",
+contact:"Contact",phone:"Telefon",
+case:"Datele cauzei",caseNo:"Număr dosar",judgmentDate:"Data sentinței",courtCity:"Orașul instanței",
+language:"Limba și regulament",languageUnderstood:"Limba înțeleasă",regulations:"Ați primit regulamentul?",
+yes:"DA",no:"NU",
+prisons:"Închisori și celule",describeFirst:"Descrieți prima închisoare și prima celulă.",
+addFirst:"➕ Adaugă prima închisoare",addNext:"➕ Adaugă altă închisoare",
+preview:"Previzualizare finală",download:"Descarcă",copy:"Copiază",
+back:"Înapoi",next:"Înainte"
 }
-function next(){if(step<steps.length-1) step++; showStep();}
-function prev(){if(step>0) step--; showStep();}
+};
 
-function addPrison(){
-  const div=document.createElement('div'); div.className='box';
-  div.innerHTML=`
-    <h3>В’язниця</h3>
-    <label>Назва / місто</label><input name="В’язниця">
-    <label>Номер камери</label><input name="Камера">
-    <label>Кількість осіб у камері</label><input name="Кількість">
-    <label>Площа камери (орієнтовно)</label><input name="Площа">
-    <label>Опис планування камери</label><textarea name="Схема"></textarea>
-  `;
-  document.getElementById('prisons').appendChild(div);
+function setLang(l){
+document.querySelectorAll("[data-t]").forEach(e=>e.textContent=T[l][e.dataset.t]);
 }
-
-function buildPreview(){
-  const data=new FormData(document.getElementById('form'));
-  let text='';
-  for(let [k,v] of data.entries()){text+=k+': '+v+'\n';}
-  document.getElementById('preview').textContent=text;
-}
-showStep();
-
-function downloadTXT(){
-  const text=document.getElementById("preview").textContent;
-  const blob=new Blob([text],{type:"text/plain;charset=utf-8"});
-  const link=document.createElement("a");
-  link.href=URL.createObjectURL(blob);
-  link.download="formularz_osadzenie.txt";
-  link.click();
-}
-function copyText(){
-  const text=document.getElementById("preview").textContent;
-  navigator.clipboard.writeText(text).then(()=>{alert("Текст скопійовано. Можете вставити у повідомлення або email.");});
-}
+setLang("en");
 </script>
-
 </body>
 </html>
