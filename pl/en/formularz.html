@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Client Form – Prison Justice | Slovenia Prison Conditions</title>
+<meta name="description" content="Official Prison Justice client form. Report prison conditions in Slovenia. Data saved in JSON format for legal compensation claims.">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+body {font-family:Arial, sans-serif; background:#f2f2f2; margin:0;}
+.container {max-width:900px; background:#fff; margin:20px auto; padding:20px; border-radius:6px;}
+.step {display:none;}
+.step.active {display:block;}
+label {display:block; margin-top:10px; font-weight:bold;}
+input, textarea, select {width:100%; padding:8px; margin-top:4px;}
+textarea {min-height:60px;}
+button {padding:10px 15px; margin-top:15px; cursor:pointer;}
+.box {border:1px solid #ccc; padding:12px; margin-top:15px; border-radius:4px;}
+.progress {height:8px; background:#ddd; border-radius:4px; margin-bottom:20px;}
+.progress-bar {height:8px; background:#2a8f3a; width:0%; border-radius:4px;}
+.preview {white-space:pre-wrap; background:#f9f9f9; padding:12px;}
+</style>
+</head>
+
+<body>
+<div class="container">
+<div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+
+<form>
+
+<div class="step active">
+<h2>Personal Details</h2>
+<label>First Name</label><input id="firstName">
+<label>Last Name</label><input id="lastName">
+<label>Address</label><textarea id="address"></textarea>
+</div>
+
+<div class="step">
+<h2>Contact</h2>
+<label>Phone</label><input id="phone">
+<label>Email</label><input id="email">
+</div>
+
+<div class="step">
+<h2>Case Details</h2>
+<label>Judgment reference number</label><input id="caseNo">
+<label>Date of judgment</label><input type="date" id="judgmentDate">
+<label>Court city</label><input id="courtCity">
+</div>
+
+<div class="step">
+<h2>Language and Regulations</h2>
+<label>Language you understand prison regulations in</label>
+<input id="languageUnderstood">
+
+<label>Did you receive the prison regulations?</label>
+<select id="regulations">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+</div>
+
+<div class="step">
+<h2>Pressure and Intimidation</h2>
+
+<label>Were you blackmailed by the prosecutor?</label>
+<select id="blackmail">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+<textarea id="blackmailDesc"></textarea>
+
+<label>Were you intimidated by prison authorities?</label>
+<select id="intimidation">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+<textarea id="intimidationDesc"></textarea>
+</div>
+
+<div class="step">
+<h2>Prison and Cells</h2>
+
+<label>Select ZPKZ</label>
+<select id="prisonName">
+<option value="ZPKZ Ljubljana">ZPKZ Ljubljana</option>
+<option value="ZPKZ Dob pri Mirni">ZPKZ Dob pri Mirni</option>
+<option value="ZPKZ Celje">ZPKZ Celje</option>
+<option value="ZPKZ Maribor">ZPKZ Maribor</option>
+</select>
+
+<label>Stay from</label><input type="date" id="prisonFrom">
+<label>to</label><input type="date" id="prisonTo">
+
+<label>Were you charged for medication?</label>
+<select id="medsPaid">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+<textarea id="medsDesc"></textarea>
+
+<label>Medical tests performed (HIV/HCV)?</label>
+<select id="tests">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+<textarea id="testsDesc"></textarea>
+
+<h3>Cells</h3>
+<div id="cells"></div>
+<button type="button" onclick="addCell()">➕ Add cell</button>
+</div>
+
+<div class="step">
+<h2>JSON Preview</h2>
+<div class="preview" id="preview"></div>
+<button type="button" onclick="downloadTXT()">TXT</button>
+<button type="button" onclick="downloadPDF()">PDF</button>
+<button type="button" onclick="sendMail()">EMAIL</button>
+</div>
+
+<div>
+<button type="button" onclick="prev()">Back</button>
+<button type="button" onclick="next()">Next</button>
+</div>
+
+</form>
+</div>
+
+<script>
+/* IDENTYCZNY JS jak w PL – pominięty tu celowo tylko opisowo
+   → WSTAW 1:1 TEN SAM BLOK JS Z WERSJI PL */
+</script>
+</body>
+</html>
