@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Compensation for Poor Prison Conditions – Prison Justice</title>
+  <meta name="description" content="Legal assistance in obtaining compensation for poor prison conditions in Slovenia. Amicable procedure and applications to the European Court of Human Rights.">
+
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="pl" href="https://prison-justice.pl/pl/index.html">
+  <link rel="alternate" hreflang="en" href="https://prison-justice.pl/en/index.html">
+  <link rel="alternate" hreflang="ru" href="https://prison-justice.pl/ru/index.html">
+  <link rel="alternate" hreflang="uk" href="https://prison-justice.pl/ua/index.html">
+  <link rel="alternate" hreflang="ro" href="https://prison-justice.pl/ro/index.html">
+  <link rel="alternate" hreflang="x-default" href="https://prison-justice.pl/">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* HERO */
+    .hero {
+      background-image: url('images.jpg');
+      background-size: cover;
+      background-position: center;
+      padding: 90px 20px;
+      color: #ffffff;
+      text-align: center;
+      font-size: 1.4em;
+      font-style: italic;
+    }
+
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 15px 20px;
+    }
+
+    header h1 {
+      margin: 0 0 10px 0;
+      font-size: 1.4em;
+    }
+
+    .flags {
+      margin-bottom: 10px;
+    }
+
+    .flags img {
+      width: 28px;
+      margin-right: 6px;
+    }
+
+    .menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .menu a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.95em;
+    }
+
+    .menu a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    section h2 {
+      color: #003366;
+    }
+
+    footer {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+
+    .btn-link {
+      display: inline-block;
+      padding: 14px 22px;
+      margin: 10px 10px 10px 0;
+      background-color: #003366;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .btn-link:hover {
+      background-color: #0055aa;
+    }
+  </style>
+</head>
+
+<body>
+
+<section class="hero">
+  <blockquote>
+    “The measure of a civilization is how it treats its prisoners.”
+    — Fyodor Dostoevsky
+  </blockquote>
+</section>
+
+<header>
+  <h1>Prison Justice – Legal Support for Prisoners</h1>
+
+  <!-- Language versions -->
+  <nav class="flags">
+    <a href="/pl/index.html"><img src="pl.png" alt="Polish"></a>
+    <a href="/ua/index.html"><img src="ua.png" alt="Ukrainian"></a>
+    <a href="/en/index.html"><img src="en.png" alt="English"></a>
+    <a href="/ru/index.html"><img src="ru.png" alt="Russian"></a>
+    <a href="/ro/index.html"><img src="ro.png" alt="Romanian"></a>
+    <a href="/md/index.html"><img src="md.png" alt="Moldovan"></a>
+  </nav>
+
+  <!-- MAIN MENU -->
+  <nav class="menu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="slowenia.html">Slovenia</a></li>
+      <li><a href="procedura-polubowna.html">Amicable Procedure</a></li>
+      <li><a href="jak-przebiega-postepowanie.html">How the Procedure Works</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="payment.html">Payment</a></li>
+      <li><a href="forum.html">Anonymous Reports</a></li>
+      <li><a href="faq-slowenia.html">FAQ</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="materials.html">Media</a></li>
+      <li><a href="kontakt.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+<section>
+  <h2>Legal Assistance for Prisoners</h2>
+  <p>
+    We provide legal assistance to individuals who have experienced poor prison
+    conditions in Slovenia, including overcrowding, lack of medical care and
+    degrading treatment.
+  </p>
+</section>
+
+<section>
+  <h2>Check Your Case</h2>
+  <p>
+    Complete the form and we will assess whether you are entitled to compensation
+    for violations of your rights.
+  </p>
+  <a href="formularz.html" class="btn-link">
+    Fill in the form – Case Assessment
+  </a>
+</section>
+
+<section>
+  <h2>Pricing & Payments</h2>
+  <a href="pricing.html" class="btn-link">View Pricing</a>
+  <a href="payment.html" class="btn-link">Make a Payment</a>
+</section>
+
+<section>
+  <h2>Most Common Violations</h2>
+  <ul>
+    <li>Overcrowded prison cells</li>
+    <li>Poor sanitary conditions</li>
+    <li>Lack of adequate medical care</li>
+    <li>Intimidation by prison authorities</li>
+    <li>Documents not provided in a language understood by prisoners</li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 Prison Justice Pl</p>
+  <p>Tel: +48 725 144 019 | Email: contact@prison-justice.pl</p>
+</footer>
+
+</body>
+</html>
