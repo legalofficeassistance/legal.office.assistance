@@ -1,7 +1,0 @@
-RewriteEngine On
-
-# Jeśli NIE jest już w katalogu językowym
-RewriteCond %{REQUEST_URI} !^/(pl|en|ru|ua|ro|md)/ [NC]
-
-# przekieruj na polski
-RewriteRule ^(.*)$ /pl/$1 [R=302,L]
