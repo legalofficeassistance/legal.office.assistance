@@ -122,14 +122,14 @@
 <header>
   <h1>Prison Justice – Legal Support for Prisoners</h1>
 
-  <!-- Language versions -->
+  <!-- Wersje językowe -->
   <nav class="flags">
-    <a href="/pl/pl/index.html"><img src="pl.png" alt="Polish"></a>
-    <a href="/pl/pl/ua/index.html"><img src="ua.png" alt="Ukrainian"></a>
-    <a href="/pl/pl/en/index.html"><img src="en.png" alt="English"></a>
-    <a href="/pl/pl/ru/index.html"><img src="ru.png" alt="Russian"></a>
-    <a href="/pl/pl/ro/index.html"><img src="ro.png" alt="Romanian"></a>
-    <a href="/pl/pl/md/index.html"><img src="md.png" alt="Moldovan"></a>
+    <a href="index.html"><img src="pl.png" alt="Polski"></a>
+    <a href="ua/index.html"><img src="ua.png" alt="Українська"></a>
+    <a href="en/index.html"><img src="en.png" alt="English"></a>
+    <a href="ru/index.html"><img src="ru.png" alt="Русский"></a>
+    <a href="ro/index.html"><img src="ro.png" alt="Română"></a>
+    <a href="md/index.html"><img src="md.png" alt="Moldova"></a>
   </nav>
 
   <!-- MAIN MENU -->
