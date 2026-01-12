@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Анкета Prison Justice — компенсация за плохие условия в тюрьмах Словении</title>
+
+<meta name="description" content="Официальная анкета Prison Justice для граждан России. Жалобы на плохие условия содержания в тюрьмах Словении, компенсации, ЕСПЧ, юридическая помощь.">
+
+<meta name="keywords" content="
+плохие условия в тюрьме,
+тюрьмы Словении,
+компенсация заключенным,
+жалоба на тюрьму,
+ЕСПЧ Страсбург,
+нарушение прав заключенных,
+Prison Justice,
+юридическая помощь заключенным,
+условия содержания под стражей
+">
+
+<!-- SEO YANDEX -->
+<meta name="robots" content="index, follow">
+<meta name="yandex-verification" content="PASTE_YANDEX_CODE_HERE">
+<meta name="geo.region" content="RU">
+<meta name="geo.placename" content="Russia">
+<meta name="language" content="ru">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+body {font-family:Arial, sans-serif; background:#f2f2f2; margin:0;}
+.container {max-width:900px; background:#fff; margin:20px auto; padding:20px; border-radius:6px;}
+.step {display:none;}
+.step.active {display:block;}
+label {display:block; margin-top:10px; font-weight:bold;}
+input, textarea, select {width:100%; padding:8px; margin-top:4px;}
+textarea {min-height:60px;}
+button {padding:10px 15px; margin-top:15px; cursor:pointer;}
+.box {border:1px solid #ccc; padding:12px; margin-top:15px; border-radius:4px;}
+.progress {height:8px; background:#ddd; border-radius:4px; margin-bottom:20px;}
+.progress-bar {height:8px; background:#2a8f3a; width:0%; border-radius:4px;}
+.preview {white-space:pre-wrap; background:#f9f9f9; padding:12px;}
+.warning {color:red; font-weight:bold; margin-top:15px;}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+
+<form id="form">
+
+<!-- STEP 1 -->
+<div class="step active">
+<h2>Личные данные</h2>
+<label>Имя</label><input id="firstName">
+<label>Фамилия</label><input id="lastName">
+<label>Адрес</label><textarea id="address"></textarea>
+</div>
+
+<!-- STEP 2 -->
+<div class="step">
+<h2>Контактная информация</h2>
+<label>Телефон</label><input id="phone">
+<label>Email</label><input id="email">
+</div>
+
+<!-- STEP 3 -->
+<div class="step">
+<h2>Данные судебного дела</h2>
+<label>Номер приговора</label><input id="caseNo">
+<label>Дата приговора</label><input type="date" id="judgmentDate">
+<label>Город суда</label><input id="courtCity">
+</div>
+
+<!-- STEP 4 -->
+<div class="step">
+<h2>Язык и регламент</h2>
+<label>Язык, на котором вы понимаете тюремные правила</label>
+<input id="languageUnderstood">
+
+<label>Получали ли вы регламент?</label>
+<select id="regulations">
+  <option value="yes">Да</option>
+  <option value="no">Нет</option>
+</select>
+</div>
+
+<!-- STEP 5 -->
+<div class="step">
+<h2>Шантаж и давление</h2>
+
+<label>Подвергались ли вы шантажу со стороны прокурора?</label>
+<select id="blackmail">
+  <option value="yes">Да</option>
+  <option value="no">Нет</option>
+</select>
+<textarea id="blackmailDesc" placeholder="Описание ситуации"></textarea>
+
+<label>Подвергались ли вы запугиванию со стороны администрации тюрьмы?</label>
+<select id="intimidation">
+  <option value="yes">Да</option>
+  <option value="no">Нет</option>
+</select>
+<textarea id="intimidationDesc" placeholder="Описание ситуации"></textarea>
+</div>
+
+<!-- STEP 6 -->
+<div class="step">
+<h2>Тюрьма и камеры</h2>
+
+<label>Выберите учреждение ZPKZ</label>
+<select id="prisonName">
+<option value="ZPKZ Ljubljana">ZPKZ Ljubljana</option>
+<option value="ZPKZ Dob pri Mirni">ZPKZ Dob pri Mirni</option>
+<option value="ZPKZ Celje">ZPKZ Celje</option>
+<option value="ZPKZ Maribor">ZPKZ Maribor</option>
+</select>
+
+<label>Период содержания с</label><input type="date" id="prisonFrom">
+<label>по</label><input type="date" id="prisonTo">
+
+<label>Взималась ли плата за лекарства?</label>
+<select id="medsPaid">
+  <option value="yes">Да</option>
+  <option value="no">Нет</option>
+</select>
+<textarea id="medsDesc"></textarea>
+
+<label>Проводились ли медицинские обследования (HIV/HCV)?</label>
+<select id="tests">
+  <option value="yes">Да</option>
+  <option value="no">Нет</option>
+</select>
+<textarea id="testsDesc"></textarea>
+
+<h3>Камеры</h3>
+<div id="cells"></div>
+<button type="button" onclick="addCell()">➕ Добавить камеру</button>
+</div>
+
+<!-- STEP 7 -->
+<div class="step">
+<h2>Предварительный просмотр JSON</h2>
+<div class="preview" id="preview"></div>
+<button type="button" onclick="downloadTXT()">TXT</button>
+<button type="button" onclick="downloadPDF()">PDF</button>
+<button type="button" onclick="sendMail()">EMAIL</button>
+</div>
+
+<div>
+<button type="button" onclick="prev()">Назад</button>
+<button type="button" onclick="next()">Далее</button>
+</div>
+
+</form>
+</div>
+
+<script>
+let step=0;
+const steps=document.querySelectorAll(".step");
+
+function showStep(){
+  steps.forEach((s,i)=>s.classList.toggle("active",i===step));
+  document.getElementById("progressBar").style.width=((step+1)/steps.length*100)+"%";
+  if(step===steps.length-1) buildPreview();
+}
+function next(){ if(step<steps.length-1){step++;showStep();}}
+function prev(){ if(step>0){step--;showStep();}}
+
+let cellCounter=0;
+function addCell(){
+  cellCounter++;
+  const d=document.createElement("div");
+  d.className="box";
+  d.innerHTML=`
+<h4>Камера ${cellCounter}</h4>
+<label>Дополнительные проблемы</label>
+<div data-notes-group="${cellCounter}">
+<label><input type="checkbox" value="mold"> плесень / грибок</label>
+<label><input type="checkbox" value="no_ventilation"> отсутствие вентиляции</label>
+<label><input type="checkbox" value="high_temperature"> высокая температура</label>
+<label><input type="checkbox" value="bad_smell"> неприятный запах</label>
+<label><input type="checkbox" value="drugs"> наркотики</label>
+<label><input type="checkbox" value="no_non_smoking_area"> нет зоны для некурящих</label>
+<label><input type="checkbox" value="infectious_diseases"> инфекционные заболевания</label>
+</div>
+`;
+  document.getElementById("cells").appendChild(d);
+}
+
+function collect(){
+  const cells=[];
+  document.querySelectorAll("#cells .box").forEach((c,i)=>{
+    const idx=i+1;
+    cells.push({
+      cell_number: idx,
+      notes: Array.from(c.querySelectorAll(`[data-notes-group="${idx}"] input:checked`))
+        .map(cb=>cb.value)
+    });
+  });
+
+  return {
+    firstName:firstName.value,
+    lastName:lastName.value,
+    address:address.value,
+    phone:phone.value,
+    email:email.value,
+    caseNo:caseNo.value,
+    judgmentDate:judgmentDate.value,
+    courtCity:courtCity.value,
+    language:languageUnderstood.value,
+    regulations:regulations.value,
+    blackmail:blackmail.value,
+    blackmailDesc:blackmailDesc.value,
+    intimidation:intimidation.value,
+    intimidationDesc:intimidationDesc.value,
+    prison:{
+      name:prisonName.value,
+      from:prisonFrom.value,
+      to:prisonTo.value,
+      medsPaid:medsPaid.value,
+      medsDesc:medsDesc.value,
+      tests:tests.value,
+      testsDesc:testsDesc.value,
+      cells:cells
+    }
+  };
+}
+
+function buildPreview(){
+  preview.textContent=JSON.stringify(collect(),null,2);
+}
+
+function downloadTXT(){
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([preview.textContent]));
+  a.download="prison_ru.json.txt";
+  a.click();
+}
+
+function downloadPDF(){
+  const {jsPDF}=window.jspdf;
+  const d=new jsPDF();
+  d.text(preview.textContent,10,10);
+  d.save("prison_ru.pdf");
+}
+
+function sendMail(){
+  window.location.href="mailto:twojemail@domena.pl?subject=Prison Justice RU&body="+encodeURIComponent(preview.textContent);
+}
+
+showStep();
+</script>
+</body>
+</html>
