@@ -23,7 +23,7 @@ button {padding:10px 15px; margin-top:15px; cursor:pointer;}
 .progress-bar {height:8px; background:#2a8f3a; width:0%; border-radius:4px;}
 .preview {white-space:pre-wrap; background:#f9f9f9; padding:12px;}
 .warning {color:red; font-weight:bold; margin-top:15px;}
-.top-nav {display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;}
+.top-nav {display:flex; justify-content:space-between; margin-bottom:15px;}
 .back-home {text-decoration:none; font-weight:bold; color:#003366;}
 </style>
 </head>
@@ -43,24 +43,57 @@ button {padding:10px 15px; margin-top:15px; cursor:pointer;}
 <!-- STEP 1 -->
 <div class="step active">
 <h2>Dane osobowe</h2>
-<label>Imię</label><input id="firstName">
-<label>Nazwisko</label><input id="lastName">
-<label>Adres</label><textarea id="address"></textarea>
+
+<label>Imię</label>
+<input id="firstName">
+
+<label>Nazwisko</label>
+<input id="lastName">
+
+<h3>Adres zamieszkania</h3>
+
+<label>Ulica</label>
+<input id="street">
+
+<label>Numer domu</label>
+<input id="houseNumber">
+
+<label>Numer mieszkania</label>
+<input id="apartmentNumber">
+
+<label>Kod pocztowy</label>
+<input id="postalCode">
+
+<label>Miasto</label>
+<input id="city">
+
+<label>Kraj</label>
+<input id="country">
 </div>
 
 <!-- STEP 2 -->
 <div class="step">
 <h2>Kontakt</h2>
-<label>Telefon</label><input id="phone">
-<label>Email</label><input id="email">
+
+<label>Telefon</label>
+<input id="phone">
+
+<label>Email</label>
+<input id="email">
 </div>
 
 <!-- STEP 3 -->
 <div class="step">
 <h2>Dane sprawy</h2>
-<label>Sygnatura wyroku</label><input id="caseNo">
-<label>Data wyroku</label><input type="date" id="judgmentDate">
-<label>Miasto sądu</label><input id="courtCity">
+
+<label>Sygnatura wyroku</label>
+<input id="caseNo" placeholder="Wyrok, na podstawie którego odbywałeś karę w Słowenii">
+
+<label>Data wyroku</label>
+<input type="date" id="judgmentDate">
+
+<label>Miasto sądu</label>
+<input id="courtCity" placeholder="Miasto sądu, który wydał wyrok">
 </div>
 
 <!-- STEP 4 -->
@@ -106,7 +139,7 @@ button {padding:10px 15px; margin-top:15px; cursor:pointer;}
 <div class="step">
 <h2>Więzienie i cele</h2>
 
-<label>Wybierz ZPKZ</label>
+<label>Zakład karny (ZPKZ)</label>
 <select id="prisonName">
 <option value="ZPKZ Ljubljana">ZPKZ Ljubljana</option>
 <option value="ZPKZ Dob pri Mirni">ZPKZ Dob pri Mirni</option>
@@ -114,8 +147,11 @@ button {padding:10px 15px; margin-top:15px; cursor:pointer;}
 <option value="ZPKZ Maribor">ZPKZ Maribor</option>
 </select>
 
-<label>Pobyt od</label><input type="date" id="prisonFrom">
-<label>do</label><input type="date" id="prisonTo">
+<label>Pobyt od</label>
+<input type="date" id="prisonFrom">
+
+<label>do</label>
+<input type="date" id="prisonTo">
 
 <label>Czy pobierano opłaty za leki?</label>
 <select id="medsPaid">
@@ -124,7 +160,7 @@ button {padding:10px 15px; margin-top:15px; cursor:pointer;}
 </select>
 <textarea id="medsDesc"></textarea>
 
-<label>Czy wykonano badania medyczne (HIV/HCV)?</label>
+<label>Czy wykonano badania medyczne (HIV / HCV)?</label>
 <select id="tests">
   <option value="yes">Tak</option>
   <option value="no">Nie</option>
@@ -142,7 +178,7 @@ button {padding:10px 15px; margin-top:15px; cursor:pointer;}
 <div class="preview" id="preview"></div>
 
 <div class="warning">
-Treść opisowa pozostaje w oryginalnym języku klienta.
+Opisy pozostają w oryginalnym języku klienta.
 </div>
 
 <button type="button" onclick="downloadTXT()">TXT</button>
@@ -189,8 +225,7 @@ function addCell(){
 <label><input type="checkbox" value="drugs"> narkotyki</label>
 <label><input type="checkbox" value="no_non_smoking_area"> brak strefy dla niepalących</label>
 <label><input type="checkbox" value="infectious_diseases"> choroby zakaźne</label>
-</div>
-`;
+</div>`;
   document.getElementById("cells").appendChild(d);
 }
 
@@ -209,7 +244,14 @@ function collect(){
   return {
     firstName:firstName.value,
     lastName:lastName.value,
-    address:address.value,
+    address:{
+      street:street.value,
+      houseNumber:houseNumber.value,
+      apartmentNumber:apartmentNumber.value,
+      postalCode:postalCode.value,
+      city:city.value,
+      country:country.value
+    },
     phone:phone.value,
     email:email.value,
     caseNo:caseNo.value,
@@ -253,7 +295,7 @@ function downloadPDF(){
 }
 
 function sendMail(){
-  window.location.href="mailto:twojemail@domena.pl?subject=Prison Justice PL&body="+encodeURIComponent(preview.textContent);
+  window.location.href="mailto:contact@prison-justice.pl?subject=Prison Justice PL&body="+encodeURIComponent(preview.textContent);
 }
 
 showStep();
