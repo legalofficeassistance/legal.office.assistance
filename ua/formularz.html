@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Prison Justice – Client Form</title>
-<meta name="description" content="Client form for prison condition cases. Data saved in unified JSON format.">
+<title>Formularz klienta – Prison Justice PL</title>
+<meta name="description" content="Oficjalny formularz Prison Justice PL. Dane zapisywane w formacie JSON do dalszego przetwarzania prawnego.">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
@@ -18,11 +18,13 @@ label {display:block; margin-top:10px; font-weight:bold;}
 input, textarea, select {width:100%; padding:8px; margin-top:4px;}
 textarea {min-height:60px;}
 button {padding:10px 15px; margin-top:15px; cursor:pointer;}
-.progress {height:8px; background:#ddd; margin-bottom:20px;}
-.progress-bar {height:8px; background:#2a8f3a; width:0%;}
+.box {border:1px solid #ccc; padding:12px; margin-top:15px; border-radius:4px;}
+.progress {height:8px; background:#ddd; border-radius:4px; margin-bottom:20px;}
+.progress-bar {height:8px; background:#2a8f3a; width:0%; border-radius:4px;}
 .preview {white-space:pre-wrap; background:#f9f9f9; padding:12px;}
-.top {display:flex; justify-content:space-between;}
-a {text-decoration:none; color:#003366; font-weight:bold;}
+.warning {color:red; font-weight:bold; margin-top:15px;}
+.top-nav {display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;}
+.back-home {text-decoration:none; font-weight:bold; color:#003366;}
 </style>
 </head>
 
@@ -30,162 +32,228 @@ a {text-decoration:none; color:#003366; font-weight:bold;}
 
 <div class="container">
 
-<div class="top">
-  <a href="index.html">← Home</a>
-  <select id="langSelect">
-    <option value="pl">PL</option>
-    <option value="en">EN</option>
-    <option value="ru">RU</option>
-    <option value="ua">UA</option>
-    <option value="ro">RO</option>
-    <option value="md">MD</option>
-  </select>
+<div class="top-nav">
+  <a href="index.html" class="back-home">← Powrót do strony głównej</a>
 </div>
 
 <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
 
 <form id="form">
 
+<!-- STEP 1 -->
 <div class="step active">
-  <h2 data-i18n="personal">Dane osobowe</h2>
-  <label data-i18n="firstName">Imię</label><input id="firstName">
-  <label data-i18n="lastName">Nazwisko</label><input id="lastName">
-  <label data-i18n="address">Adres</label><textarea id="address"></textarea>
+<h2>Dane osobowe</h2>
+<label>Imię</label><input id="firstName">
+<label>Nazwisko</label><input id="lastName">
+<label>Adres</label><textarea id="address"></textarea>
 </div>
 
+<!-- STEP 2 -->
 <div class="step">
-  <h2 data-i18n="contact">Kontakt</h2>
-  <label data-i18n="phone">Telefon</label><input id="phone">
-  <label>Email</label><input id="email">
+<h2>Kontakt</h2>
+<label>Telefon</label><input id="phone">
+<label>Email</label><input id="email">
 </div>
 
+<!-- STEP 3 -->
 <div class="step">
-  <h2 data-i18n="language">Język i regulamin</h2>
-
-  <label data-i18n="descLang">Język opisu</label>
-  <select id="languageUnderstood">
-    <option value="pl">PL</option>
-    <option value="en">EN</option>
-    <option value="ru">RU</option>
-    <option value="ua">UA</option>
-    <option value="ro">RO</option>
-    <option value="md">MD</option>
-  </select>
-
-  <label data-i18n="rules">Czy otrzymałeś regulamin?</label>
-  <select id="regulations">
-    <option value="yes" data-i18n="yes">Tak</option>
-    <option value="no" data-i18n="no">Nie</option>
-  </select>
+<h2>Dane sprawy</h2>
+<label>Sygnatura wyroku</label><input id="caseNo">
+<label>Data wyroku</label><input type="date" id="judgmentDate">
+<label>Miasto sądu</label><input id="courtCity">
 </div>
 
+<!-- STEP 4 -->
 <div class="step">
-  <h2>JSON</h2>
-  <div class="preview" id="preview"></div>
-  <button type="button" onclick="downloadTXT()">TXT</button>
-  <button type="button" onclick="downloadPDF()">PDF</button>
+<h2>Język i regulamin</h2>
+
+<label>Język, w którym sporządzasz opisy</label>
+<select id="languageUnderstood">
+  <option value="pl">polski</option>
+  <option value="en">english</option>
+  <option value="ru">русский</option>
+  <option value="ua">українська</option>
+  <option value="ro">română</option>
+</select>
+
+<label>Czy otrzymałeś regulamin?</label>
+<select id="regulations">
+  <option value="yes">Tak</option>
+  <option value="no">Nie</option>
+</select>
+</div>
+
+<!-- STEP 5 -->
+<div class="step">
+<h2>Szantaż i zastraszanie</h2>
+
+<label>Czy byłeś szantażowany przez prokuratora?</label>
+<select id="blackmail">
+  <option value="yes">Tak</option>
+  <option value="no">Nie</option>
+</select>
+<textarea id="blackmailDesc" placeholder="Opis (w wybranym języku)"></textarea>
+
+<label>Czy byłeś zastraszany przez administrację więzienia?</label>
+<select id="intimidation">
+  <option value="yes">Tak</option>
+  <option value="no">Nie</option>
+</select>
+<textarea id="intimidationDesc" placeholder="Opis (w wybranym języku)"></textarea>
+</div>
+
+<!-- STEP 6 -->
+<div class="step">
+<h2>Więzienie i cele</h2>
+
+<label>Wybierz ZPKZ</label>
+<select id="prisonName">
+<option value="ZPKZ Ljubljana">ZPKZ Ljubljana</option>
+<option value="ZPKZ Dob pri Mirni">ZPKZ Dob pri Mirni</option>
+<option value="ZPKZ Celje">ZPKZ Celje</option>
+<option value="ZPKZ Maribor">ZPKZ Maribor</option>
+</select>
+
+<label>Pobyt od</label><input type="date" id="prisonFrom">
+<label>do</label><input type="date" id="prisonTo">
+
+<label>Czy pobierano opłaty za leki?</label>
+<select id="medsPaid">
+  <option value="yes">Tak</option>
+  <option value="no">Nie</option>
+</select>
+<textarea id="medsDesc"></textarea>
+
+<label>Czy wykonano badania medyczne (HIV/HCV)?</label>
+<select id="tests">
+  <option value="yes">Tak</option>
+  <option value="no">Nie</option>
+</select>
+<textarea id="testsDesc"></textarea>
+
+<h3>Cele</h3>
+<div id="cells"></div>
+<button type="button" onclick="addCell()">➕ Dodaj celę</button>
+</div>
+
+<!-- STEP 7 -->
+<div class="step">
+<h2>Podgląd JSON</h2>
+<div class="preview" id="preview"></div>
+
+<div class="warning">
+Treść opisowa pozostaje w oryginalnym języku klienta.
+</div>
+
+<button type="button" onclick="downloadTXT()">TXT</button>
+<button type="button" onclick="downloadPDF()">PDF</button>
+<button type="button" onclick="sendMail()">EMAIL</button>
+
+<br><br>
+<a href="index.html" class="back-home">← Powrót do strony głównej</a>
 </div>
 
 <div>
-  <button type="button" onclick="prev()">←</button>
-  <button type="button" onclick="next()">→</button>
+<button type="button" onclick="prev()">Wstecz</button>
+<button type="button" onclick="next()">Dalej</button>
 </div>
 
 </form>
 </div>
 
 <script>
-/* ===== LANGUAGE ===== */
-const dict = {
-pl:{
-personal:"Dane osobowe",firstName:"Imię",lastName:"Nazwisko",address:"Adres",
-contact:"Kontakt",phone:"Telefon",
-language:"Język i regulamin",descLang:"Język opisu",rules:"Czy otrzymałeś regulamin?",
-yes:"Tak",no:"Nie"
-},
-en:{
-personal:"Personal data",firstName:"First name",lastName:"Last name",address:"Address",
-contact:"Contact",phone:"Phone",
-language:"Language & rules",descLang:"Description language",rules:"Did you receive regulations?",
-yes:"Yes",no:"No"
-},
-ru:{
-personal:"Личные данные",firstName:"Имя",lastName:"Фамилия",address:"Адрес",
-contact:"Контакты",phone:"Телефон",
-language:"Язык и правила",descLang:"Язык описания",rules:"Вы получили правила?",
-yes:"Да",no:"Нет"
-},
-ua:{
-personal:"Особисті дані",firstName:"Ім’я",lastName:"Прізвище",address:"Адреса",
-contact:"Контакти",phone:"Телефон",
-language:"Мова і правила",descLang:"Мова опису",rules:"Ви отримали правила?",
-yes:"Так",no:"Ні"
-},
-ro:{
-personal:"Date personale",firstName:"Prenume",lastName:"Nume",address:"Adresă",
-contact:"Contact",phone:"Telefon",
-language:"Limbă și reguli",descLang:"Limba descrierii",rules:"Ați primit regulamentul?",
-yes:"Da",no:"Nu"
-},
-md:{
-personal:"Date personale",firstName:"Prenume",lastName:"Nume",address:"Adresă",
-contact:"Contact",phone:"Telefon",
-language:"Limbă și reguli",descLang:"Limba descrierii",rules:"Ați primit regulamentul?",
-yes:"Da",no:"Nu"
-}
-};
-
-const params = new URLSearchParams(location.search);
-let lang = params.get("lang") || "pl";
-document.getElementById("langSelect").value = lang;
-
-function applyLang(){
-  document.querySelectorAll("[data-i18n]").forEach(el=>{
-    el.textContent = dict[lang][el.dataset.i18n];
-  });
-}
-applyLang();
-
-document.getElementById("langSelect").onchange=e=>{
-  lang=e.target.value;
-  applyLang();
-};
-
-/* ===== FORM ===== */
 let step=0;
 const steps=document.querySelectorAll(".step");
 
 function showStep(){
   steps.forEach((s,i)=>s.classList.toggle("active",i===step));
   document.getElementById("progressBar").style.width=((step+1)/steps.length*100)+"%";
-  if(step===steps.length-1) preview.textContent=JSON.stringify(collect(),null,2);
+  if(step===steps.length-1) buildPreview();
 }
 function next(){ if(step<steps.length-1){step++;showStep();}}
 function prev(){ if(step>0){step--;showStep();}}
 
+let cellCounter=0;
+function addCell(){
+  cellCounter++;
+  const d=document.createElement("div");
+  d.className="box";
+  d.innerHTML=`
+<h4>Cela ${cellCounter}</h4>
+<label>Dodatkowe problemy</label>
+<div data-notes-group="${cellCounter}">
+<label><input type="checkbox" value="mold"> grzyb / pleśń</label>
+<label><input type="checkbox" value="no_ventilation"> brak wentylacji</label>
+<label><input type="checkbox" value="high_temperature"> wysoka temperatura</label>
+<label><input type="checkbox" value="bad_smell"> nieprzyjemny zapach</label>
+<label><input type="checkbox" value="drugs"> narkotyki</label>
+<label><input type="checkbox" value="no_non_smoking_area"> brak strefy dla niepalących</label>
+<label><input type="checkbox" value="infectious_diseases"> choroby zakaźne</label>
+</div>
+`;
+  document.getElementById("cells").appendChild(d);
+}
+
 function collect(){
-  return{
+  const cells=[];
+  document.querySelectorAll("#cells .box").forEach((c,i)=>{
+    const idx=i+1;
+    cells.push({
+      cell_number: idx,
+      notes: Array.from(
+        c.querySelectorAll(`[data-notes-group="${idx}"] input:checked`)
+      ).map(cb=>cb.value)
+    });
+  });
+
+  return {
     firstName:firstName.value,
     lastName:lastName.value,
     address:address.value,
     phone:phone.value,
     email:email.value,
+    caseNo:caseNo.value,
+    judgmentDate:judgmentDate.value,
+    courtCity:courtCity.value,
     descriptionLanguage:languageUnderstood.value,
-    regulations:regulations.value
+    regulations:regulations.value,
+    blackmail:blackmail.value,
+    blackmailDesc:blackmailDesc.value,
+    intimidation:intimidation.value,
+    intimidationDesc:intimidationDesc.value,
+    prison:{
+      name:prisonName.value,
+      from:prisonFrom.value,
+      to:prisonTo.value,
+      medsPaid:medsPaid.value,
+      medsDesc:medsDesc.value,
+      tests:tests.value,
+      testsDesc:testsDesc.value,
+      cells:cells
+    }
   };
+}
+
+function buildPreview(){
+  preview.textContent=JSON.stringify(collect(),null,2);
 }
 
 function downloadTXT(){
   const a=document.createElement("a");
   a.href=URL.createObjectURL(new Blob([preview.textContent]));
-  a.download="prison.json.txt";a.click();
+  a.download="prison_pl.json.txt";
+  a.click();
 }
 
 function downloadPDF(){
   const {jsPDF}=window.jspdf;
   const d=new jsPDF();
   d.text(preview.textContent,10,10);
-  d.save("prison.pdf");
+  d.save("prison_pl.pdf");
+}
+
+function sendMail(){
+  window.location.href="mailto:twojemail@domena.pl?subject=Prison Justice PL&body="+encodeURIComponent(preview.textContent);
 }
 
 showStep();
