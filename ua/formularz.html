@@ -41,12 +41,19 @@ button{padding:10px 15px;margin-top:15px;cursor:pointer;}
 <label>Ім’я</label><input id="firstName">
 <label>Прізвище</label><input id="lastName">
 
+<label>Вулиця</label><input id="street">
+<label>Номер будинку</label><input id="houseNo">
+<label>Номер квартири</label><input id="flatNo">
+<label>Поштовий індекс</label><input id="postalCode">
+<label>Місто</label><input id="city">
+<label>Країна / держава</label><input id="country">
+
 <label>Davčna številka</label>
-<small>Податковий номер у Словенії (аналог NIP)</small>
+<small>Податковий номер у Словенії, аналог NIP (ідентифікаційний номер платника податків)</small>
 <input id="taxNumber">
 
 <label>EMŠO</label>
-<small>Єдиний ідентифікаційний номер (аналог PESEL)</small>
+<small>Єдиний ідентифікаційний номер у Словенії, аналог PESEL (унікальний номер особи)</small>
 <input id="emso">
 </div>
 
@@ -74,6 +81,7 @@ button{padding:10px 15px;margin-top:15px;cursor:pointer;}
 <label>Період перебування до</label>
 <input type="date" id="prisonTo">
 
+<h3>Камери</h3>
 <div id="cells"></div>
 <button type="button" onclick="addCell()">➕ Додати камеру</button>
 </div>
@@ -126,6 +134,27 @@ function addCell(){
 
     <label>Особи з камери / співкамерники</label>
     <textarea data-field="mates_${cellCounter}"></textarea>
+
+    <label>Період перебування з</label>
+    <input type="date" data-field="from_${cellCounter}">
+    <label>Період перебування до</label>
+    <input type="date" data-field="to_${cellCounter}">
+
+    <label>На скільки осіб була розрахована камера</label>
+    <input data-field="people_${cellCounter}">
+
+    <label>Площа камери (орієнтовно)</label>
+    <input data-field="size_${cellCounter}">
+
+    <label>Проблеми</label>
+    <div data-notes-group="${cellCounter}">
+      <label><input type="checkbox" value="mold"> грибок / пліснява</label>
+      <label><input type="checkbox" value="no_ventilation"> відсутність вентиляції</label>
+      <label><input type="checkbox" value="high_temperature"> висока температура</label>
+      <label><input type="checkbox" value="bad_smell"> неприємний запах</label>
+      <label><input type="checkbox" value="drugs"> наркотики</label>
+      <label><input type="checkbox" value="infectious_diseases"> інфекційні захворювання</label>
+    </div>
   `;
   document.getElementById("cells").appendChild(d);
 }
@@ -137,13 +166,24 @@ function collect(){
     cells.push({
       number: idx,
       cellNo: c.querySelector(`[data-field="cellNo_${idx}"]`).value,
-      cellMates: c.querySelector(`[data-field="mates_${idx}"]`).value
+      cellMates: c.querySelector(`[data-field="mates_${idx}"]`).value,
+      from: c.querySelector(`[data-field="from_${idx}"]`).value,
+      to: c.querySelector(`[data-field="to_${idx}"]`).value,
+      people: c.querySelector(`[data-field="people_${idx}"]`).value,
+      size: c.querySelector(`[data-field="size_${idx}"]`).value,
+      notes: Array.from(c.querySelectorAll(`[data-notes-group="${idx}"] input:checked`)).map(cb=>cb.value)
     });
   });
 
   return {
     firstName:firstName.value,
     lastName:lastName.value,
+    street:street.value,
+    houseNo:houseNo.value,
+    flatNo:flatNo.value,
+    postalCode:postalCode.value,
+    city:city.value,
+    country:country.value,
     taxNumber:taxNumber.value,
     emso:emso.value,
     phone:phone.value,
@@ -157,29 +197,23 @@ function collect(){
   };
 }
 
-function buildPreview(){
-  preview.textContent = JSON.stringify(collect(), null, 2);
-}
+function buildPreview(){ preview.textContent = JSON.stringify(collect(), null, 2); }
 
 function downloadPDF(){
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
   const text = preview.textContent.split("\n");
-  let y = 10;
+  let y=10;
   text.forEach(line=>{
-    doc.text(line,10,y);
-    y+=7;
+    doc.text(line,10,y); y+=7;
     if(y>280){ doc.addPage(); y=10; }
   });
   doc.save("prison_justice_ua.pdf");
 }
 
 function downloadDOC(){
-  const blob = new Blob(
-    ["Prison Justice\n\n" + preview.textContent],
-    {type:"application/msword"}
-  );
-  const a = document.createElement("a");
+  const blob = new Blob(["Prison Justice\n\n"+preview.textContent], {type:"application/msword"});
+  const a=document.createElement("a");
   a.href = URL.createObjectURL(blob);
   a.download = "prison_justice_ua.doc";
   a.click();
@@ -189,7 +223,7 @@ function sendMail(){
   window.location.href =
     "mailto:contact@prison-justice.pl" +
     "?subject=Prison Justice – UA Form" +
-    "&body=" + encodeURIComponent(preview.textContent);
+    "&body="+encodeURIComponent(preview.textContent);
 }
 
 showStep();
