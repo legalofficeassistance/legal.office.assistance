@@ -15,6 +15,7 @@ body {font-family:Arial,sans-serif;background:#f2f2f2;margin:0;}
 .step{display:none;}
 .step.active{display:block;}
 label{display:block;margin-top:10px;font-weight:bold;}
+small{display:block;color:#555;font-weight:normal;}
 input,textarea,select{width:100%;padding:8px;margin-top:4px;}
 textarea{min-height:60px;}
 button{padding:10px 15px;margin-top:15px;cursor:pointer;}
@@ -45,6 +46,14 @@ button{padding:10px 15px;margin-top:15px;cursor:pointer;}
 
 <label>Ім’я</label><input id="firstName">
 <label>Прізвище</label><input id="lastName">
+
+<label>Davčna številka</label>
+<small>Податковий ідентифікаційний номер у Словенії (аналог NIP)</small>
+<input id="taxNumber">
+
+<label>EMŠO</label>
+<small>Єдиний ідентифікаційний номер особи в Словенії (аналог PESEL)</small>
+<input id="emso">
 
 <label>Вулиця</label><input id="street">
 <label>Номер будинку</label><input id="houseNo">
@@ -163,60 +172,12 @@ function showStep(){
 function next(){if(step<steps.length-1){step++;showStep();}}
 function prev(){if(step>0){step--;showStep();}}
 
-let cellCounter=0;
-function addCell(){
-  cellCounter++;
-  const d=document.createElement("div");
-  d.className="box";
-  d.innerHTML=`
-<h4>Камера ${cellCounter}</h4>
-
-<label>Номер камери</label>
-<input data-field="cellNo_${cellCounter}">
-
-<label>Період перебування з</label>
-<input type="date" data-field="from_${cellCounter}">
-<label>Період перебування до</label>
-<input type="date" data-field="to_${cellCounter}">
-
-<label>На скільки осіб була розрахована камера</label>
-<input data-field="people_${cellCounter}">
-
-<label>Площа камери (орієнтовно)</label>
-<input data-field="size_${cellCounter}">
-
-<label>Проблеми</label>
-<div data-notes-group="${cellCounter}">
-<label><input type="checkbox" value="mold"> грибок / пліснява</label>
-<label><input type="checkbox" value="no_ventilation"> відсутність вентиляції</label>
-<label><input type="checkbox" value="high_temperature"> висока температура</label>
-<label><input type="checkbox" value="bad_smell"> неприємний запах</label>
-<label><input type="checkbox" value="drugs"> наркотики</label>
-<label><input type="checkbox" value="infectious_diseases"> інфекційні захворювання</label>
-</div>
-`;
-  document.getElementById("cells").appendChild(d);
-}
-
 function collect(){
-  const cells=[];
-  document.querySelectorAll("#cells .box").forEach((c,i)=>{
-    const idx=i+1;
-    cells.push({
-      cellNo:c.querySelector(`[data-field="cellNo_${idx}"]`).value,
-      from:c.querySelector(`[data-field="from_${idx}"]`).value,
-      to:c.querySelector(`[data-field="to_${idx}"]`).value,
-      people:c.querySelector(`[data-field="people_${idx}"]`).value,
-      size:c.querySelector(`[data-field="size_${idx}"]`).value,
-      notes:Array.from(
-        c.querySelectorAll(`[data-notes-group="${idx}"] input:checked`)
-      ).map(cb=>cb.value)
-    });
-  });
-
   return {
     firstName:firstName.value,
     lastName:lastName.value,
+    taxNumber:taxNumber.value,
+    emso:emso.value,
     address:{
       street:street.value,
       houseNo:houseNo.value,
@@ -226,45 +187,12 @@ function collect(){
       country:country.value
     },
     phone:phone.value,
-    email:email.value,
-    caseNo:caseNo.value,
-    judgmentDate:judgmentDate.value,
-    courtCity:courtCity.value,
-    descriptionLanguage:descriptionLanguage.value,
-    regulations:regulations.value,
-    blackmail:blackmail.value,
-    blackmailDesc:blackmailDesc.value,
-    intimidation:intimidation.value,
-    intimidationDesc:intimidationDesc.value,
-    prison:{
-      name:prisonName.value,
-      from:prisonFrom.value,
-      to:prisonTo.value,
-      cells:cells
-    }
+    email:email.value
   };
 }
 
 function buildPreview(){
   preview.textContent=JSON.stringify(collect(),null,2);
-}
-
-function downloadTXT(){
-  const a=document.createElement("a");
-  a.href=URL.createObjectURL(new Blob([preview.textContent]));
-  a.download="prison_ua.json.txt";
-  a.click();
-}
-
-function downloadPDF(){
-  const {jsPDF}=window.jspdf;
-  const d=new jsPDF();
-  d.text(preview.textContent,10,10);
-  d.save("prison_ua.pdf");
-}
-
-function sendMail(){
-  window.location.href="mailto:contact@prison-justice.pl?subject=Prison Justice UA&body="+encodeURIComponent(preview.textContent);
 }
 
 showStep();
