@@ -70,52 +70,6 @@ button{padding:10px 15px;margin-top:15px;cursor:pointer;}
 <label>Email</label><input id="email">
 </div>
 
-<!-- STEP 3 -->
-<div class="step">
-<h2>Дані справи</h2>
-<label>Номер вироку (на підставі якого ви відбували покарання у Словенії)</label>
-<input id="caseNo">
-
-<label>Дата вироку</label>
-<input type="date" id="judgmentDate">
-
-<label>Місто суду, який виніс вирок</label>
-<input id="courtCity">
-</div>
-
-<!-- STEP 4 -->
-<div class="step">
-<h2>Мова та правила</h2>
-
-<label>Мова, якою ви володієте (рідна / зрозуміла)</label>
-<input id="descriptionLanguage">
-
-<label>Чи отримували ви тюремний регламент?</label>
-<select id="regulations">
-  <option value="yes">Так</option>
-  <option value="no">Ні</option>
-</select>
-</div>
-
-<!-- STEP 5 -->
-<div class="step">
-<h2>Тиск та залякування</h2>
-
-<label>Чи зазнавали ви шантажу з боку прокурора?</label>
-<select id="blackmail">
-  <option value="yes">Так</option>
-  <option value="no">Ні</option>
-</select>
-<textarea id="blackmailDesc" placeholder="Опис"></textarea>
-
-<label>Чи зазнавали ви залякування з боку тюремної адміністрації?</label>
-<select id="intimidation">
-  <option value="yes">Так</option>
-  <option value="no">Ні</option>
-</select>
-<textarea id="intimidationDesc" placeholder="Опис"></textarea>
-</div>
-
 <!-- STEP 6 -->
 <div class="step">
 <h2>В’язниця та камери</h2>
@@ -126,8 +80,6 @@ button{padding:10px 15px;margin-top:15px;cursor:pointer;}
   <option>ZPKZ Dob pri Mirni</option>
   <option>ZPKZ Celje</option>
   <option>ZPKZ Maribor</option>
-  <option>ZPKZ Novo Mesto</option>
-  <option>ZPKZ Koper</option>
 </select>
 
 <label>Період перебування з</label>
@@ -145,12 +97,6 @@ button{padding:10px 15px;margin-top:15px;cursor:pointer;}
 <div class="step">
 <h2>Попередній перегляд JSON</h2>
 <div class="preview" id="preview"></div>
-
-<div class="warning">
-Описові поля залишаються мовою клієнта.
-</div>
-
-<button type="button" onclick="buildPreview()">🔄 Оновити</button>
 </div>
 
 <div>
@@ -162,25 +108,24 @@ button{padding:10px 15px;margin-top:15px;cursor:pointer;}
 </div>
 
 <script>
-let step = 0;
-const steps = document.querySelectorAll(".step");
+let step=0;
+const steps=document.querySelectorAll(".step");
 
 function showStep(){
   steps.forEach((s,i)=>s.classList.toggle("active",i===step));
-  document.getElementById("progressBar").style.width =
-    ((step+1)/steps.length*100)+"%";
+  document.getElementById("progressBar").style.width=((step+1)/steps.length*100)+"%";
   if(step===steps.length-1) buildPreview();
 }
 function next(){ if(step<steps.length-1){step++;showStep();} }
 function prev(){ if(step>0){step--;showStep();} }
 
-let cellCounter = 0;
+let cellCounter=0;
 
 function addCell(){
   cellCounter++;
-  const d = document.createElement("div");
-  d.className = "box";
-  d.innerHTML = `
+  const d=document.createElement("div");
+  d.className="box";
+  d.innerHTML=`
     <h4>Камера ${cellCounter}</h4>
 
     <label>Номер камери</label>
@@ -202,6 +147,10 @@ function addCell(){
     <label>Площа камери (орієнтовно, м²)</label>
     <input data-field="size_${cellCounter}">
 
+    <label>Особи з цієї камери / співкамерники</label>
+    <small>Імена, прізвища, псевдоніми — якщо памʼятаєте</small>
+    <textarea data-field="mates_${cellCounter}"></textarea>
+
     <label>Проблеми в камері</label>
     <div data-notes-group="${cellCounter}">
       <label><input type="checkbox" value="mold"> грибок / пліснява</label>
@@ -216,7 +165,7 @@ function addCell(){
 }
 
 function collect(){
-  const cells = [];
+  const cells=[];
   document.querySelectorAll("#cells .box").forEach((c,i)=>{
     const idx=i+1;
     cells.push({
@@ -229,6 +178,7 @@ function collect(){
       },
       capacity: c.querySelector(`[data-field="people_${idx}"]`).value,
       size: c.querySelector(`[data-field="size_${idx}"]`).value,
+      cellMates: c.querySelector(`[data-field="mates_${idx}"]`).value,
       problems: Array.from(
         c.querySelectorAll(`[data-notes-group="${idx}"] input:checked`)
       ).map(cb=>cb.value)
@@ -240,25 +190,6 @@ function collect(){
     lastName:lastName.value,
     taxNumber:taxNumber.value,
     emso:emso.value,
-    address:{
-      street:street.value,
-      houseNo:houseNo.value,
-      flatNo:flatNo.value,
-      postalCode:postalCode.value,
-      city:city.value,
-      country:country.value
-    },
-    phone:phone.value,
-    email:email.value,
-    caseNo:caseNo.value,
-    judgmentDate:judgmentDate.value,
-    courtCity:courtCity.value,
-    descriptionLanguage:descriptionLanguage.value,
-    regulations:regulations.value,
-    blackmail:blackmail.value,
-    blackmailDesc:blackmailDesc.value,
-    intimidation:intimidation.value,
-    intimidationDesc:intimidationDesc.value,
     prison:{
       name:prisonName.value,
       from:prisonFrom.value,
@@ -269,7 +200,7 @@ function collect(){
 }
 
 function buildPreview(){
-  preview.textContent = JSON.stringify(collect(), null, 2);
+  preview.textContent=JSON.stringify(collect(),null,2);
 }
 
 showStep();
