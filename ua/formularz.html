@@ -12,19 +12,19 @@
 <style>
 body {font-family:Arial,sans-serif;background:#f2f2f2;margin:0;}
 .container {max-width:900px;background:#fff;margin:20px auto;padding:20px;border-radius:6px;}
-.step{display:none;}
-.step.active{display:block;}
-label{display:block;margin-top:10px;font-weight:bold;}
-input,textarea,select{width:100%;padding:8px;margin-top:4px;}
-textarea{min-height:60px;}
-button{padding:10px 15px;margin-top:15px;cursor:pointer;}
-.box{border:1px solid #ccc;padding:12px;margin-top:15px;border-radius:4px;}
-.progress{height:8px;background:#ddd;border-radius:4px;margin-bottom:20px;}
-.progress-bar{height:8px;background:#2a8f3a;width:0%;border-radius:4px;}
-.preview{white-space:pre-wrap;background:#f9f9f9;padding:12px;}
-.warning{color:red;font-weight:bold;margin-top:15px;}
-.top-nav{margin-bottom:15px;}
-.back-home{color:#003366;font-weight:bold;text-decoration:none;}
+.step {display:none;}
+.step.active {display:block;}
+label {display:block;margin-top:10px;font-weight:bold;}
+input,textarea,select {width:100%;padding:8px;margin-top:4px;}
+textarea {min-height:70px;}
+button {padding:10px 15px;margin-top:15px;cursor:pointer;}
+.box {border:1px solid #ccc;padding:12px;margin-top:15px;border-radius:4px;}
+.progress {height:8px;background:#ddd;border-radius:4px;margin-bottom:20px;}
+.progress-bar {height:8px;background:#2a8f3a;width:0%;border-radius:4px;}
+.preview {white-space:pre-wrap;background:#f9f9f9;padding:12px;}
+.warning {color:red;font-weight:bold;margin-top:15px;}
+.top-nav {margin-bottom:15px;}
+.back-home {color:#003366;font-weight:bold;text-decoration:none;}
 </style>
 </head>
 
@@ -52,7 +52,6 @@ button{padding:10px 15px;margin-top:15px;cursor:pointer;}
 <label>Kod pocztowy</label><input id="postalCode">
 <label>Miasto</label><input id="city">
 <label>Kraj</label><input id="country">
-
 </div>
 
 <!-- STEP 2 -->
@@ -80,16 +79,10 @@ button{padding:10px 15px;margin-top:15px;cursor:pointer;}
 <div class="step">
 <h2>Język i regulamin</h2>
 
-<label>Język, w którym sporządzasz opisy</label>
-<select id="descriptionLanguage">
-  <option value="pl">polski</option>
-  <option value="en">english</option>
-  <option value="ru">русский</option>
-  <option value="ua">українська</option>
-  <option value="ro">română</option>
-</select>
+<label>Język, którym władasz (ojczysty / ten, który rozumiesz)</label>
+<input id="descriptionLanguage" placeholder="np. polski, rosyjski, ukraiński">
 
-<label>Czy otrzymałeś regulamin?</label>
+<label>Czy otrzymałeś regulamin więzienny?</label>
 <select id="regulations">
   <option value="yes">Tak</option>
   <option value="no">Nie</option>
@@ -105,14 +98,14 @@ button{padding:10px 15px;margin-top:15px;cursor:pointer;}
   <option value="yes">Tak</option>
   <option value="no">Nie</option>
 </select>
-<textarea id="blackmailDesc" placeholder="Opis (w wybranym języku)"></textarea>
+<textarea id="blackmailDesc" placeholder="Opis (jak pamiętasz)"></textarea>
 
 <label>Czy byłeś zastraszany przez administrację więzienia?</label>
 <select id="intimidation">
   <option value="yes">Tak</option>
   <option value="no">Nie</option>
 </select>
-<textarea id="intimidationDesc" placeholder="Opis (w wybranym języku)"></textarea>
+<textarea id="intimidationDesc" placeholder="Opis (jak pamiętasz)"></textarea>
 </div>
 
 <!-- STEP 6 -->
@@ -171,8 +164,8 @@ function showStep(){
   document.getElementById("progressBar").style.width=((step+1)/steps.length*100)+"%";
   if(step===steps.length-1) buildPreview();
 }
-function next(){if(step<steps.length-1){step++;showStep();}}
-function prev(){if(step>0){step--;showStep();}}
+function next(){ if(step<steps.length-1){step++;showStep();}}
+function prev(){ if(step>0){step--;showStep();}}
 
 let cellCounter=0;
 function addCell(){
@@ -190,8 +183,11 @@ function addCell(){
 <label>Pobyt do</label>
 <input type="date" data-field="to_${cellCounter}">
 
-<label>Liczba osób w celi</label>
-<input data-field="people_${cellCounter}">
+<label>Iloosobowa była cela (na ile osób była przeznaczona)</label>
+<input data-field="capacity_${cellCounter}">
+
+<label>Współwięźniowie z celi (imiona, nazwiska – jak pamiętasz)</label>
+<textarea data-field="cellmates_${cellCounter}"></textarea>
 
 <label>Metraż (orientacyjnie)</label>
 <input data-field="size_${cellCounter}">
@@ -217,7 +213,8 @@ function collect(){
       cellNo:c.querySelector(`[data-field="cellNo_${idx}"]`).value,
       from:c.querySelector(`[data-field="from_${idx}"]`).value,
       to:c.querySelector(`[data-field="to_${idx}"]`).value,
-      people:c.querySelector(`[data-field="people_${idx}"]`).value,
+      capacity:c.querySelector(`[data-field="capacity_${idx}"]`).value,
+      cellmates:c.querySelector(`[data-field="cellmates_${idx}"]`).value,
       size:c.querySelector(`[data-field="size_${idx}"]`).value,
       notes:Array.from(
         c.querySelectorAll(`[data-notes-group="${idx}"] input:checked`)
