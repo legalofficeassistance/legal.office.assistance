@@ -3,6 +3,284 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Formular client – Prison Justice RO</title>
+<meta name="description" content="Formular Prison Justice RO pentru descrierea condițiilor de detenție în Slovenia.">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+body {font-family:Arial,sans-serif;background:#f2f2f2;margin:0;}
+.container {max-width:900px;background:#fff;margin:20px auto;padding:20px;border-radius:6px;}
+.step{display:none;}
+.step.active{display:block;}
+label{display:block;margin-top:10px;font-weight:bold;}
+input,textarea,select{width:100%;padding:8px;margin-top:4px;}
+textarea{min-height:60px;}
+button{padding:10px 15px;margin-top:15px;cursor:pointer;}
+.box{border:1px solid #ccc;padding:12px;margin-top:15px;border-radius:4px;}
+.progress{height:8px;background:#ddd;border-radius:4px;margin-bottom:20px;}
+.progress-bar{height:8px;background:#2a8f3a;width:0%;border-radius:4px;}
+.preview{white-space:pre-wrap;background:#f9f9f9;padding:12px;}
+.warning{color:red;font-weight:bold;margin-top:15px;}
+.top-nav{margin-bottom:15px;}
+.back-home{color:#003366;font-weight:bold;text-decoration:none;}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="top-nav">
+  <a href="index.html" class="back-home">← Înapoi la pagina principală</a>
+</div>
+
+<div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+
+<form id="form">
+
+<!-- STEP 1 -->
+<div class="step active">
+<h2>Date personale</h2>
+
+<label>Prenume</label><input id="firstName">
+<label>Nume</label><input id="lastName">
+
+<label>Stradă</label><input id="street">
+<label>Număr casă</label><input id="houseNo">
+<label>Număr apartament</label><input id="flatNo">
+<label>Cod poștal</label><input id="postalCode">
+<label>Oraș</label><input id="city">
+<label>Țara</label><input id="country">
+</div>
+
+<!-- STEP 2 -->
+<div class="step">
+<h2>Date de contact</h2>
+<label>Telefon</label><input id="phone">
+<label>Email</label><input id="email">
+</div>
+
+<!-- STEP 3 -->
+<div class="step">
+<h2>Datele cauzei</h2>
+
+<label>Numărul hotărârii (în baza căreia ai executat pedeapsa în Slovenia)</label>
+<input id="caseNo">
+
+<label>Data hotărârii</label>
+<input type="date" id="judgmentDate">
+
+<label>Orașul instanței care a pronunțat condamnarea</label>
+<input id="courtCity">
+</div>
+
+<!-- STEP 4 -->
+<div class="step">
+<h2>Limba și regulamentul penitenciar</h2>
+
+<label>Limba pe care o vorbești (nativă / înțeleasă)</label>
+<input id="descriptionLanguage">
+
+<label>Ai primit regulamentul penitenciar?</label>
+<select id="regulations">
+  <option value="yes">Da</option>
+  <option value="no">Nu</option>
+</select>
+</div>
+
+<!-- STEP 5 -->
+<div class="step">
+<h2>Șantaj și intimidare</h2>
+
+<label>Ai fost șantajat de procuror?</label>
+<select id="blackmail">
+  <option value="yes">Da</option>
+  <option value="no">Nu</option>
+</select>
+<textarea id="blackmailDesc" placeholder="Descriere"></textarea>
+
+<label>Ai fost intimidat de administrația penitenciarului?</label>
+<select id="intimidation">
+  <option value="yes">Da</option>
+  <option value="no">Nu</option>
+</select>
+<textarea id="intimidationDesc" placeholder="Descriere"></textarea>
+</div>
+
+<!-- STEP 6 -->
+<div class="step">
+<h2>Penitenciar și celule</h2>
+
+<label>Penitenciar</label>
+<select id="prisonName">
+  <option>ZPKZ Ljubljana</option>
+  <option>ZPKZ Dob pri Mirni</option>
+  <option>ZPKZ Celje</option>
+  <option>ZPKZ Maribor</option>
+  <option>ZPKZ Novo Mesto</option>
+  <option>ZPKZ Koper</option>
+</select>
+
+<label>Perioada de detenție de la</label><input type="date" id="prisonFrom">
+<label>Perioada de detenție până la</label><input type="date" id="prisonTo">
+
+<h3>Celule</h3>
+<div id="cells"></div>
+<button type="button" onclick="addCell()">➕ Adaugă o celulă</button>
+</div>
+
+<!-- STEP 7 -->
+<div class="step">
+<h2>Previzualizare JSON</h2>
+<div class="preview" id="preview"></div>
+
+<div class="warning">
+Descrierile rămân în limba originală a clientului.
+</div>
+
+<button type="button" onclick="downloadTXT()">TXT</button>
+<button type="button" onclick="downloadPDF()">PDF</button>
+<button type="button" onclick="sendMail()">EMAIL</button>
+
+<br><br>
+<a href="index.html" class="back-home">← Înapoi la pagina principală</a>
+</div>
+
+<div>
+<button type="button" onclick="prev()">Înapoi</button>
+<button type="button" onclick="next()">Înainte</button>
+</div>
+
+</form>
+</div>
+
+<script>
+let step=0;
+const steps=document.querySelectorAll(".step");
+
+function showStep(){
+  steps.forEach((s,i)=>s.classList.toggle("active",i===step));
+  document.getElementById("progressBar").style.width=((step+1)/steps.length*100)+"%";
+  if(step===steps.length-1) buildPreview();
+}
+function next(){if(step<steps.length-1){step++;showStep();}}
+function prev(){if(step>0){step--;showStep();}}
+
+let cellCounter=0;
+function addCell(){
+  cellCounter++;
+  const d=document.createElement("div");
+  d.className="box";
+  d.innerHTML=`
+<h4>Celula ${cellCounter}</h4>
+
+<label>Număr celulă</label>
+<input data-field="cellNo_${cellCounter}">
+
+<label>Perioada de la</label>
+<input type="date" data-field="from_${cellCounter}">
+<label>Perioada până la</label>
+<input type="date" data-field="to_${cellCounter}">
+
+<label>Capacitatea celulei (pentru câte persoane era destinată)</label>
+<input data-field="people_${cellCounter}">
+
+<label>Suprafață (aprox.)</label>
+<input data-field="size_${cellCounter}">
+
+<label>Probleme</label>
+<div data-notes-group="${cellCounter}">
+<label><input type="checkbox" value="mold"> mucegai</label>
+<label><input type="checkbox" value="no_ventilation"> lipsă ventilație</label>
+<label><input type="checkbox" value="high_temperature"> temperatură ridicată</label>
+<label><input type="checkbox" value="bad_smell"> miros neplăcut</label>
+<label><input type="checkbox" value="drugs"> droguri</label>
+<label><input type="checkbox" value="infectious_diseases"> boli infecțioase</label>
+</div>
+`;
+  document.getElementById("cells").appendChild(d);
+}
+
+function collect(){
+  const cells=[];
+  document.querySelectorAll("#cells .box").forEach((c,i)=>{
+    const idx=i+1;
+    cells.push({
+      cellNo:c.querySelector(`[data-field="cellNo_${idx}"]`).value,
+      from:c.querySelector(`[data-field="from_${idx}"]`).value,
+      to:c.querySelector(`[data-field="to_${idx}"]`).value,
+      people:c.querySelector(`[data-field="people_${idx}"]`).value,
+      size:c.querySelector(`[data-field="size_${idx}"]`).value,
+      notes:Array.from(
+        c.querySelectorAll(`[data-notes-group="${idx}"] input:checked`)
+      ).map(cb=>cb.value)
+    });
+  });
+
+  return {
+    firstName:firstName.value,
+    lastName:lastName.value,
+    address:{
+      street:street.value,
+      houseNo:houseNo.value,
+      flatNo:flatNo.value,
+      postalCode:postalCode.value,
+      city:city.value,
+      country:country.value
+    },
+    phone:phone.value,
+    email:email.value,
+    caseNo:caseNo.value,
+    judgmentDate:judgmentDate.value,
+    courtCity:courtCity.value,
+    descriptionLanguage:descriptionLanguage.value,
+    regulations:regulations.value,
+    blackmail:blackmail.value,
+    blackmailDesc:blackmailDesc.value,
+    intimidation:intimidation.value,
+    intimidationDesc:intimidationDesc.value,
+    prison:{
+      name:prisonName.value,
+      from:prisonFrom.value,
+      to:prisonTo.value,
+      cells:cells
+    }
+  };
+}
+
+function buildPreview(){
+  preview.textContent=JSON.stringify(collect(),null,2);
+}
+
+function downloadTXT(){
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([preview.textContent]));
+  a.download="prison_ro.json.txt";
+  a.click();
+}
+
+function downloadPDF(){
+  const {jsPDF}=window.jspdf;
+  const d=new jsPDF();
+  d.text(preview.textContent,10,10);
+  d.save("prison_ro.pdf");
+}
+
+function sendMail(){
+  window.location.href="mailto:contact@prison-justice.pl?subject=Prison Justice RO&body="+encodeURIComponent(preview.textContent);
+}
+
+showStep();
+</script>
+
+</body>
+</html>
 
 <title>Formular Prison Justice Moldova – condiții proaste de detenție</title>
 
@@ -260,3 +538,4 @@ showStep();
 </script>
 </body>
 </html>
+
