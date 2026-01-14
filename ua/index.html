@@ -216,6 +216,134 @@
 </section>
 
 </main>
+  <!-- START CHATBOT WIDGET UKRAЇНСЬКА -->
+<div id="chatbox">
+  <div id="chatHeader">Є питання? Юридичні поради AI</div>
+  <div id="messages"></div>
+  <div id="inputArea">
+    <input id="userInput" type="text" placeholder="Напишіть повідомлення...">
+    <button id="sendBtn">Відправити</button>
+  </div>
+</div>
+
+<style>
+  #chatbox {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    max-height: 400px;
+    border: 1px solid #003366;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    z-index: 9999;
+  }
+
+  #chatHeader {
+    background-color: #003366;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  #messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+  }
+
+  #messages div {
+    margin-bottom: 10px;
+    padding: 6px 8px;
+    border-radius: 6px;
+  }
+
+  #messages .user {
+    background-color: #e0e0e0;
+    text-align: right;
+  }
+
+  #messages .ai {
+    background-color: #003366;
+    color: #fff;
+    text-align: left;
+  }
+
+  #inputArea {
+    display: flex;
+    border-top: 1px solid #ccc;
+  }
+
+  #userInput {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    outline: none;
+  }
+
+  #sendBtn {
+    padding: 8px 12px;
+    border: none;
+    background: #003366;
+    color: white;
+    cursor: pointer;
+  }
+
+  #sendBtn:hover {
+    background: #0055aa;
+  }
+</style>
+
+<script>
+const messagesDiv = document.getElementById("messages");
+const input = document.getElementById("userInput");
+const sendBtn = document.getElementById("sendBtn");
+
+function addMessage(sender, text) {
+  const msgDiv = document.createElement("div");
+  msgDiv.className = sender;
+  msgDiv.textContent = text;
+  messagesDiv.appendChild(msgDiv);
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+
+// Симульована відповідь AI – пізніше можна підключити OpenAI API
+function getAIResponse(userText) {
+  const responses = [
+    "Розумію, будь ласка, наведіть більше деталей справи.",
+    "У таких випадках слід перевірити офіційні документи.",
+    "Ви можете порівняти вашу ситуацію з іншими випадками.",
+    "Перевірте, чи всі обов'язкові поля форми заповнені.",
+    "Збережіть копію вашої заявки на випадок потреби."
+  ];
+  return responses[Math.floor(Math.random() * responses.length)];
+}
+
+function sendMessage() {
+  const text = input.value.trim();
+  if (!text) return;
+  addMessage("user", text);
+  input.value = "";
+
+  setTimeout(() => {
+    const aiReply = getAIResponse(text);
+    addMessage("ai", aiReply);
+  }, 500);
+}
+
+sendBtn.addEventListener("click", sendMessage);
+input.addEventListener("keypress", function(e) {
+  if (e.key === "Enter") sendMessage();
+});
+</script>
+<!-- END CHATBOT WIDGET UKRAЇНСЬКА -->
+
 
 <footer>
   <p>&copy; 2026 Prison Justice</p>
