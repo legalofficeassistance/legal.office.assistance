@@ -1,138 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Client Form – Prison Justice | Slovenia Prison Conditions</title>
-<meta name="description" content="Official Prison Justice client form. Report prison conditions in Slovenia. Data saved in JSON format for legal compensation claims.">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-<style>
-body {font-family:Arial, sans-serif; background:#f2f2f2; margin:0;}
-.container {max-width:900px; background:#fff; margin:20px auto; padding:20px; border-radius:6px;}
-.step {display:none;}
-.step.active {display:block;}
-label {display:block; margin-top:10px; font-weight:bold;}
-input, textarea, select {width:100%; padding:8px; margin-top:4px;}
-textarea {min-height:60px;}
-button {padding:10px 15px; margin-top:15px; cursor:pointer;}
-.box {border:1px solid #ccc; padding:12px; margin-top:15px; border-radius:4px;}
-.progress {height:8px; background:#ddd; border-radius:4px; margin-bottom:20px;}
-.progress-bar {height:8px; background:#2a8f3a; width:0%; border-radius:4px;}
-.preview {white-space:pre-wrap; background:#f9f9f9; padding:12px;}
-</style>
+  <meta charset="UTF-8">
+  <title>Anonymous Reports – Prison Justice</title>
+  <meta name="description" content="Anonymous reports concerning issues with the justice system and prison conditions in Slovenia.">
 </head>
 
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+  }
+
+  /* HERO */
+  .hero {
+    background-image: url('images.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 20px;
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+    font-style: italic;
+  }
+
+  header {
+    background-color: #003366;
+    color: white;
+    padding: 15px 20px;
+  }
+
+  header h1 {
+    margin: 0 0 10px 0;
+    font-size: 1.6em;
+  }
+
+  .flags img {
+    width: 32px;
+    margin-right: 5px;
+  }
+
+  .menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .menu a {
+    color: white;
+    text-decoration: none;
+  }
+
+  main {
+    padding: 20px;
+    max-width: 900px;
+    margin: auto;
+  }
+
+  section h2 {
+    color: #003366;
+  }
+
+  footer {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+  }
+
+  .btn-link {
+    display: inline-block;
+    padding: 14px 22px;
+    margin: 10px 10px 10px 0;
+    background-color: #003366;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+  }
+
+  .btn-link:hover {
+    background-color: #0055aa;
+  }
+</style>
+
 <body>
-<div class="container">
-<div class="progress"><div class="progress-bar" id="progressBar"></div></div>
 
-<form>
+<section class="hero">
+  <blockquote>
+    “The degree of civilization in a society can be judged by entering its prisons.” — Fyodor Dostoevsky
+  </blockquote>
+</section>
 
-<div class="step active">
-<h2>Personal Details</h2>
-<label>First Name</label><input id="firstName">
-<label>Last Name</label><input id="lastName">
-<label>Address</label><textarea id="address"></textarea>
-</div>
+<header>
+  <h1>Compensation Assistance for Inadequate Prison Conditions</h1>
 
-<div class="step">
-<h2>Contact</h2>
-<label>Phone</label><input id="phone">
-<label>Email</label><input id="email">
-</div>
+  <nav class="flags">
+    <a href="/pl/index.html"><img src="pl.png" alt="PL"></a>
+    <a href="/ua/index.html"><img src="ua.png" alt="UA"></a>
+    <a href="/en/index.html"><img src="en.png" alt="EN"></a>
+    <a href="/ru/index.html"><img src="ru.png" alt="RU"></a>
+    <a href="/ro/index.html"><img src="ro.png" alt="RO"></a>
+    <a href="/md/index.html"><img src="md.png" alt="MD"></a>
+  </nav>
 
-<div class="step">
-<h2>Case Details</h2>
-<label>Judgment reference number</label><input id="caseNo">
-<label>Date of judgment</label><input type="date" id="judgmentDate">
-<label>Court city</label><input id="courtCity">
-</div>
+  <nav class="menu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="slovenia.html">Slovenia</a></li>
+      <li><a href="amicable-procedure.html">Amicable Procedure</a></li>
+      <li><a href="faq-slovenia.html">FAQ</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
 
-<div class="step">
-<h2>Language and Regulations</h2>
-<label>Language you understand prison regulations in</label>
-<input id="languageUnderstood">
+<header>
+  <h1>Anonymous Reports and Experiences</h1>
+</header>
 
-<label>Did you receive the prison regulations?</label>
-<select id="regulations">
-<option value="yes">Yes</option>
-<option value="no">No</option>
-</select>
-</div>
+<main>
 
-<div class="step">
-<h2>Pressure and Intimidation</h2>
+<section>
+  <h2>Purpose of the Form</h2>
+  <p>
+    This form allows you to anonymously describe problems related to prison conditions
+    or the actions of prosecutors and courts in Slovenia.
+  </p>
+</section>
 
-<label>Were you blackmailed by the prosecutor?</label>
-<select id="blackmail">
-<option value="yes">Yes</option>
-<option value="no">No</option>
-</select>
-<textarea id="blackmailDesc"></textarea>
+<section>
+  <h2>Anonymity</h2>
+  <p>
+    Providing personal data is not required.
+    The form is for informational purposes only and does not constitute legal advice.
+  </p>
+</section>
 
-<label>Were you intimidated by prison authorities?</label>
-<select id="intimidation">
-<option value="yes">Yes</option>
-<option value="no">No</option>
-</select>
-<textarea id="intimidationDesc"></textarea>
-</div>
+<section>
+  <h2>Report Form</h2>
 
-<div class="step">
-<h2>Prison and Cells</h2>
+  <form method="post" action="#">
+    
+    <label>
+      Describe your case:<br>
+      <textarea name="description" rows="8" cols="50"
+        placeholder="Describe the conditions, time period, detention facility, issues with administration..."></textarea>
+    </label>
+    <br><br>
 
-<label>Select ZPKZ</label>
-<select id="prisonName">
-<option value="ZPKZ Ljubljana">ZPKZ Ljubljana</option>
-<option value="ZPKZ Dob pri Mirni">ZPKZ Dob pri Mirni</option>
-<option value="ZPKZ Celje">ZPKZ Celje</option>
-<option value="ZPKZ Maribor">ZPKZ Maribor</option>
-</select>
+    <label>
+      Country / Facility (optional):<br>
+      <input type="text" name="country" placeholder="e.g. Slovenia – Prison Facility ...">
+    </label>
+    <br><br>
 
-<label>Stay from</label><input type="date" id="prisonFrom">
-<label>to</label><input type="date" id="prisonTo">
+    <label>
+      Contact details (optional):<br>
+      <input type="text" name="contact" placeholder="email or phone number">
+    </label>
+    <br><br>
 
-<label>Were you charged for medication?</label>
-<select id="medsPaid">
-<option value="yes">Yes</option>
-<option value="no">No</option>
-</select>
-<textarea id="medsDesc"></textarea>
+    <button type="submit">Submit Report</button>
 
-<label>Medical tests performed (HIV/HCV)?</label>
-<select id="tests">
-<option value="yes">Yes</option>
-<option value="no">No</option>
-</select>
-<textarea id="testsDesc"></textarea>
+  </form>
 
-<h3>Cells</h3>
-<div id="cells"></div>
-<button type="button" onclick="addCell()">➕ Add cell</button>
-</div>
+</section>
 
-<div class="step">
-<h2>JSON Preview</h2>
-<div class="preview" id="preview"></div>
-<button type="button" onclick="downloadTXT()">TXT</button>
-<button type="button" onclick="downloadPDF()">PDF</button>
-<button type="button" onclick="sendMail()">EMAIL</button>
-</div>
+<section>
+  <h2>Important Information</h2>
+  <p>
+    Submitting the form does not constitute entering into an agreement or acceptance of the case.
+    Each report is analyzed individually.
+  </p>
+</section>
 
-<div>
-<button type="button" onclick="prev()">Back</button>
-<button type="button" onclick="next()">Next</button>
-</div>
+</main>
 
-</form>
-</div>
+<footer>
+  <p>&copy; Prison Justice</p>
+</footer>
 
-<script>
-/* IDENTYCZNY JS jak w PL – pominięty tu celowo tylko opisowo
-   → WSTAW 1:1 TEN SAM BLOK JS Z WERSJI PL */
-</script>
 </body>
 </html>
