@@ -29,8 +29,39 @@
     main { padding: 20px; max-width: 900px; margin: auto; }
     section h2 { color: #003366; }
     footer { background-color: #003366; color: white; text-align: center; padding: 15px; margin-top: 40px; }
-    .btn-link { display: inline-block; padding: 14px 22px; margin: 10px 10px 10px 0; background-color: #003366; color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold; }
+
+    .btn-link {
+      display: inline-block;
+      padding: 14px 22px;
+      margin: 10px 10px 10px 0;
+      background-color: #003366;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
     .btn-link:hover { background-color: #0055aa; }
+
+    /* === PRZYCISK APLIKACJI === */
+    .download-button {
+      display: inline-block;
+      padding: 15px 30px;
+      background-color: #0047AB;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      border: 2px solid #D4AF37;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+
+    .download-button:hover {
+      background-color: #D4AF37;
+      color: #000000;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+      transform: translateY(-2px);
+    }
   </style>
 
 </head>
@@ -45,7 +76,6 @@
 <header>
   <h1>Prison Justice – pomoc prawna dla osadzonych</h1>
 
-  <!-- Wersje językowe -->
   <nav class="flags">
     <a href="index.html"><img src="pl.png" alt="Polski"></a>
     <a href="/ua/index.html"><img src="ua.png" alt="Українська"></a>
@@ -55,7 +85,6 @@
     <a href="/md/index.html"><img src="md.png" alt="Moldova"></a>
   </nav>
 
-  <!-- MENU GŁÓWNE -->
   <nav class="menu">
     <ul>
       <li><a href="index.html">Strona główna</a></li>
@@ -74,6 +103,7 @@
 </header>
 
 <main>
+
   <section>
     <h2>Pomoc prawna dla osób osadzonych</h2>
     <p>
@@ -92,6 +122,19 @@
     <a href="formularz.html" class="btn-link">Wypełnij formularz – ocena sprawy</a>
   </section>
 
+  <!-- === APLIKACJA MOBILNA === -->
+  <section>
+    <h2>Aplikacja mobilna Prison Justice</h2>
+    <p>
+      Pobierz aplikację Prison Justice na Androida i sprawdzaj swoją sprawę,
+      wypełniaj formularze oraz uzyskuj pomoc prawną bezpośrednio z telefonu.
+    </p>
+
+    <a href="#" class="download-button">
+      Pobierz aplikację na Androida
+    </a>
+  </section>
+
   <section>
     <h2>Cennik i płatności</h2>
     <a href="pricing.html" class="btn-link">Zobacz cennik</a>
@@ -108,6 +151,7 @@
       <li>Brak dokumentów w zrozumiałym języku</li>
     </ul>
   </section>
+
 </main>
 
 <footer>
