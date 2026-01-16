@@ -21,11 +21,7 @@
   <link rel="alternate" hreflang="en" href="https://prison-justice.pl/en/index.html" />
 
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-    }
+    body { margin:0; font-family: Arial, sans-serif; line-height: 1.6; }
 
     .hero {
       background-image: url('images.jpg');
@@ -38,21 +34,11 @@
       font-style: italic;
     }
 
-    header {
-      background-color: #003366;
-      color: white;
-      padding: 15px 20px;
-    }
+    header { background-color: #003366; color: white; padding: 15px 20px; }
 
-    header h1 {
-      margin: 0 0 10px 0;
-      font-size: 1.6em;
-    }
+    header h1 { margin: 0 0 10px 0; font-size: 1.6em; }
 
-    .flags img {
-      width: 32px;
-      margin-right: 5px;
-    }
+    .flags img { width: 32px; margin-right: 5px; }
 
     .menu ul {
       list-style: none;
@@ -63,20 +49,11 @@
       gap: 15px;
     }
 
-    .menu a {
-      color: white;
-      text-decoration: none;
-    }
+    .menu a { color: white; text-decoration: none; }
 
-    main {
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
-    }
+    main { padding: 20px; max-width: 900px; margin: auto; }
 
-    section h2 {
-      color: #003366;
-    }
+    section h2 { color: #003366; }
 
     footer {
       background-color: #003366;
@@ -95,11 +72,29 @@
       text-decoration: none;
       border-radius: 6px;
       font-weight: bold;
-      transition: background-color 0.2s ease;
     }
 
-    .btn-link:hover {
-      background-color: #0055aa;
+    .btn-link:hover { background-color: #0055aa; }
+
+    /* PRZYCISK POBIERANIA APK */
+    .download-button {
+      display: inline-block;
+      padding: 15px 30px;
+      background-color: #0047AB;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      border: 2px solid #D4AF37;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+
+    .download-button:hover {
+      background-color: #D4AF37;
+      color: #000000;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+      transform: translateY(-2px);
     }
   </style>
 </head>
@@ -132,8 +127,8 @@
       <li><a href="jak-przebiega-postepowanie.html">Як проходить процедура</a></li>
       <li><a href="forum.html">Анонімні звернення</a></li>
       <li><a href="kontakt.html">Контакт</a></li>
-       <li><a href="spolecznosc.html">Онлайн-форум</a></li>
-      <li><a href="pricing.html">Тарифний перелік</a>a></li>
+      <li><a href="spolecznosc.html">Онлайн-форум</a></li>
+      <li><a href="pricing.html">Тарифний перелік</a></li>
       <li><a href="payment.html">Способи оплати</a></li>
       <li><a href="faq-slowenia.html">FAQ</a></li>
       <li><a href="privacy-policy.html">Політика конфіденційності</a></li>
@@ -150,207 +145,35 @@
     Наш сайт надає професійну правову допомогу особам, які зазнали неналежних умов
     відбування покарання у в’язницях Європи, зокрема у Словенії.
   </p>
-  <p>
-    Ми допомагаємо як у межах досудових процедур,
-    так і при поданні скарг до Європейського суду з прав людини у Страсбурзі.
-  </p>
 </section>
 
 <section>
   <h2>Перевірте свою справу</h2>
-  <p>
-    На підставі відповідей на кілька запитань ми оцінимо вашу ситуацію
-    та підготуємо заяву про отримання компенсації.
-  </p>
-
   <a href="formularz.html" class="btn-link">
     Заповнити форму – оцінка справи
   </a>
 </section>
 
 <section>
-  <h2>Вартість послуг</h2>
+  <h2>Мобільний додаток Prison Justice</h2>
   <p>
-    Ознайомтеся з вартістю правової допомоги,
-    пов’язаної з підготовкою досудової заяви,
-    документації та подальшим веденням справи.
+    Завантажте мобільний додаток Prison Justice для Android та отримуйте
+    доступ до форм, матеріалів і правової допомоги безпосередньо зі смартфона.
   </p>
 
-  <a href="pricing.html" class="btn-link">
-    Переглянути ціни
-  </a>
-</section>
-
-<section>
-  <h2>Найпоширеніші порушення у в’язницях Словенії</h2>
-  <ul>
-    <li>переповнені камери</li>
-    <li>неналежні санітарні та епідеміологічні умови</li>
-    <li>відсутність належної медичної допомоги</li>
-    <li>тиск і репресії з боку адміністрації</li>
-    <li>відсутність документів зрозумілою мовою</li>
-    <li><a href="spolecznosc.html">наша спільнота</a></li>
-  </ul>
-</section>
-
-<section>
-  <h2>Наші підсторінки</h2>
-
-  <a href="slowenia.html" class="btn-link">
-    Погані умови у в’язницях Словенії
+  <a href="/pl/prison-justice-pl.apk"
+     class="download-button"
+     download>
+     Завантажити додаток для Android
   </a>
 
-  <a href="procedura-polubowna.html" class="btn-link">
-    Досудова процедура врегулювання
-  </a>
-
-  <a href="jak-przebiega-postepowanie.html" class="btn-link">
-    Як проходить процедура
-  </a>
-
-  <a href="pomoc-prawna.html" class="btn-link">
-    Правова допомога та формальності
-  </a>
-
-  <a href="forum.html" class="btn-link">
-    Анонімні звернення
-  </a>
-
-  <a href="faq-slowenia.html" class="btn-link">
-    FAQ – процедура, строки та компенсації у Словенії
-  </a>
-
+  <p style="font-size:0.9em;color:#555;margin-top:8px;">
+    Після завантаження може знадобитися дозвіл на встановлення
+    додатків з невідомих джерел у налаштуваннях телефону.
+  </p>
 </section>
 
 </main>
-  <!-- START CHATBOT WIDGET UKRAЇНСЬКА -->
-<div id="chatbox">
-  <div id="chatHeader">Є питання? Юридичні поради AI</div>
-  <div id="messages"></div>
-  <div id="inputArea">
-    <input id="userInput" type="text" placeholder="Напишіть повідомлення...">
-    <button id="sendBtn">Відправити</button>
-  </div>
-</div>
-
-<style>
-  #chatbox {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 300px;
-    max-height: 400px;
-    border: 1px solid #003366;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-    z-index: 9999;
-  }
-
-  #chatHeader {
-    background-color: #003366;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-    font-weight: bold;
-  }
-
-  #messages {
-    flex: 1;
-    padding: 10px;
-    overflow-y: auto;
-  }
-
-  #messages div {
-    margin-bottom: 10px;
-    padding: 6px 8px;
-    border-radius: 6px;
-  }
-
-  #messages .user {
-    background-color: #e0e0e0;
-    text-align: right;
-  }
-
-  #messages .ai {
-    background-color: #003366;
-    color: #fff;
-    text-align: left;
-  }
-
-  #inputArea {
-    display: flex;
-    border-top: 1px solid #ccc;
-  }
-
-  #userInput {
-    flex: 1;
-    padding: 8px;
-    border: none;
-    outline: none;
-  }
-
-  #sendBtn {
-    padding: 8px 12px;
-    border: none;
-    background: #003366;
-    color: white;
-    cursor: pointer;
-  }
-
-  #sendBtn:hover {
-    background: #0055aa;
-  }
-</style>
-
-<script>
-const messagesDiv = document.getElementById("messages");
-const input = document.getElementById("userInput");
-const sendBtn = document.getElementById("sendBtn");
-
-function addMessage(sender, text) {
-  const msgDiv = document.createElement("div");
-  msgDiv.className = sender;
-  msgDiv.textContent = text;
-  messagesDiv.appendChild(msgDiv);
-  messagesDiv.scrollTop = messagesDiv.scrollHeight;
-}
-
-// Симульована відповідь AI – пізніше можна підключити OpenAI API
-function getAIResponse(userText) {
-  const responses = [
-    "Розумію, будь ласка, наведіть більше деталей справи.",
-    "У таких випадках слід перевірити офіційні документи.",
-    "Ви можете порівняти вашу ситуацію з іншими випадками.",
-    "Перевірте, чи всі обов'язкові поля форми заповнені.",
-    "Збережіть копію вашої заявки на випадок потреби."
-  ];
-  return responses[Math.floor(Math.random() * responses.length)];
-}
-
-function sendMessage() {
-  const text = input.value.trim();
-  if (!text) return;
-  addMessage("user", text);
-  input.value = "";
-
-  setTimeout(() => {
-    const aiReply = getAIResponse(text);
-    addMessage("ai", aiReply);
-  }, 500);
-}
-
-sendBtn.addEventListener("click", sendMessage);
-input.addEventListener("keypress", function(e) {
-  if (e.key === "Enter") sendMessage();
-});
-</script>
-<!-- END CHATBOT WIDGET UKRAЇНСЬКА -->
-
 
 <footer>
   <p>&copy; 2026 Prison Justice</p>
