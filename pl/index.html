@@ -8,11 +8,13 @@
   <meta name="description" content="Pomoc prawna w uzyskaniu odszkodowania za złe warunki więzienne w Słowenii i innych krajach. Procedura polubowna i ETPCz.">
 
   <!-- Hreflang -->
-  <link rel="alternate" hreflang="pl" href="https://prison-justice.pl/pl/index.html" />
-  <link rel="alternate" hreflang="ru" href="https://prison-justice.pl/ru/index.html" />
-  <link rel="alternate" hreflang="uk" href="https://prison-justice.pl/ua/index.html" />
-  <link rel="alternate" hreflang="ro" href="https://prison-justice.pl/ro/index.html" />
-  <link rel="alternate" hreflang="en" href="https://prison-justice.pl/en/index.html" />
+  <link rel="alternate" hreflang="pl" href="index.html">
+  <link rel="alternate" hreflang="en" href="en/index.html">
+  <link rel="alternate" hreflang="ru" href="ru/index.html">
+  <link rel="alternate" hreflang="uk" href="ua/index.html">
+  <link rel="alternate" hreflang="ro" href="ro/index.html">
+  <link rel="alternate" hreflang="md" href="md/index.html">
+  <link rel="alternate" hreflang="x-default" href="index.html">
 
   <style>
     body { margin:0; font-family: Arial, sans-serif; line-height: 1.6; }
@@ -27,11 +29,40 @@
     main { padding: 20px; max-width: 900px; margin: auto; }
     section h2 { color: #003366; }
     footer { background-color: #003366; color: white; text-align: center; padding: 15px; margin-top: 40px; }
-    .btn-link { display: inline-block; padding: 14px 22px; margin: 10px 10px 10px 0; background-color: #003366; color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold; }
+
+    .btn-link {
+      display: inline-block;
+      padding: 14px 22px;
+      margin: 10px 10px 10px 0;
+      background-color: #003366;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
     .btn-link:hover { background-color: #0055aa; }
+
+    /* === PRZYCISK APLIKACJI === */
+    .download-button {
+      display: inline-block;
+      padding: 15px 30px;
+      background-color: #0047AB;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      border: 2px solid #D4AF37;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+
+    .download-button:hover {
+      background-color: #D4AF37;
+      color: #000000;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+      transform: translateY(-2px);
+    }
   </style>
-
-
 
 </head>
 <body>
@@ -45,8 +76,8 @@
 <header>
   <h1>Prison Justice – pomoc prawna dla osadzonych</h1>
 
-   <nav class="flags">
-    <a href="/pl/index.html"><img src="pl.png" alt="Польська"></a>
+  <nav class="flags">
+    <a href="index.html"><img src="pl.png" alt="Polski"></a>
     <a href="/ua/index.html"><img src="ua.png" alt="Українська"></a>
     <a href="/en/index.html"><img src="en.png" alt="English"></a>
     <a href="/ru/index.html"><img src="ru.png" alt="Русский"></a>
@@ -54,7 +85,6 @@
     <a href="/md/index.html"><img src="md.png" alt="Moldova"></a>
   </nav>
 
-  <!-- MENU GŁÓWNE -->
   <nav class="menu">
     <ul>
       <li><a href="index.html">Strona główna</a></li>
@@ -68,12 +98,12 @@
       <li><a href="spolecznosc.html">Społeczność</a></li>
       <li><a href="materialy.html">Materiały</a></li>
       <li><a href="kontakt.html">Kontakt</a></li>
-       <li><a href="privacy-policy.html">Polityka prywatności</a></li>
     </ul>
   </nav>
 </header>
 
 <main>
+
   <section>
     <h2>Pomoc prawna dla osób osadzonych</h2>
     <p>
@@ -92,6 +122,19 @@
     <a href="formularz.html" class="btn-link">Wypełnij formularz – ocena sprawy</a>
   </section>
 
+  <!-- === APLIKACJA MOBILNA === -->
+  <section>
+    <h2>Aplikacja mobilna Prison Justice</h2>
+    <p>
+      Pobierz aplikację Prison Justice na Androida i sprawdzaj swoją sprawę,
+      wypełniaj formularze oraz uzyskuj pomoc prawną bezpośrednio z telefonu.
+    </p>
+
+    <a href="#" class="download-button">
+      Pobierz aplikację na Androida
+    </a>
+  </section>
+
   <section>
     <h2>Cennik i płatności</h2>
     <a href="pricing.html" class="btn-link">Zobacz cennik</a>
@@ -107,136 +150,10 @@
       <li>Zastraszanie i naciski</li>
       <li>Brak dokumentów w zrozumiałym języku</li>
     </ul>
-  </section> 
-   <!-- START CHATBOT WIDGET -->
-<div id="chatbox">
-  <div id="chatHeader">Masz pytania? Porady prawne AI</div>
-  <div id="messages"></div>
-  <div id="inputArea">
-    <input id="userInput" type="text" placeholder="Napisz wiadomość...">
-    <button id="sendBtn">Wyślij</button>
-  </div>
-</div>
+  </section>
 
-<style>
-  #chatbox {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 300px;
-    max-height: 400px;
-    border: 1px solid #003366;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-    z-index: 9999;
-  }
+</main>
 
-  #chatHeader {
-    background-color: #003366;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-    font-weight: bold;
-  }
-
-  #messages {
-    flex: 1;
-    padding: 10px;
-    overflow-y: auto;
-  }
-
-  #messages div {
-    margin-bottom: 10px;
-    padding: 6px 8px;
-    border-radius: 6px;
-  }
-
-  #messages .user {
-    background-color: #e0e0e0;
-    text-align: right;
-  }
-
-  #messages .ai {
-    background-color: #003366;
-    color: #fff;
-    text-align: left;
-  }
-
-  #inputArea {
-    display: flex;
-    border-top: 1px solid #ccc;
-  }
-
-  #userInput {
-    flex: 1;
-    padding: 8px;
-    border: none;
-    outline: none;
-  }
-
-  #sendBtn {
-    padding: 8px 12px;
-    border: none;
-    background: #003366;
-    color: white;
-    cursor: pointer;
-  }
-
-  #sendBtn:hover {
-    background: #0055aa;
-  }
-</style>
-
-<script>
-const messagesDiv = document.getElementById("messages");
-const input = document.getElementById("userInput");
-const sendBtn = document.getElementById("sendBtn");
-
-function addMessage(sender, text) {
-  const msgDiv = document.createElement("div");
-  msgDiv.className = sender;
-  msgDiv.textContent = text;
-  messagesDiv.appendChild(msgDiv);
-  messagesDiv.scrollTop = messagesDiv.scrollHeight;
-}
-
-// Symulowana odpowiedź AI – później podłączysz OpenAI API
-function getAIResponse(userText) {
-  const responses = [
-    "Rozumiem, podaj więcej szczegółów swojej sprawy.",
-    "W takich przypadkach warto sprawdzić dokumenty urzędowe.",
-    "Możesz porównać swoją sytuację z innymi przypadkami.",
-    "Sprawdź, czy wszystkie wymagane pola w formularzu są wypełnione.",
-    "Zachowaj kopię wniosku na wszelki wypadek."
-  ];
-  return responses[Math.floor(Math.random() * responses.length)];
-}
-
-function sendMessage() {
-  const text = input.value.trim();
-  if (!text) return;
-  addMessage("user", text);
-  input.value = "";
-
-  setTimeout(() => {
-    const aiReply = getAIResponse(text);
-    addMessage("ai", aiReply);
-  }, 500);
-}
-
-sendBtn.addEventListener("click", sendMessage);
-input.addEventListener("keypress", function(e) {
-  if (e.key === "Enter") sendMessage();
-});
-</script>
-<!-- END CHATBOT WIDGET -->
-</main> 
- 
 <footer>
   <p>&copy; 2026 Prison Justice PL</p>
   <p>tel: +48 725 144 019 | mail: contact@prison-justice.pl</p>
