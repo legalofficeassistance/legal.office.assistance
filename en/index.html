@@ -6,160 +6,26 @@
 <title>Prison Justice – Legal Support</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-}
-
-/* HERO */
-.hero {
-  background: #222;
-  padding: 80px 20px;
-  color: white;
-  text-align: center;
-  font-size: 1.4em;
-  font-style: italic;
-}
-
-/* HEADER */
-header {
-  background: #003366;
-  color: white;
-  padding: 15px 20px;
-}
-
-header h1 {
-  margin: 0 0 10px 0;
-}
-
-.menu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-
-.menu a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-/* MAIN */
-main {
-  padding: 20px;
-  max-width: 900px;
-  margin: auto;
-  overflow: visible !important;
-}
-
-section {
-  overflow: visible !important;
-}
-
-section h2 {
-  color: #003366;
-}
-
-/* BUTTONS */
-.btn-link {
-  display: inline-block;
-  padding: 14px 22px;
-  margin: 10px 10px 10px 0;
-  background: #003366;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
-}
-
-/* APK BUTTON */
-.download-button {
-  display: inline-block;
-  padding: 15px 30px;
-  background: #0047AB;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: bold;
-  border: 2px solid #D4AF37;
-}
-
-/* FOOTER */
-footer {
-  background: #003366;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  margin-top: 40px;
-}
+body { margin:0; font-family: Arial,sans-serif; line-height:1.6; }
+.hero { background:#222; padding:80px 20px; color:white; text-align:center; font-size:1.4em; font-style:italic; }
+header { background:#003366; color:white; padding:15px 20px; }
+header h1 { margin:0 0 10px 0; }
+.menu ul { list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:14px; }
+.menu a { color:white; text-decoration:none; font-weight:bold; }
+main { padding:20px; max-width:900px; margin:auto; overflow:visible !important; }
+section { overflow:visible !important; }
+section h2 { color:#003366; }
+.btn-link { display:inline-block; padding:14px 22px; margin:10px 10px 10px 0; background:#003366; color:white; text-decoration:none; border-radius:6px; font-weight:bold; }
+footer { background:#003366; color:white; text-align:center; padding:15px; margin-top:40px; }
 
 /* CHATBOT */
-#chatbot-toggle {
-  position: fixed !important;
-  bottom: 20px;
-  right: 20px;
-  background: #003366;
-  color: white;
-  padding: 14px 18px;
-  border-radius: 50px;
-  cursor: pointer;
-  z-index: 2147483647 !important;
-  font-weight: bold;
-}
-
-#chatbot-box {
-  position: fixed !important;
-  bottom: 80px;
-  right: 20px;
-  width: 320px;
-  height: 420px;
-  background: white;
-  border: 2px solid #003366;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  z-index: 2147483647 !important;
-}
-
-#chatbot-header {
-  background: #003366;
-  color: white;
-  padding: 10px;
-  font-weight: bold;
-}
-
-#chatbot-messages {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
-  font-size: 14px;
-}
-
-#chatbot-input {
-  display: flex;
-  border-top: 1px solid #ccc;
-}
-
-#chatbot-input input {
-  flex: 1;
-  padding: 8px;
-  border: none;
-}
-
-#chatbot-input button {
-  padding: 8px 12px;
-  border: none;
-  background: #003366;
-  color: white;
-  cursor: pointer;
-}
+#chatbot-toggle { position:fixed !important; bottom:20px; right:20px; background:#003366; color:white; padding:14px 18px; border-radius:50px; cursor:pointer; z-index:2147483647 !important; font-weight:bold; }
+#chatbot-box { position:fixed !important; bottom:80px; right:20px; width:320px; height:420px; background:white; border:2px solid #003366; border-radius:10px; display:flex; flex-direction:column; visibility:hidden; opacity:0; transition:opacity 0.2s ease; z-index:2147483647 !important; }
+#chatbot-header { background:#003366; color:white; padding:10px; font-weight:bold; }
+#chatbot-messages { flex:1; padding:10px; overflow-y:auto; font-size:14px; }
+#chatbot-input { display:flex; border-top:1px solid #ccc; }
+#chatbot-input input { flex:1; padding:8px; border:none; }
+#chatbot-input button { padding:8px 12px; border:none; background:#003366; color:white; cursor:pointer; }
 </style>
 </head>
 
@@ -177,12 +43,12 @@ footer {
   <li><a href="#">Slovenia</a></li>
   <li><a href="#">Pricing</a></li>
   <li><a href="#">Contact</a></li>
+  <li><a href="apk.html">Download App</a></li>
 </ul>
 </nav>
 </header>
 
 <main>
-
 <section>
 <h2>Legal Assistance</h2>
 <p>We help prisoners obtain compensation for inhuman prison conditions.</p>
@@ -192,14 +58,6 @@ footer {
 <h2>Check Your Case</h2>
 <a href="#" class="btn-link">Case assessment</a>
 </section>
-
-<section>
-<h2>Download Android App</h2>
-<a href="prison-justice-pl.apk" class="download-button" download>
-Download Android App (APK)
-</a>
-</section>
-
 </main>
 
 <footer>
@@ -208,7 +66,6 @@ Download Android App (APK)
 
 <!-- CHATBOT -->
 <div id="chatbot-toggle">Chat</div>
-
 <div id="chatbot-box">
   <div id="chatbot-header">Legal Assistant</div>
   <div id="chatbot-messages">
@@ -221,32 +78,24 @@ Download Android App (APK)
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-
-  let openChat = false;
-
-  const toggle = document.getElementById("chatbot-toggle");
-  const box = document.getElementById("chatbot-box");
-
-  toggle.addEventListener("click", function () {
-    openChat = !openChat;
-    box.style.visibility = openChat ? "visible" : "hidden";
-    box.style.opacity = openChat ? "1" : "0";
+document.addEventListener("DOMContentLoaded", function(){
+  let openChat=false;
+  const toggle=document.getElementById("chatbot-toggle");
+  const box=document.getElementById("chatbot-box");
+  toggle.addEventListener("click", function(){
+    openChat=!openChat;
+    box.style.visibility=openChat?"visible":"hidden";
+    box.style.opacity=openChat?"1":"0";
   });
-
-  window.sendMessage = function () {
-    const input = document.getElementById("chatbot-text");
-    const messages = document.getElementById("chatbot-messages");
-
-    if (!input.value.trim()) return;
-
-    messages.innerHTML += "<p><strong>You:</strong> " + input.value + "</p>";
-    messages.innerHTML += "<p><strong>Assistant:</strong> Demo response.</p>";
-
-    input.value = "";
-    messages.scrollTop = messages.scrollHeight;
+  window.sendMessage=function(){
+    const input=document.getElementById("chatbot-text");
+    const messages=document.getElementById("chatbot-messages");
+    if(!input.value.trim())return;
+    messages.innerHTML+="<p><strong>You:</strong> "+input.value+"</p>";
+    messages.innerHTML+="<p><strong>Assistant:</strong> Demo response.</p>";
+    input.value="";
+    messages.scrollTop=messages.scrollHeight;
   };
-
 });
 </script>
 
