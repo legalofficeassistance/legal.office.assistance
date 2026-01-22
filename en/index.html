@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Compensation for Poor Prison Conditions – Prison Justice</title>
-  <meta name="description" content="Legal assistance in obtaining compensation for poor prison conditions in Slovenia. Amicable procedure and applications to the European Court of Human Rights.">
+  <meta name="description" content="Legal assistance in obtaining compensation for poor prison conditions in Slovenia.">
 
   <!-- Hreflang -->
   <link rel="alternate" hreflang="pl" href="https://prison-justice.pl/pl/index.html" />
@@ -15,107 +15,141 @@
   <link rel="alternate" hreflang="en" href="https://prison-justice.pl/en/index.html" />
 
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-    }
+    body { margin:0; font-family: Arial, sans-serif; line-height:1.6; }
 
     .hero {
       background-image: url('images.jpg');
       background-size: cover;
       background-position: center;
       padding: 90px 20px;
-      color: #ffffff;
+      color: white;
       text-align: center;
       font-size: 1.4em;
       font-style: italic;
     }
 
-    header {
-      background-color: #003366;
-      color: white;
-      padding: 15px 20px;
-    }
+    header { background:#003366; color:white; padding:15px 20px; }
+    header h1 { margin:0 0 10px 0; font-size:1.4em; }
 
-    header h1 {
-      margin: 0 0 10px 0;
-      font-size: 1.4em;
-    }
-
-    .flags img {
-      width: 28px;
-      margin-right: 6px;
-    }
+    .flags img { width:28px; margin-right:6px; }
 
     .menu ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
     }
 
     .menu a {
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 0.95em;
+      color:white;
+      text-decoration:none;
+      font-weight:bold;
+      font-size:0.95em;
     }
 
-    main {
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    section h2 {
-      color: #003366;
-    }
+    main { padding:20px; max-width:900px; margin:auto; }
+    section h2 { color:#003366; }
 
     footer {
-      background-color: #003366;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 40px;
+      background:#003366;
+      color:white;
+      text-align:center;
+      padding:15px;
+      margin-top:40px;
     }
 
     .btn-link {
-      display: inline-block;
-      padding: 14px 22px;
-      margin: 10px 10px 10px 0;
-      background-color: #003366;
-      color: #ffffff;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
+      display:inline-block;
+      padding:14px 22px;
+      margin:10px 10px 10px 0;
+      background:#003366;
+      color:white;
+      text-decoration:none;
+      border-radius:6px;
+      font-weight:bold;
     }
 
-    .btn-link:hover {
-      background-color: #0055aa;
-    }
+    .btn-link:hover { background:#0055aa; }
 
-    /* ANDROID APK DOWNLOAD BUTTON */
+    /* APK BUTTON */
     .download-button {
-      display: inline-block;
-      padding: 15px 30px;
-      background-color: #0047AB;
-      color: #ffffff;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      border: 2px solid #D4AF37;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      display:inline-block;
+      padding:15px 30px;
+      background:#0047AB;
+      color:white;
+      text-decoration:none;
+      border-radius:8px;
+      font-weight:bold;
+      border:2px solid #D4AF37;
+      transition:0.3s;
     }
 
     .download-button:hover {
-      background-color: #D4AF37;
-      color: #000000;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.5);
-      transform: translateY(-2px);
+      background:#D4AF37;
+      color:black;
+    }
+
+    /* CHATBOT */
+    #chatbot-toggle {
+      position:fixed;
+      bottom:20px;
+      right:20px;
+      background:#003366;
+      color:white;
+      padding:14px 18px;
+      border-radius:50px;
+      cursor:pointer;
+      z-index:2147483647;
+      font-weight:bold;
+    }
+
+    #chatbot-box {
+      position:fixed;
+      bottom:80px;
+      right:20px;
+      width:320px;
+      height:420px;
+      background:white;
+      border:2px solid #003366;
+      border-radius:10px;
+      display:none;
+      flex-direction:column;
+      z-index:2147483647;
+    }
+
+    #chatbot-header {
+      background:#003366;
+      color:white;
+      padding:10px;
+      font-weight:bold;
+    }
+
+    #chatbot-messages {
+      flex:1;
+      padding:10px;
+      overflow-y:auto;
+      font-size:14px;
+    }
+
+    #chatbot-input {
+      display:flex;
+      border-top:1px solid #ccc;
+    }
+
+    #chatbot-input input {
+      flex:1;
+      padding:8px;
+      border:none;
+    }
+
+    #chatbot-input button {
+      padding:8px 12px;
+      border:none;
+      background:#003366;
+      color:white;
+      cursor:pointer;
     }
   </style>
 </head>
@@ -123,37 +157,26 @@
 <body>
 
 <section class="hero">
-  <blockquote>
-    “The measure of a civilization is how it treats its prisoners.”
-    — Fyodor Dostoevsky
-  </blockquote>
+  “The measure of a civilization is how it treats its prisoners.”
 </section>
 
 <header>
   <h1>Prison Justice – Legal Support for Prisoners</h1>
 
   <nav class="flags">
-    <a href="/pl/index.html"><img src="pl.png" alt="Polish"></a>
-    <a href="/ua/index.html"><img src="ua.png" alt="Ukrainian"></a>
-    <a href="/en/index.html"><img src="en.png" alt="English"></a>
-    <a href="/ru/index.html"><img src="ru.png" alt="Russian"></a>
-    <a href="/ro/index.html"><img src="ro.png" alt="Romanian"></a>
-    <a href="/md/index.html"><img src="md.png" alt="Moldova"></a>
+    <a href="/pl/index.html"><img src="pl.png"></a>
+    <a href="/ua/index.html"><img src="ua.png"></a>
+    <a href="/en/index.html"><img src="en.png"></a>
+    <a href="/ru/index.html"><img src="ru.png"></a>
+    <a href="/ro/index.html"><img src="ro.png"></a>
   </nav>
 
   <nav class="menu">
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="slowenia.html">Slovenia</a></li>
-      <li><a href="procedura-polubowna.html">Amicable Procedure</a></li>
-      <li><a href="jak-przebiega-postepowanie.html">How the Procedure Works</a></li>
       <li><a href="pricing.html">Pricing</a></li>
-      <li><a href="payment.html">Payment</a></li>
-      <li><a href="forum.html">Anonymous Reports</a></li>
-      <li><a href="faq-slowenia.html">FAQ</a></li>
-      <li><a href="spolecznosc.html">Community</a></li>
-      <li><a href="materials.html">Media</a></li>
-      <li><a href="kontakt.html">Contact</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
 </header>
@@ -161,62 +184,63 @@
 <main>
 
 <section>
-  <h2>Legal Assistance for Prisoners</h2>
-  <p>
-    We provide legal assistance to individuals who have experienced poor prison
-    conditions in Slovenia, including overcrowding, lack of medical care and
-    degrading treatment.
-  </p>
+  <h2>Legal Assistance</h2>
+  <p>We help prisoners obtain compensation for inhuman prison conditions.</p>
 </section>
 
 <section>
   <h2>Check Your Case</h2>
-  <p>
-    Complete the form and we will assess whether you are entitled to compensation
-    for violations of your rights.
-  </p>
-  <a href="formularz.html" class="btn-link">
-    Fill in the form – Case Assessment
-  </a>
+  <a href="formularz.html" class="btn-link">Case assessment</a>
 </section>
 
-<!-- ANDROID APP DOWNLOAD -->
 <section>
   <h2>Download Android App</h2>
-  <p>
-    Download our official Android application directly (outside Google Play).
-    You may need to enable <strong>“Allow installation from unknown sources”</strong>.
-  </p>
-
   <a href="/prison-justice-pl.apk" class="download-button" download>
-    📲 Download Android App (APK)
+    Download Android App (APK)
   </a>
-</section>
-
-<section>
-  <h2>Pricing & Payments</h2>
-  <a href="pricing.html" class="btn-link">View Pricing</a>
-  <a href="payment.html" class="btn-link">Make a Payment</a>
-</section>
-
-<section>
-  <h2>Most Common Violations</h2>
-  <ul>
-    <li>Overcrowded prison cells</li>
-    <li>Poor sanitary conditions</li>
-    <li>Lack of adequate medical care</li>
-    <li>Intimidation by prison authorities</li>
-    <li>Documents not provided in a language understood by prisoners</li>
-    <li><a href="spolecznosc.html">Online community</a></li>
-  </ul>
 </section>
 
 </main>
 
 <footer>
-  <p>&copy; 2026 Prison Justice Pl</p>
-  <p>Tel: +48 725 144 019 | Email: contact@prison-justice.pl</p>
+  <p>&copy; 2026 Prison Justice</p>
 </footer>
+
+<!-- CHATBOT HTML -->
+<div id="chatbot-toggle">Chat</div>
+
+<div id="chatbot-box">
+  <div id="chatbot-header">Legal Assistant</div>
+  <div id="chatbot-messages">
+    <p><strong>Assistant:</strong> How can I help you?</p>
+  </div>
+  <div id="chatbot-input">
+    <input type="text" id="chatbot-text" placeholder="Type your question...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<!-- CHATBOT JS -->
+<script>
+const toggle = document.getElementById('chatbot-toggle');
+const box = document.getElementById('chatbot-box');
+
+toggle.onclick = () => {
+  box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
+};
+
+function sendMessage() {
+  const input = document.getElementById('chatbot-text');
+  const messages = document.getElementById('chatbot-messages');
+
+  if (!input.value.trim()) return;
+
+  messages.innerHTML += `<p><strong>You:</strong> ${input.value}</p>`;
+  messages.innerHTML += `<p><strong>Assistant:</strong> This is a demo response.</p>`;
+  input.value = '';
+  messages.scrollTop = messages.scrollHeight;
+}
+</script>
 
 </body>
 </html>
