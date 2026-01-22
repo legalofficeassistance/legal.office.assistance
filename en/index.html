@@ -1,212 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Compensation for Poor Prison Conditions – Prison Justice</title>
-  <meta name="description" content="Legal assistance in obtaining compensation for poor prison conditions in Slovenia.">
+<title>Compensation for Poor Prison Conditions – Prison Justice</title>
 
-  <!-- Hreflang -->
-  <link rel="alternate" hreflang="pl" href="https://prison-justice.pl/pl/index.html" />
-  <link rel="alternate" hreflang="ru" href="https://prison-justice.pl/ru/index.html" />
-  <link rel="alternate" hreflang="uk" href="https://prison-justice.pl/ua/index.html" />
-  <link rel="alternate" hreflang="ro" href="https://prison-justice.pl/ro/index.html" />
-  <link rel="alternate" hreflang="en" href="https://prison-justice.pl/en/index.html" />
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
 
-  <style>
-    body { margin:0; font-family: Arial, sans-serif; line-height:1.6; }
+/* HERO */
+.hero {
+  background-image: url('images.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 90px 20px;
+  color: white;
+  text-align: center;
+  font-size: 1.4em;
+  font-style: italic;
+}
 
-    .hero {
-      background-image: url('images.jpg');
-      background-size: cover;
-      background-position: center;
-      padding: 90px 20px;
-      color: white;
-      text-align: center;
-      font-size: 1.4em;
-      font-style: italic;
-    }
+/* HEADER */
+header {
+  background: #003366;
+  color: white;
+  padding: 15px 20px;
+}
 
-    header { background:#003366; color:white; padding:15px 20px; }
-    header h1 { margin:0 0 10px 0; font-size:1.4em; }
+header h1 {
+  margin: 0 0 10px 0;
+}
 
-    .flags img { width:28px; margin-right:6px; }
+.flags img {
+  width: 28px;
+  margin-right: 6px;
+}
 
-    .menu ul {
-      list-style:none;
-      padding:0;
-      margin:0;
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
-    }
+/* MENU */
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
 
-    .menu a {
-      color:white;
-      text-decoration:none;
-      font-weight:bold;
-      font-size:0.95em;
-    }
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
 
-    main { padding:20px; max-width:900px; margin:auto; }
-    section h2 { color:#003366; }
+/* MAIN */
+main {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+}
 
-    footer {
-      background:#003366;
-      color:white;
-      text-align:center;
-      padding:15px;
-      margin-top:40px;
-    }
+section h2 {
+  color: #003366;
+}
 
-    .btn-link {
-      display:inline-block;
-      padding:14px 22px;
-      margin:10px 10px 10px 0;
-      background:#003366;
-      color:white;
-      text-decoration:none;
-      border-radius:6px;
-      font-weight:bold;
-    }
+/* BUTTONS */
+.btn-link {
+  display: inline-block;
+  padding: 14px 22px;
+  margin: 10px 10px 10px 0;
+  background: #003366;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
 
-    .btn-link:hover { background:#0055aa; }
+.btn-link:hover {
+  background: #0055aa;
+}
 
-    /* APK BUTTON */
-    .download-button {
-      display:inline-block;
-      padding:15px 30px;
-      background:#0047AB;
-      color:white;
-      text-decoration:none;
-      border-radius:8px;
-      font-weight:bold;
-      border:2px solid #D4AF37;
-      transition:0.3s;
-    }
+/* APK BUTTON */
+.download-button {
+  display: inline-block;
+  padding: 15px 30px;
+  background: #0047AB;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  border: 2px solid #D4AF37;
+}
 
-    .download-button:hover {
-      background:#D4AF37;
-      color:black;
-    }
+/* FOOTER */
+footer {
+  background: #003366;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+}
 
-    /* CHATBOT */
-    #chatbot-toggle {
-      position:fixed;
-      bottom:20px;
-      right:20px;
-      background:#003366;
-      color:white;
-      padding:14px 18px;
-      border-radius:50px;
-      cursor:pointer;
-      z-index:2147483647;
-      font-weight:bold;
-    }
+/* CHATBOT */
+#chatbot-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #003366;
+  color: white;
+  padding: 14px 18px;
+  border-radius: 50px;
+  cursor: pointer;
+  z-index: 2147483647;
+  font-weight: bold;
+}
 
-    #chatbot-box {
-      position:fixed;
-      bottom:80px;
-      right:20px;
-      width:320px;
-      height:420px;
-      background:white;
-      border:2px solid #003366;
-      border-radius:10px;
-      display:none;
-      flex-direction:column;
-      z-index:2147483647;
-    }
+#chatbot-box {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 320px;
+  height: 420px;
+  background: white;
+  border: 2px solid #003366;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 2147483647;
+  transition: opacity 0.2s ease;
+}
 
-    #chatbot-header {
-      background:#003366;
-      color:white;
-      padding:10px;
-      font-weight:bold;
-    }
+#chatbot-header {
+  background: #003366;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+}
 
-    #chatbot-messages {
-      flex:1;
-      padding:10px;
-      overflow-y:auto;
-      font-size:14px;
-    }
+#chatbot-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  font-size: 14px;
+}
 
-    #chatbot-input {
-      display:flex;
-      border-top:1px solid #ccc;
-    }
+#chatbot-input {
+  display: flex;
+  border-top: 1px solid #ccc;
+}
 
-    #chatbot-input input {
-      flex:1;
-      padding:8px;
-      border:none;
-    }
+#chatbot-input input {
+  flex: 1;
+  padding: 8px;
+  border: none;
+}
 
-    #chatbot-input button {
-      padding:8px 12px;
-      border:none;
-      background:#003366;
-      color:white;
-      cursor:pointer;
-    }
-  </style>
+#chatbot-input button {
+  padding: 8px 12px;
+  border: none;
+  background: #003366;
+  color: white;
+  cursor: pointer;
+}
+</style>
 </head>
 
 <body>
 
 <section class="hero">
-  “The measure of a civilization is how it treats its prisoners.”
+“The measure of a civilization is how it treats its prisoners.”
 </section>
 
 <header>
-  <h1>Prison Justice – Legal Support for Prisoners</h1>
+<h1>Prison Justice – Legal Support for Prisoners</h1>
 
-  <nav class="flags">
-    <a href="/pl/index.html"><img src="pl.png"></a>
-    <a href="/ua/index.html"><img src="ua.png"></a>
-    <a href="/en/index.html"><img src="en.png"></a>
-    <a href="/ru/index.html"><img src="ru.png"></a>
-    <a href="/ro/index.html"><img src="ro.png"></a>
-  </nav>
+<nav class="flags">
+  <img src="pl.png">
+  <img src="ua.png">
+  <img src="en.png">
+  <img src="ru.png">
+  <img src="ro.png">
+</nav>
 
-  <nav class="menu">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="slowenia.html">Slovenia</a></li>
-      <li><a href="pricing.html">Pricing</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+<nav class="menu">
+<ul>
+  <li><a href="#">Home</a></li>
+  <li><a href="#">Slovenia</a></li>
+  <li><a href="#">Pricing</a></li>
+  <li><a href="#">Contact</a></li>
+</ul>
+</nav>
 </header>
 
 <main>
 
 <section>
-  <h2>Legal Assistance</h2>
-  <p>We help prisoners obtain compensation for inhuman prison conditions.</p>
+<h2>Legal Assistance</h2>
+<p>We help prisoners obtain compensation for inhuman prison conditions.</p>
 </section>
 
 <section>
-  <h2>Check Your Case</h2>
-  <a href="formularz.html" class="btn-link">Case assessment</a>
+<h2>Check Your Case</h2>
+<a href="#" class="btn-link">Case assessment</a>
 </section>
 
 <section>
-  <h2>Download Android App</h2>
-  <a href="/prison-justice-pl.apk" class="download-button" download>
-    Download Android App (APK)
-  </a>
+<h2>Download Android App</h2>
+<a href="/prison-justice-pl.apk" class="download-button" download>
+Download Android App (APK)
+</a>
 </section>
 
 </main>
 
 <footer>
-  <p>&copy; 2026 Prison Justice</p>
+<p>&copy; 2026 Prison Justice</p>
 </footer>
 
-<!-- CHATBOT HTML -->
+<!-- CHATBOT -->
 <div id="chatbot-toggle">Chat</div>
 
 <div id="chatbot-box">
@@ -215,19 +232,21 @@
     <p><strong>Assistant:</strong> How can I help you?</p>
   </div>
   <div id="chatbot-input">
-    <input type="text" id="chatbot-text" placeholder="Type your question...">
+    <input id="chatbot-text" placeholder="Type your question">
     <button onclick="sendMessage()">Send</button>
   </div>
 </div>
 
-<!-- CHATBOT JS -->
 <script>
+let openChat = false;
 const toggle = document.getElementById('chatbot-toggle');
 const box = document.getElementById('chatbot-box');
 
-toggle.onclick = () => {
-  box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
-};
+toggle.addEventListener('click', () => {
+  openChat = !openChat;
+  box.style.visibility = openChat ? 'visible' : 'hidden';
+  box.style.opacity = openChat ? '1' : '0';
+});
 
 function sendMessage() {
   const input = document.getElementById('chatbot-text');
@@ -236,7 +255,7 @@ function sendMessage() {
   if (!input.value.trim()) return;
 
   messages.innerHTML += `<p><strong>You:</strong> ${input.value}</p>`;
-  messages.innerHTML += `<p><strong>Assistant:</strong> This is a demo response.</p>`;
+  messages.innerHTML += `<p><strong>Assistant:</strong> Demo reply (API not connected).</p>`;
   input.value = '';
   messages.scrollTop = messages.scrollHeight;
 }
