@@ -7,14 +7,11 @@
   <title>Prison Justice – pomoc prawna dla osadzonych</title>
   <meta name="description" content="Pomoc prawna w uzyskaniu odszkodowania za złe warunki więzienne w Słowenii i innych krajach. Procedura polubowna i ETPCz.">
 
-  <!-- Hreflang -->
-  <link rel="alternate" hreflang="pl" href="index.html">
-  <link rel="alternate" hreflang="en" href="en/index.html">
-  <link rel="alternate" hreflang="ru" href="ru/index.html">
-  <link rel="alternate" hreflang="uk" href="ua/index.html">
-  <link rel="alternate" hreflang="ro" href="ro/index.html">
-  <link rel="alternate" hreflang="md" href="md/index.html">
-  <link rel="alternate" hreflang="x-default" href="index.html">
+  <link rel="alternate" hreflang="pl" href="https://prison-justice.pl/pl/index.html" />
+  <link rel="alternate" hreflang="ru" href="https://prison-justice.pl/ru/index.html" />
+  <link rel="alternate" hreflang="uk" href="https://prison-justice.pl/ua/index.html" />
+  <link rel="alternate" hreflang="ro" href="https://prison-justice.pl/ro/index.html" />
+  <link rel="alternate" hreflang="en" href="https://prison-justice.pl/en/index.html" />
 
   <style>
     body { margin:0; font-family: Arial, sans-serif; line-height: 1.6; }
@@ -29,42 +26,20 @@
     main { padding: 20px; max-width: 900px; margin: auto; }
     section h2 { color: #003366; }
     footer { background-color: #003366; color: white; text-align: center; padding: 15px; margin-top: 40px; }
-
-    .btn-link {
-      display: inline-block;
-      padding: 14px 22px;
-      margin: 10px 10px 10px 0;
-      background-color: #003366;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-    }
+    .btn-link { display: inline-block; padding: 14px 22px; margin: 10px 10px 10px 0; background-color: #003366; color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold; }
     .btn-link:hover { background-color: #0055aa; }
 
-    /* PRZYCISK POBIERANIA APK */
-    .download-button {
-      display: inline-block;
-      padding: 15px 30px;
-      background-color: #0047AB;
-      color: #ffffff;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      border: 2px solid #D4AF37;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-    }
-
-    .download-button:hover {
-      background-color: #D4AF37;
-      color: #000000;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.5);
-      transform: translateY(-2px);
-    }
+    /* CHATBOT */
+    #chatbot-toggle { position: fixed !important; bottom: 20px; right: 20px; background: #003366; color: white; padding: 14px 18px; border-radius: 50px; cursor: pointer; z-index: 2147483647 !important; font-weight: bold; }
+    #chatbot-box { position: fixed !important; bottom: 80px; right: 20px; width: 320px; height: 420px; background: white; border: 2px solid #003366; border-radius: 10px; display: flex; flex-direction: column; visibility: hidden; opacity: 0; transition: opacity 0.2s ease; z-index: 2147483647 !important; }
+    #chatbot-header { background: #003366; color: white; padding: 10px; font-weight: bold; }
+    #chatbot-messages { flex: 1; padding: 10px; overflow-y: auto; font-size: 14px; }
+    #chatbot-input { display: flex; border-top: 1px solid #ccc; }
+    #chatbot-input input { flex: 1; padding: 8px; border: none; }
+    #chatbot-input button { padding: 8px 12px; border: none; background: #003366; color: white; cursor: pointer; }
   </style>
-</head>
 
+</head>
 <body>
 
 <section class="hero">
@@ -76,8 +51,8 @@
 <header>
   <h1>Prison Justice – pomoc prawna dla osadzonych</h1>
 
-  <nav class="flags">
-    <a href="index.html"><img src="pl.png" alt="Polski"></a>
+   <nav class="flags">
+    <a href="/pl/index.html"><img src="pl.png" alt="Польська"></a>
     <a href="/ua/index.html"><img src="ua.png" alt="Українська"></a>
     <a href="/en/index.html"><img src="en.png" alt="English"></a>
     <a href="/ru/index.html"><img src="ru.png" alt="Русский"></a>
@@ -103,68 +78,84 @@
 </header>
 
 <main>
+  <section>
+    <h2>Pomoc prawna dla osób osadzonych</h2>
+    <p>
+      Pomagamy osobom, które doświadczyły złych warunków odbywania kary pozbawienia
+      wolności w Słowenii – zarówno na etapie postępowania polubownego, jak i
+      przed Europejskim Trybunałem Praw Człowieka w Strasburgu.
+    </p>
+  </section>
 
-<section>
-  <h2>Pomoc prawna dla osób osadzonych</h2>
-  <p>
-    Pomagamy osobom, które doświadczyły złych warunków odbywania kary pozbawienia
-    wolności w Słowenii – zarówno na etapie postępowania polubownego, jak i
-    przed Europejskim Trybunałem Praw Człowieka w Strasburgu.
-  </p>
-</section>
+  <section>
+    <h2>Sprawdź swoją sprawę</h2>
+    <p>
+      Odpowiedz na kilka pytań w formularzu, a my ocenimy Twoją sytuację
+      i poinformujemy, czy przysługuje Ci odszkodowanie.
+    </p>
+    <a href="formularz.html" class="btn-link">Wypełnij formularz – ocena sprawy</a>
+  </section>
 
-<section>
-  <h2>Sprawdź swoją sprawę</h2>
-  <p>
-    Odpowiedz na kilka pytań w formularzu, a my ocenimy Twoją sytuację
-    i poinformujemy, czy przysługuje Ci odszkodowanie.
-  </p>
-  <a href="formularz.html" class="btn-link">Wypełnij formularz – ocena sprawy</a>
-</section>
+  <section>
+    <h2>Cennik i płatności</h2>
+    <a href="pricing.html" class="btn-link">Zobacz cennik</a>
+    <a href="payment.html" class="btn-link">Dokonaj płatności</a>
+  </section>
 
-<section>
-  <h2>Aplikacja mobilna Prison Justice</h2>
-  <p>
-    Pobierz aplikację Prison Justice na Androida i miej dostęp do formularzy
-    oraz informacji prawnych bezpośrednio z telefonu.
-  </p>
-
-  <a href="/pl/prison-justice-pl.apk
-"
-     class="download-button"
-     download>
-     Pobierz aplikację na Androida
-  </a>
-
-  <p style="font-size:0.9em;color:#555;margin-top:8px;">
-    Po pobraniu może być konieczne zezwolenie na instalację aplikacji
-    z nieznanych źródeł w ustawieniach telefonu.
-  </p>
-</section>
-
-<section>
-  <h2>Cennik i płatności</h2>
-  <a href="pricing.html" class="btn-link">Zobacz cennik</a>
-  <a href="payment.html" class="btn-link">Dokonaj płatności</a>
-</section>
-
-<section>
-  <h2>Najczęstsze naruszenia</h2>
-  <ul>
-    <li>Przeludnienie cel</li>
-    <li>Złe warunki sanitarne</li>
-    <li>Brak opieki medycznej</li>
-    <li>Zastraszanie i naciski</li>
-    <li>Brak dokumentów w zrozumiałym języku</li>
-  </ul>
-</section>
-
+  <section>
+    <h2>Najczęstsze naruszenia</h2>
+    <ul>
+      <li>Przeludnienie cel</li>
+      <li>Złe warunki sanitarne</li>
+      <li>Brak opieki medycznej</li>
+      <li>Zastraszanie i naciski</li>
+      <li>Brak dokumentów w zrozumiałym języku</li>
+    </ul>
+  </section>
 </main>
 
 <footer>
   <p>&copy; 2026 Prison Justice PL</p>
   <p>tel: +48 725 144 019 | mail: contact@prison-justice.pl</p>
 </footer>
+
+<!-- CHATBOT -->
+<div id="chatbot-toggle">Chat</div>
+
+<div id="chatbot-box">
+  <div id="chatbot-header">Pomoc prawna</div>
+  <div id="chatbot-messages">
+    <p><strong>Asystent:</strong> Jak mogę Ci pomóc?</p>
+  </div>
+  <div id="chatbot-input">
+    <input id="chatbot-text" placeholder="Wpisz pytanie">
+    <button onclick="sendMessage()">Wyślij</button>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  let openChat=false;
+  const toggle=document.getElementById("chatbot-toggle");
+  const box=document.getElementById("chatbot-box");
+
+  toggle.addEventListener("click", function(){
+    openChat=!openChat;
+    box.style.visibility=openChat?"visible":"hidden";
+    box.style.opacity=openChat?"1":"0";
+  });
+
+  window.sendMessage=function(){
+    const input=document.getElementById("chatbot-text");
+    const messages=document.getElementById("chatbot-messages");
+    if(!input.value.trim()) return;
+    messages.innerHTML+="<p><strong>Ty:</strong> "+input.value+"</p>";
+    messages.innerHTML+="<p><strong>Asystent:</strong> Demo odpowiedź.</p>";
+    input.value="";
+    messages.scrollTop=messages.scrollHeight;
+  };
+});
+</script>
 
 </body>
 </html>
