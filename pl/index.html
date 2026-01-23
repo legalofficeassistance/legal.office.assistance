@@ -1,171 +1,144 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Prison Justice – pomoc prawna dla osadzonych</title>
-  <meta name="description" content="Pomoc prawna w uzyskaniu odszkodowania za złe warunki więzienne w Słowenii i innych krajach. Procedura polubowna i ETPCz.">
+<title>Prison Justice – pomoc prawna dla osadzonych</title>
+<meta name="description" content="Pomoc prawna w uzyskaniu odszkodowania za złe warunki więzienne w Słowenii.">
 
-  <link rel="alternate" hreflang="pl" href="https://prison-justice.pl/pl/index.html" />
-  <link rel="alternate" hreflang="ru" href="https://prison-justice.pl/ru/index.html" />
-  <link rel="alternate" hreflang="uk" href="https://prison-justice.pl/ua/index.html" />
-  <link rel="alternate" hreflang="ro" href="https://prison-justice.pl/ro/index.html" />
-  <link rel="alternate" hreflang="en" href="https://prison-justice.pl/en/index.html" />
+<style>
+body { margin:0; font-family: Arial, sans-serif; line-height:1.6; }
+.hero { background:#222; padding:90px 20px; color:#fff; text-align:center; font-size:1.4em; font-style:italic; }
+header { background:#003366; color:white; padding:15px 20px; }
+header h1 { margin:0 0 10px 0; font-size:1.4em; }
+.menu ul { list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:14px; }
+.menu a { color:#fff; text-decoration:none; font-weight:bold; font-size:0.95em; }
+main { padding:20px; max-width:900px; margin:auto; }
+section h2 { color:#003366; }
+footer { background:#003366; color:white; text-align:center; padding:15px; margin-top:40px; }
+.btn-link { display:inline-block; padding:14px 22px; margin:10px 10px 10px 0; background:#003366; color:white; text-decoration:none; border-radius:6px; font-weight:bold; }
 
-  <style>
-    body { margin:0; font-family: Arial, sans-serif; line-height: 1.6; }
-    .hero { background-image: url('images.jpg'); background-size: cover; background-position: center; padding: 90px 20px; color: #fff; text-align: center; font-size: 1.4em; font-style: italic; }
-    header { background-color: #003366; color: white; padding: 15px 20px; }
-    header h1 { margin: 0 0 10px 0; font-size: 1.4em; }
-    .flags { margin-bottom: 10px; }
-    .flags img { width: 28px; margin-right: 6px; }
-    .menu ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 14px; }
-    .menu a { color: #ffffff; text-decoration: none; font-weight: bold; font-size: 0.95em; }
-    .menu a:hover { text-decoration: underline; }
-    main { padding: 20px; max-width: 900px; margin: auto; }
-    section h2 { color: #003366; }
-    footer { background-color: #003366; color: white; text-align: center; padding: 15px; margin-top: 40px; }
-    .btn-link { display: inline-block; padding: 14px 22px; margin: 10px 10px 10px 0; background-color: #003366; color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold; }
-    .btn-link:hover { background-color: #0055aa; }
+/* CHAT */
+#chatbot-toggle {
+  position:fixed;
+  bottom:120px;
+  right:20px;
+  background:#003366;
+  color:white;
+  padding:14px 18px;
+  border-radius:50px;
+  cursor:pointer;
+  z-index:999999;
+  font-weight:bold;
+}
 
-    /* CHATBOT */
-    #chatbot-toggle {
-      position: fixed !important;
-      bottom: 20px;
-      right: 20px;
-      background: #003366;
-      color: white;
-      padding: 14px 18px;
-      border-radius: 50px;
-      cursor: pointer;
-      z-index: 2147483647 !important;
-      font-weight: bold;
-    }
+#chatbot-box {
+  position:fixed;
+  bottom:190px;
+  right:20px;
+  width:320px;
+  height:420px;
+  background:white;
+  border:2px solid #003366;
+  border-radius:10px;
+  display:flex;
+  flex-direction:column;
+  visibility:hidden;
+  opacity:0;
+  transition:opacity 0.2s ease;
+  z-index:999999;
+  box-shadow:0 10px 40px rgba(0,0,0,0.35);
+}
 
-    #chatbot-box {
-      position: fixed !important;
-      bottom: 80px;
-      right: 20px;
-      width: 320px;
-      height: 420px;
-      background: white;
-      border: 2px solid #003366;
-      border-radius: 10px;
-      display: flex;
-      flex-direction: column;
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-      z-index: 2147483647 !important;
-    }
-
-    #chatbot-header { background: #003366; color: white; padding: 10px; font-weight: bold; }
-    #chatbot-messages { flex: 1; padding: 10px; overflow-y: auto; font-size: 14px; }
-    #chatbot-input { display: flex; border-top: 1px solid #ccc; }
-    #chatbot-input input { flex: 1; padding: 8px; border: none; }
-    #chatbot-input button { padding: 8px 12px; border: none; background: #003366; color: white; cursor: pointer; }
-  </style>
+#chatbot-header { background:#003366; color:white; padding:10px; font-weight:bold; }
+#chatbot-messages { flex:1; padding:10px; overflow-y:auto; font-size:14px; }
+#chatbot-input { display:flex; border-top:1px solid #ccc; }
+#chatbot-input input { flex:1; padding:8px; border:none; }
+#chatbot-input button { padding:8px 12px; border:none; background:#003366; color:white; cursor:pointer; }
+</style>
 </head>
 
 <body>
 
 <section class="hero">
-  <blockquote>
-    „Miarą ucywilizowania danego narodu jest jego podejście do skazańców.” — Fiodor Dostojewski
-  </blockquote>
+„Miarą ucywilizowania danego narodu jest jego podejście do skazańców.” — Fiodor Dostojewski
 </section>
 
 <header>
-  <h1>Prison Justice – pomoc prawna dla osadzonych</h1>
-
-  <nav class="flags">
-    <a href="/pl/index.html"><img src="pl.png" alt="Polski"></a>
-    <a href="/ua/index.html"><img src="ua.png" alt="Українська"></a>
-    <a href="/en/index.html"><img src="en.png" alt="English"></a>
-    <a href="/ru/index.html"><img src="ru.png" alt="Русский"></a>
-    <a href="/ro/index.html"><img src="ro.png" alt="Română"></a>
-    <a href="/md/index.html"><img src="md.png" alt="Moldova"></a>
-  </nav>
-
-  <!-- MENU -->
-  <nav class="menu">
-    <ul>
-      <li><a href="index.html">Strona główna</a></li>
-      <li><a href="slowenia.html">Słowenia</a></li>
-      <li><a href="procedura-polubowna.html">Procedura</a></li>
-      <li><a href="jak-przebiega-postepowanie.html">Jak przebiega postępowanie</a></li>
-      <li><a href="pricing.html">Cennik</a></li>
-      <li><a href="payment.html">Płatność</a></li>
-      <li><a href="forum.html">Anonimowe zgłoszenia</a></li>
-      <li><a href="faq-slowenia.html">FAQ</a></li>
-      <li><a href="spolecznosc.html">Społeczność</a></li>
-      <li><a href="materialy.html">Materiały</a></li>
-
-      <!-- NOWE PRZYCISKI -->
-      <li><a href="apk.index">Pobierz aplikację na telefon</a></li>
-      <li><a href="pl/privacy-policy.html">Polityka prywatności</a></li>
-
-      <li><a href="kontakt.html">Kontakt</a></li>
-    </ul>
-  </nav>
+<h1>Prison Justice – pomoc prawna dla osadzonych</h1>
+<nav class="menu">
+<ul>
+<li><a href="index.html">Strona główna</a></li>
+<li><a href="slowenia.html">Słowenia</a></li>
+<li><a href="procedura-polubowna.html">Procedura</a></li>
+<li><a href="pricing.html">Cennik</a></li>
+<li><a href="apk.index">Pobierz aplikację</a></li>
+<li><a href="pl/privacy-policy.html">Polityka prywatności</a></li>
+<li><a href="kontakt.html">Kontakt</a></li>
+</ul>
+</nav>
 </header>
 
 <main>
-  <section>
-    <h2>Pomoc prawna dla osób osadzonych</h2>
-    <p>
-      Pomagamy osobom, które doświadczyły złych warunków odbywania kary pozbawienia
-      wolności w Słowenii – zarówno na etapie postępowania polubownego, jak i
-      przed Europejskim Trybunałem Praw Człowieka w Strasburgu.
-    </p>
-  </section>
+<section>
+<h2>Pomoc prawna</h2>
+<p>Pomagamy osobom osadzonym w uzyskaniu odszkodowania za nieludzkie warunki odbywania kary w Słowenii.</p>
+</section>
 
-  <section>
-    <h2>Sprawdź swoją sprawę</h2>
-    <a href="formularz.html" class="btn-link">Wypełnij formularz – ocena sprawy</a>
-  </section>
+<section>
+<h2>Sprawdź swoją sprawę</h2>
+<a href="formularz.html" class="btn-link">Wypełnij formularz</a>
+</section>
 </main>
 
 <footer>
-  <p>&copy; 2026 Prison Justice PL</p>
-  <p>tel: +48 725 144 019 | mail: contact@prison-justice.pl</p>
+<p>&copy; 2026 Prison Justice</p>
+<p>tel: +48 725 144 019 | contact@prison-justice.pl</p>
 </footer>
 
-<!-- CHATBOT -->
+<!-- CHAT -->
 <div id="chatbot-toggle">Chat</div>
 
 <div id="chatbot-box">
-  <div id="chatbot-header">Pomoc prawna</div>
-  <div id="chatbot-messages">
-    <p><strong>Asystent:</strong> Jak mogę pomóc?</p>
-  </div>
-  <div id="chatbot-input">
-    <input id="chatbot-text" placeholder="Wpisz pytanie">
-    <button onclick="sendMessage()">Wyślij</button>
-  </div>
+<div id="chatbot-header">Asystent prawny</div>
+<div id="chatbot-messages">
+<p><strong>Asystent:</strong> W czym mogę pomóc?</p>
+</div>
+<div id="chatbot-input">
+<input id="chatbot-text" placeholder="Zadaj pytanie">
+<button onclick="sendMessage()">Wyślij</button>
+</div>
 </div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  let openChat = false;
-  const toggle = document.getElementById("chatbot-toggle");
-  const box = document.getElementById("chatbot-box");
+  let openChat=false;
+  const toggle=document.getElementById("chatbot-toggle");
+  const box=document.getElementById("chatbot-box");
+  const messages=document.getElementById("chatbot-messages");
+  const input=document.getElementById("chatbot-text");
 
-  toggle.addEventListener("click", function () {
-    openChat = !openChat;
-    box.style.visibility = openChat ? "visible" : "hidden";
-    box.style.opacity = openChat ? "1" : "0";
-  });
+  toggle.onclick=()=>{openChat=!openChat;box.style.visibility=openChat?"visible":"hidden";box.style.opacity=openChat?"1":"0";};
 
-  window.sendMessage = function () {
-    const input = document.getElementById("chatbot-text");
-    const messages = document.getElementById("chatbot-messages");
-    if (!input.value.trim()) return;
-    messages.innerHTML += "<p><strong>Ty:</strong> " + input.value + "</p>";
-    messages.innerHTML += "<p><strong>Asystent:</strong> Odpowiedź demonstracyjna.</p>";
-    input.value = "";
-    messages.scrollTop = messages.scrollHeight;
+  const knowledge=[
+    {k:["słowenia","slowenia"],a:"Sprawy dotyczące Słowenii mogą prowadzić do odszkodowania, jeśli doszło do naruszenia art. 3 EKPC."},
+    {k:["przeludnienie","cela","metry"],a:"Przeludnienie celi (poniżej 3 m² na osobę) jest uznawane przez ETPCz za naruszenie praw człowieka."},
+    {k:["odszkodowanie","pieniądze"],a:"Wysokość odszkodowania zależy od czasu naruszeń i warunków. Każda sprawa jest oceniana indywidualnie."},
+    {k:["czas","ile trwa"],a:"Postępowanie polubowne trwa zwykle kilka miesięcy. Sprawy ETPCz mogą trwać dłużej."},
+    {k:["anonimowo","anonimowe"],a:"Możliwe jest wstępne anonimowe zgłoszenie sprawy."},
+    {k:["koszt","cena","płatność"],a:"Szczegóły dotyczące kosztów znajdują się w zakładce Cennik."}
+  ];
+
+  window.sendMessage=function(){
+    const text=input.value.trim();
+    if(!text)return;
+    messages.innerHTML+=`<p><strong>Ty:</strong> ${text}</p>`;
+    input.value="";
+    let reply="Aby dokładnie ocenić Twoją sytuację, zalecamy wypełnienie formularza.";
+    for(let i of knowledge){if(i.k.some(w=>text.toLowerCase().includes(w))){reply=i.a;break;}}
+    messages.innerHTML+=`<p><strong>Asystent:</strong> ${reply}</p>`;
+    messages.scrollTop=messages.scrollHeight;
   };
 });
 </script>
