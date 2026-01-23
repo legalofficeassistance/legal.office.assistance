@@ -1,237 +1,157 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Prison Justice – pomoc prawna dla osadzonych</title>
-<meta name="description" content="Pomoc prawna w uzyskaniu odszkodowania za złe warunki więzienne w Słowenii.">
+  <title>Prison Justice – pomoc prawna dla osadzonych</title>
+  <meta name="description" content="Pomoc prawna w uzyskaniu odszkodowania za złe warunki więzienne w Słowenii i innych krajach. Procedura polubowna i ETPCz.">
 
-<style>
-body { margin:0; font-family: Arial, sans-serif; line-height:1.6; }
-.hero { background:#222; padding:90px 20px; color:#fff; text-align:center; font-size:1.4em; font-style:italic; }
-header { background:#003366; color:white; padding:15px 20px; }
-header h1 { margin:0 0 10px 0; font-size:1.4em; }
-.menu ul { list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:14px; }
-.menu a { color:#fff; text-decoration:none; font-weight:bold; font-size:0.95em; }
-main { padding:20px; max-width:900px; margin:auto; }
-section h2 { color:#003366; }
-footer { background:#003366; color:white; text-align:center; padding:15px; margin-top:40px; }
-.btn-link { display:inline-block; padding:14px 22px; margin:10px 10px 10px 0; background:#003366; color:white; text-decoration:none; border-radius:6px; font-weight:bold; }
+  <link rel="alternate" hreflang="pl" href="https://prison-justice.pl/pl/index.html" />
+  <link rel="alternate" hreflang="ru" href="https://prison-justice.pl/ru/index.html" />
+  <link rel="alternate" hreflang="uk" href="https://prison-justice.pl/ua/index.html" />
+  <link rel="alternate" hreflang="ro" href="https://prison-justice.pl/ro/index.html" />
+  <link rel="alternate" hreflang="en" href="https://prison-justice.pl/en/index.html" />
 
-<!-- === CHATBOT FIXED === -->
-<style>
-#chat-toggle {
-  position: fixed;
-  bottom: 260px;
-  right: 20px;
-  background: #003366;
-  color: #fff;
-  padding: 14px 20px;
-  border-radius: 40px;
-  cursor: pointer;
-  z-index: 2147483647;
-  font-weight: bold;
-}
+  <style>
+    body { margin:0; font-family: Arial, sans-serif; line-height: 1.6; }
+    .hero { background-image: url('images.jpg'); background-size: cover; background-position: center; padding: 90px 20px; color: #fff; text-align: center; font-size: 1.4em; font-style: italic; }
+    header { background-color: #003366; color: white; padding: 15px 20px; }
+    header h1 { margin: 0 0 10px 0; font-size: 1.4em; }
+    .flags { margin-bottom: 10px; }
+    .flags img { width: 28px; margin-right: 6px; }
+    .menu ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 14px; }
+    .menu a { color: #ffffff; text-decoration: none; font-weight: bold; font-size: 0.95em; }
+    .menu a:hover { text-decoration: underline; }
+    main { padding: 20px; max-width: 900px; margin: auto; }
+    section h2 { color: #003366; }
+    footer { background-color: #003366; color: white; text-align: center; padding: 15px; margin-top: 40px; }
+    .btn-link { display: inline-block; padding: 14px 22px; margin: 10px 10px 10px 0; background-color: #003366; color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold; }
+    .btn-link:hover { background-color: #0055aa; }
 
-#chat-box {
-  position: fixed;
-  bottom: 320px;
-  right: 20px;
-  width: 360px;
-  max-height: 480px;
-  background: #ffffff;
-  border: 3px solid #003366;
-  border-radius: 12px;
-  display: none;
-  flex-direction: column;
-  z-index: 2147483647;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-}
+    /* CHATBOT */
+    #chatbot-toggle { position: fixed !important; bottom: 20px; right: 20px; background: #003366; color: white; padding: 14px 18px; border-radius: 50px; cursor: pointer; z-index: 2147483647 !important; font-weight: bold; }
+    #chatbot-box { position: fixed !important; bottom: 80px; right: 20px; width: 320px; height: 420px; background: white; border: 2px solid #003366; border-radius: 10px; display: flex; flex-direction: column; visibility: hidden; opacity: 0; transition: opacity 0.2s ease; z-index: 2147483647 !important; }
+    #chatbot-header { background: #003366; color: white; padding: 10px; font-weight: bold; }
+    #chatbot-messages { flex: 1; padding: 10px; overflow-y: auto; font-size: 14px; }
+    #chatbot-input { display: flex; border-top: 1px solid #ccc; }
+    #chatbot-input input { flex: 1; padding: 8px; border: none; }
+    #chatbot-input button { padding: 8px 12px; border: none; background: #003366; color: white; cursor: pointer; }
+  </style>
 
-#chat-header {
-  background: #003366;
-  color: #ffffff;
-  padding: 14px;
-  font-weight: bold;
-}
-
-#chat-messages {
-  padding: 14px;
-  overflow-y: auto;
-  flex: 1;
-  font-size: 14px;
-}
-
-#chat-input {
-  display: flex;
-  border-top: 1px solid #ccc;
-}
-
-#chat-input input {
-  flex: 1;
-  border: none;
-  padding: 12px;
-  font-size: 14px;
-}
-
-#chat-input button {
-  background: #003366;
-  color: white;
-  border: none;
-  padding: 12px 18px;
-  cursor: pointer;
-}
-</style>
-
-<div id="chat-toggle">Pomoc</div>
-
-<div id="chat-box">
-  <div id="chat-header">Asystent informacyjny</div>
-  <div id="chat-messages">
-    <div><strong>Asystent:</strong> Witaj. Mogę wytłumaczyć, jak wygląda procedura, gdzie jest formularz i co w nim wpisać.</div>
-  </div>
-  <div id="chat-input">
-    <input type="text" id="userInput" placeholder="Napisz pytanie..." />
-    <button onclick="sendMsg()">▶</button>
-  </div>
-</div>
-
-<script>
-let lastTopic = "";
-
-document.getElementById("chat-toggle").onclick = () => {
-  const box = document.getElementById("chat-box");
-  box.style.display = box.style.display === "flex" ? "none" : "flex";
-};
-
-function sendMsg() {
-  const input = document.getElementById("userInput");
-  const text = input.value.trim();
-  if (!text) return;
-
-  addMsg("Ty", text);
-  input.value = "";
-
-  const t = text.toLowerCase();
-  let reply = "";
-
-  if (["cześć","hej","witaj","dzień dobry"].some(w => t.includes(w))) {
-    reply = "Dzień dobry. W czym mogę pomóc konkretnie?";
-  }
-  else if (t.includes("formularz")) {
-    lastTopic = "formularz";
-    reply = "Formularz służy do wstępnej oceny, czy przysługuje odszkodowanie. Jest na stronie głównej pod przyciskiem „Wypełnij formularz”.";
-  }
-  else if (["który","jaki"].some(w => t.includes(w)) && lastTopic === "formularz") {
-    reply = "Chodzi o jedyny formularz dotyczący warunków odbywania kary w Słowenii.";
-  }
-  else if (["gdzie","jak znaleźć"].some(w => t.includes(w))) {
-    reply = "Na stronie głównej – po kliknięciu „Wypełnij formularz”. Nie trzeba się rejestrować.";
-  }
-  else if (["co wpisać","jak wypełnić","co napisać"].some(w => t.includes(w))) {
-    reply = "Podajesz zakład karny, okres osadzenia, liczbę osób w celi i problemy (np. przeludnienie, brak opieki medycznej).";
-  }
-  else if (t.includes("?")) {
-    reply = "Spróbuj doprecyzować pytanie. Mogę pomóc z procedurą, formularzem albo warunkami osadzenia.";
-  }
-  else {
-    reply = "Rozumiem. Czy pytanie dotyczy formularza, procedury czy odszkodowania?";
-  }
-
-  setTimeout(() => addMsg("Asystent", reply), 300);
-}
-
-function addMsg(sender, text) {
-  const m = document.createElement("div");
-  m.innerHTML = `<strong>${sender}:</strong> ${text}`;
-  m.style.marginBottom = "8px";
-  document.getElementById("chat-messages").appendChild(m);
-  document.getElementById("chat-messages").scrollTop = 999999;
-}
-</script>
-<!-- === CHATBOT END === -->
-
-
+</head>
 <body>
 
 <section class="hero">
-„Miarą ucywilizowania danego narodu jest jego podejście do skazańców.” — Fiodor Dostojewski
+  <blockquote>
+    „Miarą ucywilizowania danego narodu jest jego podejście do skazańców.” — Fiodor Dostojewski
+  </blockquote>
 </section>
 
 <header>
-<h1>Prison Justice – pomoc prawna dla osadzonych</h1>
-<nav class="menu">
-<ul>
-<li><a href="index.html">Strona główna</a></li>
-<li><a href="slowenia.html">Słowenia</a></li>
-<li><a href="procedura-polubowna.html">Procedura</a></li>
-<li><a href="pricing.html">Cennik</a></li>
-<li><a href="apk.index">Pobierz aplikację</a></li>
-<li><a href="pl/privacy-policy.html">Polityka prywatności</a></li>
-<li><a href="kontakt.html">Kontakt</a></li>
-</ul>
-</nav>
+  <h1>Prison Justice – pomoc prawna dla osadzonych</h1>
+
+   <nav class="flags">
+    <a href="/pl/index.html"><img src="pl.png" alt="Польська"></a>
+    <a href="/ua/index.html"><img src="ua.png" alt="Українська"></a>
+    <a href="/en/index.html"><img src="en.png" alt="English"></a>
+    <a href="/ru/index.html"><img src="ru.png" alt="Русский"></a>
+    <a href="/ro/index.html"><img src="ro.png" alt="Română"></a>
+    <a href="/md/index.html"><img src="md.png" alt="Moldova"></a>
+  </nav>
+
+  <nav class="menu">
+    <ul>
+      <li><a href="index.html">Strona główna</a></li>
+      <li><a href="slowenia.html">Słowenia</a></li>
+      <li><a href="procedura-polubowna.html">Procedura</a></li>
+      <li><a href="jak-przebiega-postepowanie.html">Jak przebiega postępowanie</a></li>
+      <li><a href="pricing.html">Cennik</a></li>
+      <li><a href="payment.html">Płatność</a></li>
+      <li><a href="forum.html">Anonimowe zgłoszenia</a></li>
+      <li><a href="faq-slowenia.html">FAQ</a></li>
+      <li><a href="spolecznosc.html">Społeczność</a></li>
+      <li><a href="materialy.html">Materiały</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+  </nav>
 </header>
 
 <main>
-<section>
-<h2>Pomoc prawna</h2>
-<p>Pomagamy osobom osadzonym w uzyskaniu odszkodowania za nieludzkie warunki odbywania kary w Słowenii.</p>
-</section>
+  <section>
+    <h2>Pomoc prawna dla osób osadzonych</h2>
+    <p>
+      Pomagamy osobom, które doświadczyły złych warunków odbywania kary pozbawienia
+      wolności w Słowenii – zarówno na etapie postępowania polubownego, jak i
+      przed Europejskim Trybunałem Praw Człowieka w Strasburgu.
+    </p>
+  </section>
 
-<section>
-<h2>Sprawdź swoją sprawę</h2>
-<a href="formularz.html" class="btn-link">Wypełnij formularz</a>
-</section>
+  <section>
+    <h2>Sprawdź swoją sprawę</h2>
+    <p>
+      Odpowiedz na kilka pytań w formularzu, a my ocenimy Twoją sytuację
+      i poinformujemy, czy przysługuje Ci odszkodowanie.
+    </p>
+    <a href="formularz.html" class="btn-link">Wypełnij formularz – ocena sprawy</a>
+  </section>
+
+  <section>
+    <h2>Cennik i płatności</h2>
+    <a href="pricing.html" class="btn-link">Zobacz cennik</a>
+    <a href="payment.html" class="btn-link">Dokonaj płatności</a>
+  </section>
+
+  <section>
+    <h2>Najczęstsze naruszenia</h2>
+    <ul>
+      <li>Przeludnienie cel</li>
+      <li>Złe warunki sanitarne</li>
+      <li>Brak opieki medycznej</li>
+      <li>Zastraszanie i naciski</li>
+      <li>Brak dokumentów w zrozumiałym języku</li>
+    </ul>
+  </section>
 </main>
 
 <footer>
-<p>&copy; 2026 Prison Justice</p>
-<p>tel: +48 725 144 019 | contact@prison-justice.pl</p>
+  <p>&copy; 2026 Prison Justice PL</p>
+  <p>tel: +48 725 144 019 | mail: contact@prison-justice.pl</p>
 </footer>
 
-<!-- CHAT -->
+<!-- CHATBOT -->
 <div id="chatbot-toggle">Chat</div>
 
 <div id="chatbot-box">
-<div id="chatbot-header">Asystent prawny</div>
-<div id="chatbot-messages">
-<p><strong>Asystent:</strong> W czym mogę pomóc?</p>
-</div>
-<div id="chatbot-input">
-<input id="chatbot-text" placeholder="Zadaj pytanie">
-<button onclick="sendMessage()">Wyślij</button>
-</div>
+  <div id="chatbot-header">Pomoc prawna</div>
+  <div id="chatbot-messages">
+    <p><strong>Asystent:</strong> Jak mogę Ci pomóc?</p>
+  </div>
+  <div id="chatbot-input">
+    <input id="chatbot-text" placeholder="Wpisz pytanie">
+    <button onclick="sendMessage()">Wyślij</button>
+  </div>
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function(){
   let openChat=false;
   const toggle=document.getElementById("chatbot-toggle");
   const box=document.getElementById("chatbot-box");
-  const messages=document.getElementById("chatbot-messages");
-  const input=document.getElementById("chatbot-text");
 
-  toggle.onclick=()=>{openChat=!openChat;box.style.visibility=openChat?"visible":"hidden";box.style.opacity=openChat?"1":"0";};
-
-  const knowledge=[
-    {k:["słowenia","slowenia"],a:"Sprawy dotyczące Słowenii mogą prowadzić do odszkodowania, jeśli doszło do naruszenia art. 3 EKPC."},
-    {k:["przeludnienie","cela","metry"],a:"Przeludnienie celi (poniżej 3 m² na osobę) jest uznawane przez ETPCz za naruszenie praw człowieka."},
-    {k:["odszkodowanie","pieniądze"],a:"Wysokość odszkodowania zależy od czasu naruszeń i warunków. Każda sprawa jest oceniana indywidualnie."},
-    {k:["czas","ile trwa"],a:"Postępowanie polubowne trwa zwykle kilka miesięcy. Sprawy ETPCz mogą trwać dłużej."},
-    {k:["anonimowo","anonimowe"],a:"Możliwe jest wstępne anonimowe zgłoszenie sprawy."},
-    {k:["koszt","cena","płatność"],a:"Szczegóły dotyczące kosztów znajdują się w zakładce Cennik."}
-  ];
+  toggle.addEventListener("click", function(){
+    openChat=!openChat;
+    box.style.visibility=openChat?"visible":"hidden";
+    box.style.opacity=openChat?"1":"0";
+  });
 
   window.sendMessage=function(){
-    const text=input.value.trim();
-    if(!text)return;
-    messages.innerHTML+=`<p><strong>Ty:</strong> ${text}</p>`;
+    const input=document.getElementById("chatbot-text");
+    const messages=document.getElementById("chatbot-messages");
+    if(!input.value.trim()) return;
+    messages.innerHTML+="<p><strong>Ty:</strong> "+input.value+"</p>";
+    messages.innerHTML+="<p><strong>Asystent:</strong> Demo odpowiedź.</p>";
     input.value="";
-    let reply="Aby dokładnie ocenić Twoją sytuację, zalecamy wypełnienie formularza.";
-    for(let i of knowledge){if(i.k.some(w=>text.toLowerCase().includes(w))){reply=i.a;break;}}
-    messages.innerHTML+=`<p><strong>Asystent:</strong> ${reply}</p>`;
     messages.scrollTop=messages.scrollHeight;
   };
 });
