@@ -1,191 +1,209 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Помощь в компенсациях за плохие условия содержания – Prison Justice</title>
-  <meta name="description" content="Юридическая помощь в получении компенсации за плохие условия отбывания наказания. Подача жалоб в ЕСПЧ в Страсбурге.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Hreflang -->
-  <link rel="alternate" hreflang="pl" href="https://prison-justice.pl/pl/index.html" />
-  <link rel="alternate" hreflang="ru" href="https://prison-justice.pl/ru/index.html" />
-  <link rel="alternate" hreflang="uk" href="https://prison-justice.pl/ua/index.html" />
-  <link rel="alternate" hreflang="ro" href="https://prison-justice.pl/ro/index.html" />
-  <link rel="alternate" hreflang="en" href="https://prison-justice.pl/en/index.html" />
+<title>Prison Justice – юридическая помощь заключённым</title>
+<meta name="description" content="Юридическая помощь в получении компенсации за плохие условия содержания.">
 
-  <!-- FAQ Schema – bez zmian -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Какую помощь предлагает Prison Justice?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Мы предлагаем профессиональную юридическую помощь людям, столкнувшимся с плохими условиями содержания в тюрьмах Европы, включая Словению."
-        }
-      }
-    ]
-  }
-  </script>
+<!-- Hreflang / Флаги языков -->
+<link rel="alternate" hreflang="pl" href="https://prison-justice.pl/pl/index.html" />
+<link rel="alternate" hreflang="ru" href="https://prison-justice.pl/ru/index.html" />
+<link rel="alternate" hreflang="uk" href="https://prison-justice.pl/ua/index.html" />
+<link rel="alternate" hreflang="ro" href="https://prison-justice.pl/ro/index.html" />
+<link rel="alternate" hreflang="en" href="https://prison-justice.pl/en/index.html" />
 
-  <style>
-    body { margin:0; font-family: Arial, sans-serif; line-height:1.6; }
+<style>
+body { margin:0; font-family: Arial, sans-serif; line-height:1.6; }
+.hero { background:url('images.jpg') center/cover; padding:90px 20px; color:#fff; text-align:center; font-size:1.4em; font-style:italic; }
 
-    .hero {
-      background-image: url('images.jpg');
-      background-size: cover;
-      background-position: center;
-      padding: 100px 20px;
-      color: white;
-      text-align: center;
-      font-size: 1.5em;
-      font-style: italic;
-    }
+header { background:#003366; color:#fff; padding:15px 20px; }
+header h1 { margin:0 0 10px 0; font-size:1.4em; }
 
-    header { background:#003366; color:#fff; padding:15px 20px; }
-    header h1 { margin:0 0 10px; font-size:1.6em; }
+.flags { margin-bottom:10px; }
+.flags img { width:28px; margin-right:6px; }
 
-    .flags img { width:32px; margin-right:5px; }
+.menu ul { list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:14px; }
+.menu a { color:#fff; text-decoration:none; font-weight:bold; font-size:0.95em; }
+.menu a:hover { text-decoration:underline; }
 
-    .menu ul {
-      list-style:none;
-      padding:0;
-      margin:0;
-      display:flex;
-      flex-wrap:wrap;
-      gap:15px;
-    }
+main { padding:20px; max-width:900px; margin:auto; }
+section h2 { color:#003366; }
 
-    .menu a { color:white; text-decoration:none; }
+footer { background:#003366; color:#fff; text-align:center; padding:15px; margin-top:40px; }
 
-    main { padding:20px; max-width:900px; margin:auto; }
+.btn-link { display:inline-block; padding:14px 22px; margin:10px 10px 10px 0; background:#003366; color:#fff; text-decoration:none; border-radius:6px; font-weight:bold; }
+.btn-link:hover { background:#0055aa; }
 
-    section h2 { color:#003366; }
+/* CHAT */
+#chatbot-toggle{
+  position:fixed;
+  bottom:180px;
+  right:20px;
+  background:#003366;
+  color:#fff;
+  padding:14px 18px;
+  border-radius:40px;
+  cursor:pointer;
+  z-index:2147483647;
+  font-weight:bold;
+}
 
-    footer {
-      background:#003366;
-      color:white;
-      text-align:center;
-      padding:15px;
-      margin-top:40px;
-    }
+#chatbot-box{
+  position:fixed;
+  bottom:240px;
+  right:20px;
+  width:340px;
+  height:460px;
+  background:#fff;
+  border:3px solid #003366;
+  border-radius:12px;
+  display:none;
+  flex-direction:column;
+  z-index:2147483647;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
 
-    .btn-link {
-      display:inline-block;
-      padding:14px 22px;
-      margin:10px 10px 10px 0;
-      background:#003366;
-      color:#fff;
-      text-decoration:none;
-      border-radius:6px;
-      font-weight:bold;
-    }
+#chatbot-header{ background:#003366; color:#fff; padding:12px; font-weight:bold; }
 
-    .btn-link:hover { background:#0055aa; }
+#chatbot-messages{ flex:1; padding:12px; overflow-y:auto; font-size:14px; }
 
-    /* PRZYCISK APK */
-    .download-button {
-      display:inline-block;
-      padding:15px 30px;
-      background:#0047AB;
-      color:#ffffff;
-      text-decoration:none;
-      border-radius:8px;
-      font-weight:bold;
-      border:2px solid #D4AF37;
-      transition:all 0.3s ease;
-      box-shadow:0 4px 6px rgba(0,0,0,0.3);
-    }
-
-    .download-button:hover {
-      background:#D4AF37;
-      color:#000;
-      transform:translateY(-2px);
-      box-shadow:0 6px 12px rgba(0,0,0,0.5);
-    }
-  </style>
+#chatbot-input{ display:flex; border-top:1px solid #ccc; }
+#chatbot-input input{ flex:1; padding:10px; border:none; }
+#chatbot-input button{ background:#003366; color:#fff; border:none; padding:10px 16px; cursor:pointer; }
+</style>
 </head>
 
 <body>
 
 <section class="hero">
-  <blockquote>
-    «Мера цивилизованности народа определяется его отношением к заключённым». — Фёдор Достоевский
-  </blockquote>
+«Мера цивилизованности нации — это её отношение к заключённым.»
 </section>
 
 <header>
-  <h1>Помощь в компенсациях за плохие условия отбывания наказания</h1>
+<h1>Prison Justice – юридическая помощь заключённым</h1>
 
-  <nav class="flags">
-    <a href="/pl/index.html"><img src="pl.png" alt="PL"></a>
-    <a href="/ua/index.html"><img src="ua.png" alt="UA"></a>
-    <a href="/en/index.html"><img src="en.png" alt="EN"></a>
-    <a href="/ru/index.html"><img src="ru.png" alt="RU"></a>
-    <a href="/ro/index.html"><img src="ro.png" alt="RO"></a>
-    <a href="/md/index.html"><img src="md.png" alt="MD"></a>
-  </nav>
+<!-- ФЛАГИ -->
+<nav class="flags">
+<a href="/pl/index.html"><img src="pl.png" alt="Polski"></a>
+<a href="/ua/index.html"><img src="ua.png" alt="Українська"></a>
+<a href="/en/index.html"><img src="en.png" alt="English"></a>
+<a href="/ru/index.html"><img src="ru.png" alt="Русский"></a>
+<a href="/ro/index.html"><img src="ro.png" alt="Română"></a>
+<a href="/md/index.html"><img src="md.png" alt="Moldova"></a>
+</nav>
 
-  <nav class="menu">
-    <ul>
-      <li><a href="index.html">Главная</a></li>
-      <li><a href="slowenia.html">Словения</a></li>
-      <li><a href="procedura-polubowna.html">Досудебная процедура</a></li>
-      <li><a href="jak-przebiega-postepowanie.html">Как проходит рассмотрение дела</a></li>
-      <li><a href="forum.html">Анонимные сообщения</a></li>
-      <li><a href="kontakt.html">Контакты</a></li>
-      <li><a href="spolecznosc.html">Интернет-сообщество</a></li>
-    </ul>
-  </nav>
+<!-- МЕНЮ -->
+<nav class="menu">
+<ul>
+<li><a href="index.html">Главная</a></li>
+<li><a href="slowenia.html">Словения</a></li>
+<li><a href="procedura-polubowna.html">Процедура</a></li>
+<li><a href="jak-przebiega-postepowanie.html">Как проходит процесс</a></li>
+<li><a href="pricing.html">Цены</a></li>
+<li><a href="payment.html">Оплата</a></li>
+<li><a href="forum.html">Анонимные заявки</a></li>
+<li><a href="faq-slowenia.html">FAQ</a></li>
+<li><a href="spolecznosc.html">Сообщество</a></li>
+<li><a href="materialy.html">Материалы</a></li>
+
+<!-- НОВЫЕ КНОПКИ -->
+<li><a href="apk.html">Скачать приложение</a></li>
+<li><a href="pl/privacy-policy.html">Политика конфиденциальности</a></li>
+
+<li><a href="kontakt.html">Контакты</a></li>
+</ul>
+</nav>
 </header>
 
 <main>
-
 <section>
-  <h2>Введение</h2>
-  <p>
-    Наш сайт предоставляет профессиональную юридическую помощь лицам,
-    столкнувшимся с ненадлежащими условиями содержания в тюрьмах Европы,
-    включая Словению.
-  </p>
+<h2>Юридическая помощь для заключённых</h2>
+<p>
+Мы помогаем людям, которые столкнулись с плохими условиями содержания в Словении — как на этапе досудебного разбирательства, так и перед Европейским судом по правам человека.
+</p>
 </section>
 
 <section>
-  <h2>Проверьте своё дело</h2>
-  <a href="formularz.html" class="btn-link">
-    Заполнить форму – оценка дела
-  </a>
+<h2>Проверьте своё дело</h2>
+<p>
+Ответьте на несколько вопросов в форме, и мы оценим вашу ситуацию.
+</p>
+<a href="formularz.html" class="btn-link">Заполнить форму – оценка дела</a>
 </section>
 
 <section>
-  <h2>Мобильное приложение Prison Justice</h2>
-  <p>
-    Скачайте мобильное приложение Prison Justice для Android,
-    чтобы получить быстрый доступ к формам, материалам
-    и юридической помощи прямо со смартфона.
-  </p>
-
-  <a href="/pl/prison-justice-pl.apk"
-     class="download-button"
-     download>
-     Скачать приложение для Android
-  </a>
-
-  <p style="font-size:0.9em;color:#555;margin-top:8px;">
-    После загрузки может потребоваться разрешить установку
-    приложений из неизвестных источников в настройках телефона.
-  </p>
+<h2>Цены и оплата</h2>
+<a href="pricing.html" class="btn-link">Смотреть цены</a>
+<a href="payment.html" class="btn-link">Оплатить</a>
 </section>
 
+<section>
+<h2>Наиболее частые нарушения</h2>
+<ul>
+<li>Переполненность камер</li>
+<li>Плохие санитарные условия</li>
+<li>Отсутствие медицинской помощи</li>
+<li>Запугивание и давление</li>
+<li>Отсутствие документов на понятном языке</li>
+</ul>
+</section>
 </main>
 
 <footer>
-  <p>&copy; 2026 Prison Justice RU</p>
-  <p>Тел: +48 725 144 019 | Email: contact@prison-justice.pl</p>
+<p>&copy; 2026 Prison Justice PL</p>
+<p>Тел.: +48 725 144 019 | Email: contact@prison-justice.pl</p>
 </footer>
+
+<!-- CHAT -->
+<div id="chatbot-toggle">Помощь</div>
+<div id="chatbot-box">
+  <div id="chatbot-header">Информационный ассистент</div>
+  <div id="chatbot-messages">
+    <p><strong>Ассистент:</strong> Привет. Я могу помочь с формой, процедурой или компенсацией.</p>
+  </div>
+  <div id="chatbot-input">
+    <input id="chatbot-text" placeholder="Введите вопрос">
+    <button onclick="sendMessage()">▶</button>
+  </div>
+</div>
+
+<script>
+let lastTopic = "";
+
+document.getElementById("chatbot-toggle").onclick = () => {
+  const box = document.getElementById("chatbot-box");
+  box.style.display = box.style.display === "flex" ? "none" : "flex";
+};
+
+function sendMessage(){
+  const input = document.getElementById("chatbot-text");
+  const msg = input.value.trim();
+  if(!msg) return;
+
+  const messages = document.getElementById("chatbot-messages");
+  messages.innerHTML += `<p><strong>Вы:</strong> ${msg}</p>`;
+
+  let reply = "Ваш вопрос о форме, процедуре или компенсации?";
+  const t = msg.toLowerCase();
+
+  if(t.includes("форма")) {
+    lastTopic="form";
+    reply="Форма используется для предварительной оценки дела. Она доступна на главной странице.";
+  } else if(t.includes("где") && lastTopic==="form") {
+    reply="Нажмите «Заполнить форму – оценка дела».";
+  } else if(t.includes("что ввести")) {
+    reply="Укажите исправительное учреждение, срок заключения и условия в камере.";
+  } else if(t.includes("привет") || t.includes("здравствуйте")){
+    reply="Здравствуйте. Чем могу помочь?";
+  }
+
+  messages.innerHTML += `<p><strong>Ассистент:</strong> ${reply}</p>`;
+  input.value="";
+  messages.scrollTop = messages.scrollHeight;
+}
+</script>
 
 </body>
 </html>
