@@ -19,45 +19,155 @@ section h2 { color:#003366; }
 footer { background:#003366; color:white; text-align:center; padding:15px; margin-top:40px; }
 .btn-link { display:inline-block; padding:14px 22px; margin:10px 10px 10px 0; background:#003366; color:white; text-decoration:none; border-radius:6px; font-weight:bold; }
 
-/* CHAT */
-#chatbot-toggle {
-  position:fixed;
-  bottom:120px;
-  right:20px;
-  background:#003366;
-  color:white;
-  padding:14px 18px;
-  border-radius:50px;
-  cursor:pointer;
-  z-index:999999;
-  font-weight:bold;
+<!-- === CHATBOT START === -->
+<style>
+#chat-toggle {
+  position: fixed;
+  bottom: 140px;
+  right: 20px;
+  background: #003366;
+  color: #ffffff;
+  padding: 12px 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 99999;
+  font-weight: bold;
 }
 
-#chatbot-box {
-  position:fixed;
-  bottom:190px;
-  right:20px;
-  width:320px;
-  height:420px;
-  background:white;
-  border:2px solid #003366;
-  border-radius:10px;
-  display:flex;
-  flex-direction:column;
-  visibility:hidden;
-  opacity:0;
-  transition:opacity 0.2s ease;
-  z-index:999999;
-  box-shadow:0 10px 40px rgba(0,0,0,0.35);
+#chat-box {
+  position: fixed;
+  bottom: 200px;
+  right: 20px;
+  width: 340px;
+  max-height: 460px;
+  background: #ffffff;
+  border: 2px solid #003366;
+  border-radius: 10px;
+  display: none;
+  flex-direction: column;
+  z-index: 99999;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
 }
 
-#chatbot-header { background:#003366; color:white; padding:10px; font-weight:bold; }
-#chatbot-messages { flex:1; padding:10px; overflow-y:auto; font-size:14px; }
-#chatbot-input { display:flex; border-top:1px solid #ccc; }
-#chatbot-input input { flex:1; padding:8px; border:none; }
-#chatbot-input button { padding:8px 12px; border:none; background:#003366; color:white; cursor:pointer; }
+#chat-header {
+  background: #003366;
+  color: #ffffff;
+  padding: 12px;
+  font-weight: bold;
+}
+
+#chat-messages {
+  padding: 12px;
+  overflow-y: auto;
+  flex: 1;
+  font-size: 14px;
+}
+
+#chat-input {
+  display: flex;
+  border-top: 1px solid #cccccc;
+}
+
+#chat-input input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+}
+
+#chat-input button {
+  background: #003366;
+  color: #ffffff;
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+}
 </style>
-</head>
+
+<div id="chat-toggle">Chat</div>
+
+<div id="chat-box">
+  <div id="chat-header">Asystent informacyjny</div>
+  <div id="chat-messages">
+    <div><strong>Asystent:</strong> Witaj. Mogę wyjaśnić procedurę, pomóc znaleźć formularz lub odpowiedzieć na pytania dotyczące odszkodowań.</div>
+  </div>
+  <div id="chat-input">
+    <input type="text" id="userInput" placeholder="Napisz pytanie..." />
+    <button onclick="sendMsg()">▶</button>
+  </div>
+</div>
+
+<script>
+const toggle = document.getElementById("chat-toggle");
+const box = document.getElementById("chat-box");
+const messages = document.getElementById("chat-messages");
+
+toggle.onclick = () => {
+  box.style.display = box.style.display === "flex" ? "none" : "flex";
+};
+
+const knowledgeBase = [
+  {
+    keys: ["cześć","hej","witaj","dzień dobry"],
+    answer: "Dzień dobry. W czym dokładnie mogę pomóc – formularz, procedura czy warunki odbywania kary?"
+  },
+  {
+    keys: ["formularz","wniosek"],
+    answer: "Chodzi o formularz oceny sprawy. Znajdziesz go na stronie głównej pod przyciskiem „Wypełnij formularz – ocena sprawy”."
+  },
+  {
+    keys: ["który","jaki formularz"],
+    answer: "Jest jeden formularz – dotyczy warunków odbywania kary w Słowenii i oceny prawa do odszkodowania."
+  },
+  {
+    keys: ["gdzie","jak znaleźć"],
+    answer: "Formularz znajduje się na stronie głównej. Po kliknięciu przechodzisz przez pytania krok po kroku."
+  },
+  {
+    keys: ["co wpisać","jak wypełnić","co napisać"],
+    answer: "Wpisujesz miejsce osadzenia, okres pobytu, liczbę osób w celi oraz problemy takie jak przeludnienie czy brak opieki medycznej."
+  },
+  {
+    keys: ["anonimowo","anonimowe"],
+    answer: "Formularz można wypełnić anonimowo. Dane kontaktowe są wymagane dopiero na dalszym etapie postępowania."
+  },
+  {
+    keys: ["procedura","jak wygląda"],
+    answer: "Najpierw ocena sprawy, potem procedura polubowna, a w razie potrzeby skarga do Europejskiego Trybunału Praw Człowieka."
+  }
+];
+
+function sendMsg() {
+  const input = document.getElementById("userInput");
+  const text = input.value.trim();
+  if (!text) return;
+
+  addMessage("Ty", text);
+  input.value = "";
+
+  let response = "Nie do końca rozumiem pytanie. Możesz zapytać o formularz, procedurę lub warunki odbywania kary.";
+
+  const lower = text.toLowerCase();
+  for (const item of knowledgeBase) {
+    if (item.keys.some(k => lower.includes(k))) {
+      response = item.answer;
+      break;
+    }
+  }
+
+  setTimeout(() => addMessage("Asystent", response), 400);
+}
+
+function addMessage(sender, text) {
+  const div = document.createElement("div");
+  div.innerHTML = `<strong>${sender}:</strong> ${text}`;
+  div.style.marginBottom = "8px";
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+}
+</script>
+<!-- === CHATBOT END === -->
+
 
 <body>
 
